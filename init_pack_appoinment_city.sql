@@ -3247,27 +3247,7 @@ CREATE TABLE IF NOT EXISTS `identitystore_attribute_right` (
   KEY `fk_attribute_right_id_attribute` (`id_attribute`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `identitystore_attribute_right` DISABLE KEYS */;
-INSERT INTO `identitystore_attribute_right` (`id_client_app`, `id_attribute`, `readable`, `writable`, `certifiable`, `searchable`) VALUES
-	(1, 1, 1, 1, 0, 0),
-	(1, 2, 1, 1, 0, 0),
-	(1, 3, 1, 1, 0, 0),
-	(1, 4, 1, 1, 0, 0),
-	(1, 5, 1, 1, 0, 0),
-	(1, 6, 1, 1, 0, 0),
-	(1, 7, 1, 1, 0, 0),
-	(1, 8, 1, 1, 0, 0),
-	(1, 9, 1, 1, 0, 0),
-	(1, 10, 1, 1, 0, 0),
-	(1, 11, 1, 1, 0, 0),
-	(1, 12, 1, 1, 0, 0),
-	(1, 13, 1, 1, 0, 0),
-	(1, 14, 1, 1, 0, 0),
-	(1, 15, 1, 1, 0, 0),
-	(1, 16, 1, 1, 0, 0),
-	(1, 17, 1, 1, 0, 0),
-	(1, 18, 1, 1, 0, 0);
-/*!40000 ALTER TABLE `identitystore_attribute_right` ENABLE KEYS */;
+
 
 DROP TABLE IF EXISTS `identitystore_client_application`;
 CREATE TABLE IF NOT EXISTS `identitystore_client_application` (
@@ -3280,10 +3260,6 @@ CREATE TABLE IF NOT EXISTS `identitystore_client_application` (
   UNIQUE KEY `code` (`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `identitystore_client_application` DISABLE KEYS */;
-INSERT INTO `identitystore_client_application` (`id_client_app`, `name`, `code`, `is_application_authorized_to_delete_value`) VALUES
-	(1, 'My Application', 'MyApplication', 0);
-/*!40000 ALTER TABLE `identitystore_client_application` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `identitystore_client_application_certifiers`;
 CREATE TABLE IF NOT EXISTS `identitystore_client_application_certifiers` (
@@ -3332,10 +3308,6 @@ CREATE TABLE IF NOT EXISTS `identitystore_identity` (
   KEY `customer_id_2` (`customer_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `identitystore_identity` DISABLE KEYS */;
-INSERT INTO `identitystore_identity` (`id_identity`, `connection_id`, `customer_id`, `date_create`, `is_deleted`, `date_delete`) VALUES
-	(1, 'azerty', '3F2504E0-4F89-11D3-9A0C-0305E82C3301', '2020-11-13 14:03:46', 0, '2020-11-13 14:03:46');
-/*!40000 ALTER TABLE `identitystore_identity` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `identitystore_identity_attribute`;
 CREATE TABLE IF NOT EXISTS `identitystore_identity_attribute` (
@@ -3351,27 +3323,6 @@ CREATE TABLE IF NOT EXISTS `identitystore_identity_attribute` (
   KEY `ix_attribute_value` (`attribute_value`(50)) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `identitystore_identity_attribute` DISABLE KEYS */;
-INSERT INTO `identitystore_identity_attribute` (`id_identity`, `id_attribute`, `attribute_value`, `id_certification`, `id_file`, `lastupdate_date`, `lastupdate_application`) VALUES
-	(1, 1, 'M', 0, 0, '2020-11-13 14:03:46', NULL),
-	(1, 2, 'john.doe@gmail.com', 0, 0, '2020-11-13 14:03:46', NULL),
-	(1, 3, '11/10/1970', 0, 0, '2020-11-13 14:03:46', NULL),
-	(1, 4, 'Paris', 0, 0, '2020-11-13 14:03:46', NULL),
-	(1, 5, '0623457896', 0, 0, '2020-11-13 14:03:46', NULL),
-	(1, 6, '0123457896', 0, 0, '2020-11-13 14:03:46', NULL),
-	(1, 7, '0123457896', 0, 0, '2020-11-13 14:03:46', NULL),
-	(1, 8, 'Joe', 0, 0, '2020-11-13 14:03:46', NULL),
-	(1, 9, 'Rue de Rennes', 0, 0, '2020-11-13 14:03:46', NULL),
-	(1, 10, 'John', 0, 0, '2020-11-13 14:03:46', NULL),
-	(1, 11, 'Doe', 0, 0, '2020-11-13 14:03:46', NULL),
-	(1, 12, '8', 0, 0, '2020-11-13 14:03:46', NULL),
-	(1, 13, 'Bis', 0, 0, '2020-11-13 14:03:46', NULL),
-	(1, 14, 'Rue de Rennes', 0, 0, '2020-11-13 14:03:46', NULL),
-	(1, 15, 'Escalier B', 0, 0, '2020-11-13 14:03:46', NULL),
-	(1, 16, 'Etage 4', 0, 0, '2020-11-13 14:03:46', NULL),
-	(1, 17, '75018', 0, 0, '2020-11-13 14:03:46', NULL),
-	(1, 18, 'Paris', 0, 0, '2020-11-13 14:03:46', NULL);
-/*!40000 ALTER TABLE `identitystore_identity_attribute` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `kibana_dashboard`;
 CREATE TABLE IF NOT EXISTS `kibana_dashboard` (
@@ -3383,10 +3334,6 @@ CREATE TABLE IF NOT EXISTS `kibana_dashboard` (
   UNIQUE KEY `idkibanadashboard` (`idkibanadashboard`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-/*!40000 ALTER TABLE `kibana_dashboard` DISABLE KEYS */;
-INSERT INTO `kibana_dashboard` (`id_dashboard`, `idkibanadashboard`, `title`, `dataSourceName`) VALUES
-	(1, '77540810-5188-11eb-ab89-15cb0317af6a', 'Rendez-vous', NULL);
-/*!40000 ALTER TABLE `kibana_dashboard` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `mydashboard_configuration`;
 CREATE TABLE IF NOT EXISTS `mydashboard_configuration` (
@@ -3397,12 +3344,6 @@ CREATE TABLE IF NOT EXISTS `mydashboard_configuration` (
   PRIMARY KEY (`my_dashboard_component_id`,`id_config`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `mydashboard_configuration` DISABLE KEYS */;
-INSERT INTO `mydashboard_configuration` (`my_dashboard_component_id`, `id_config`, `dashboard_order`, `hide_dashboard`) VALUES
-	('mydashboard.dashboardMyAppointments', '2-260549', 1, 0),
-	('mydashboard.myDashboardComponentMyDashboard', '2-260549', 2, 0),
-	('mydashboard.myDashboardComponentNickname', '2-260549', 3, 0);
-/*!40000 ALTER TABLE `mydashboard_configuration` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `mydashboard_dashboard_association`;
 CREATE TABLE IF NOT EXISTS `mydashboard_dashboard_association` (
@@ -3532,10 +3473,6 @@ CREATE TABLE IF NOT EXISTS `mylutece_database_user` (
   PRIMARY KEY (`mylutece_database_user_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `mylutece_database_user` DISABLE KEYS */;
-INSERT INTO `mylutece_database_user` (`mylutece_database_user_id`, `login`, `password`, `name_given`, `name_family`, `email`, `is_active`, `reset_password`, `password_max_valid_date`, `account_max_valid_date`, `nb_alerts_sent`, `last_login`) VALUES
-	(1, 'laurent.hohl@gmail.com', 'PBKDF2WITHHMACSHA512:40000:d812ffa87cb979a45099c919f6acd64a:2030e46e70e0b731ee180047daafac227159a5e9b5e33c1d5ddc310e6e410e72777147f8088f4ff5323303db89aa44f8be67fc64565cd06820f18e6e8a2af6699af97c7f7f68a8c2013f33f69bd4c1c2db77ec06136381ab3d62d017f46601c2b1e2e49dcf1816c12e9b31075a2cd7e3447d1a5a98ab7ab7eebe61f8eb321a78', 'Laurent', 'HOHLA', 'laurent.hohl@gmail.com', 1, 0, NULL, 1676652179713, 0, '2022-02-22 17:42:59');
-/*!40000 ALTER TABLE `mylutece_database_user` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `mylutece_database_user_group`;
 CREATE TABLE IF NOT EXISTS `mylutece_database_user_group` (
@@ -3649,401 +3586,6 @@ CREATE TABLE IF NOT EXISTS `notifyesirius_workflow_save_appointement_created` (
   PRIMARY KEY (`id_appointment`,`id_take_appointment`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `notifyesirius_workflow_save_appointement_created` DISABLE KEYS */;
-INSERT INTO `notifyesirius_workflow_save_appointement_created` (`id_take_appointment`, `id_appointment`, `id_workflow`, `code_appointment_esirius`) VALUES
-	(1, 42, 4, '99XZD8'),
-	(2, 47, 4, '97SPNA'),
-	(3, 57, 3, '94JGYM'),
-	(4, 58, 3, '99NHZM'),
-	(5, 66, 3, '95S7QY'),
-	(6, 71, 3, '94DAGJ'),
-	(7, 73, 3, '92MB2D'),
-	(9, 76, 4, '93VPEH'),
-	(10, 77, 3, '98JPVT'),
-	(11, 78, 3, '99F3AQ'),
-	(12, 79, 3, '95FBKQ'),
-	(13, 81, 3, '96UB2Q'),
-	(14, 82, 4, '96WCNS'),
-	(15, 89, 3, '934XKW'),
-	(16, 90, 4, '993Y8W'),
-	(17, 91, 3, '95RYFW'),
-	(18, 92, 3, '97EYMW'),
-	(19, 93, 3, '98AYQW'),
-	(20, 96, 3, '92EZCX'),
-	(21, 97, 3, '99Q54Y'),
-	(22, 98, 3, '93T55Y'),
-	(23, 99, 3, '9265EY'),
-	(24, 100, 3, '96W5JY'),
-	(25, 101, 3, '92M5PY'),
-	(26, 117, 3, '929588'),
-	(27, 118, 4, '92FGH2'),
-	(28, 119, 3, '92MNF2'),
-	(29, 125, 3, '92FNK7'),
-	(32, 136, 3, '928C38'),
-	(33, 143, 3, '92UVW3'),
-	(34, 146, 3, '92H7B3'),
-	(35, 148, 3, '92G7C3'),
-	(37, 153, 3, '92QAA3'),
-	(38, 154, 3, '92PDZ3'),
-	(39, 163, 3, '92SC75'),
-	(40, 171, 3, '927CF5'),
-	(41, 173, 3, '924CK5'),
-	(42, 174, 3, '92CCK5'),
-	(43, 175, 3, '92VDH5'),
-	(44, 177, 3, '92YKF5'),
-	(45, 178, 3, '92QJA5'),
-	(47, 180, 3, '927P75'),
-	(48, 181, 3, '92GPB5'),
-	(50, 186, 3, '928TZ5'),
-	(51, 188, 3, '92XTF5'),
-	(54, 194, 3, '92JCV7'),
-	(56, 198, 3, '92HF37'),
-	(57, 199, 3, '92NFB7'),
-	(58, 200, 3, '92TNK7'),
-	(59, 202, 3, '92XNX7'),
-	(60, 204, 3, '925NQ7'),
-	(61, 205, 3, '92PNQ7'),
-	(62, 207, 3, '922NS7'),
-	(63, 209, 3, '92VNT7'),
-	(65, 213, 3, '92JQ47'),
-	(66, 216, 4, '92URW7'),
-	(67, 217, 3, '92YBCD'),
-	(68, 218, 3, '92YBRD'),
-	(69, 219, 3, '92HC4D'),
-	(70, 220, 3, '92JC4D'),
-	(71, 224, 3, '925CQD'),
-	(72, 226, 3, '92FNMD'),
-	(73, 228, 3, '9295BE'),
-	(74, 231, 3, '92ADNF'),
-	(76, 234, 3, '92GP8F'),
-	(78, 236, 3, '92GQDF'),
-	(79, 238, 4, '92AS6F'),
-	(80, 239, 3, '927X5F'),
-	(81, 240, 3, '927A8H'),
-	(82, 241, 3, '922W3H'),
-	(83, 242, 7, '92BUJH'),
-	(84, 243, 3, '92VRPH'),
-	(85, 244, 3, '92DWPH'),
-	(86, 245, 3, '922WQH'),
-	(87, 246, 3, '92RWQH'),
-	(88, 249, 3, '922WUH'),
-	(89, 257, 3, '92EX5H'),
-	(90, 258, 3, '92DX6H'),
-	(91, 259, 3, '928X8H'),
-	(92, 261, 3, '92ZXAH'),
-	(93, 268, 3, '92MXFH'),
-	(94, 271, 3, '925XQH'),
-	(95, 274, 3, '92CAXJ'),
-	(96, 275, 3, '927B3J'),
-	(97, 278, 3, '92GBMJ'),
-	(98, 279, 3, '92RBPJ'),
-	(99, 280, 3, '92EC9J'),
-	(100, 281, 3, '92UF6J'),
-	(101, 282, 3, '923F7J'),
-	(102, 283, 3, '92JGEJ'),
-	(104, 285, 3, '92THVJ'),
-	(105, 286, 3, '92KJQJ'),
-	(106, 287, 3, '92HK2J'),
-	(107, 288, 3, '92AK4J'),
-	(108, 289, 3, '92JK5J'),
-	(109, 290, 3, '925K7J'),
-	(110, 291, 3, '929K9J'),
-	(111, 292, 3, '92TZZJ'),
-	(112, 293, 3, '923QGJ'),
-	(113, 294, 3, '92WQHJ'),
-	(114, 295, 3, '92YCVM'),
-	(115, 296, 3, '92QY2T'),
-	(116, 297, 3, '92Q3AQ'),
-	(117, 298, 3, '927J8R'),
-	(118, 299, 3, '92DJAR'),
-	(119, 300, 3, '922JFR'),
-	(120, 301, 3, '92EJHR'),
-	(121, 302, 3, '92PJWR'),
-	(122, 303, 3, '929JKR'),
-	(123, 304, 3, '92MJKR'),
-	(124, 305, 3, '92RJMR'),
-	(125, 307, 3, '92RK4R'),
-	(126, 308, 3, '924K7R'),
-	(127, 309, 3, '92XKBR'),
-	(128, 310, 3, '922KCR'),
-	(129, 311, 3, '92UKFR'),
-	(130, 312, 3, '92TKZR'),
-	(131, 313, 3, '92ZKYR'),
-	(132, 315, 3, '92VKWR'),
-	(133, 316, 3, '92TKQR'),
-	(134, 317, 3, '92RKSR'),
-	(135, 318, 3, '92YKUR'),
-	(136, 320, 3, '92JKYR'),
-	(137, 321, 3, '92SYZR'),
-	(138, 322, 3, '925P3R'),
-	(139, 323, 3, '92FM3R'),
-	(140, 324, 3, '922W5R'),
-	(141, 325, 3, '92MZ6R'),
-	(142, 326, 3, '92PH6R'),
-	(143, 327, 3, '929N8R'),
-	(144, 328, 3, '92KJ9R'),
-	(145, 329, 3, '92MKBR'),
-	(146, 331, 3, '927PGR'),
-	(147, 332, 3, '92NVGR'),
-	(148, 333, 3, '92TFHR'),
-	(149, 335, 3, '92WUKR'),
-	(150, 336, 3, '924JHR'),
-	(151, 338, 3, '92YWPR'),
-	(152, 339, 3, '92EMRR'),
-	(153, 340, 3, '92EHSR'),
-	(154, 341, 3, '92VHTR'),
-	(155, 342, 3, '925FVR'),
-	(156, 343, 3, '927GWR'),
-	(157, 347, 3, '92TM4R'),
-	(158, 348, 3, '928M3R'),
-	(159, 349, 3, '92PM4R'),
-	(166, 362, 3, '924HDT'),
-	(167, 363, 3, '929JMT'),
-	(171, 368, 3, '928FAV'),
-	(172, 373, 3, '92JVVV'),
-	(173, 374, 3, '92RXKV'),
-	(174, 377, 3, '925RJX'),
-	(175, 378, 3, '92VTXX'),
-	(176, 380, 3, '92XVRX'),
-	(177, 381, 3, '923WPX'),
-	(178, 382, 3, '927XKX'),
-	(179, 384, 3, '93WKNZ'),
-	(180, 386, 3, '935P76'),
-	(181, 389, 3, '933QH8'),
-	(182, 391, 3, '93MUE8'),
-	(183, 393, 3, '93W3Z9'),
-	(184, 396, 3, '93SJTA'),
-	(185, 397, 3, '93BP3A'),
-	(186, 398, 3, '93RP4A'),
-	(187, 399, 3, '93NPCA'),
-	(188, 400, 3, '93NPEA'),
-	(189, 401, 3, '938PMA'),
-	(190, 403, 3, '93SPSA'),
-	(191, 404, 3, '93RPTA'),
-	(192, 406, 3, '93PQJA'),
-	(193, 407, 3, '93HQHA'),
-	(194, 408, 3, '939X9A'),
-	(195, 409, 3, '93A5UB'),
-	(196, 410, 3, '93F58B'),
-	(197, 413, 3, '93Y5FB'),
-	(198, 415, 3, '93N5HB'),
-	(199, 416, 3, '93E5ZB'),
-	(200, 421, 3, '93R5YB'),
-	(201, 422, 3, '93762B'),
-	(202, 424, 3, '93P6EB'),
-	(203, 425, 3, '93P6GB'),
-	(204, 427, 3, '93N6TB'),
-	(205, 428, 3, '93JREB'),
-	(206, 429, 4, '939KUC'),
-	(207, 430, 3, '935VZC'),
-	(208, 431, 3, '93DMQC'),
-	(209, 432, 23, '93HNVC'),
-	(210, 433, 3, '93HNYC'),
-	(211, 434, 3, '93NR8C'),
-	(212, 435, 3, '938XTC'),
-	(213, 436, 3, '93WZND'),
-	(214, 437, 3, '9385ZD'),
-	(215, 438, 3, '93N8CD'),
-	(216, 439, 3, '93Y7ED'),
-	(217, 440, 3, '93H7FD'),
-	(218, 441, 3, '9333HD'),
-	(219, 442, 3, '9355JD'),
-	(220, 443, 3, '93B4KD'),
-	(221, 444, 3, '93H3VD'),
-	(222, 445, 3, '93G8MD'),
-	(223, 447, 3, '9347QD'),
-	(224, 448, 3, '93D8RD'),
-	(225, 449, 3, '93Z4TD'),
-	(226, 450, 3, '93G7UD'),
-	(227, 451, 3, '9345WD'),
-	(228, 452, 3, '93F9XD'),
-	(229, 453, 3, '9372ZD'),
-	(230, 454, 3, '93K26D'),
-	(231, 455, 3, '93V22D'),
-	(232, 456, 3, '93D24D'),
-	(233, 458, 3, '93D27D'),
-	(234, 459, 3, '93S28D'),
-	(235, 460, 3, '93K2AD'),
-	(236, 461, 3, '93Y3JD'),
-	(237, 462, 3, '9393JD'),
-	(238, 463, 3, '93W3MD'),
-	(239, 465, 3, '9393QD'),
-	(240, 468, 3, '93W3UD'),
-	(241, 469, 3, '93X3VD'),
-	(242, 470, 3, '93B3XD'),
-	(243, 471, 3, '93Q3YD'),
-	(244, 472, 3, '93Y4ZD'),
-	(245, 473, 3, '93G42D'),
-	(246, 475, 3, '93B45D'),
-	(247, 476, 3, '93G46D'),
-	(248, 477, 3, '93M47D'),
-	(249, 479, 3, '93Y49D'),
-	(250, 480, 3, '93VCJE'),
-	(251, 481, 3, '93SE8E'),
-	(252, 482, 3, '93GP5E'),
-	(253, 483, 3, '93RP2E'),
-	(254, 484, 3, '93CP4E'),
-	(255, 485, 3, '93KP6E'),
-	(256, 486, 3, '93DP8E'),
-	(257, 487, 3, '93SPAE'),
-	(258, 488, 3, '93TPBE'),
-	(259, 489, 3, '932PDE'),
-	(260, 490, 3, '93FPEE'),
-	(261, 491, 3, '93DPGE'),
-	(262, 492, 3, '93VPHE'),
-	(263, 493, 3, '93KPJE'),
-	(264, 494, 3, '934PQE'),
-	(265, 495, 3, '93JPME'),
-	(266, 497, 3, '938PPE'),
-	(267, 500, 3, '939PTE'),
-	(268, 501, 3, '93KPUE'),
-	(269, 502, 3, '93QPVE'),
-	(270, 504, 3, '93RQZE'),
-	(271, 505, 3, '937Q2E'),
-	(272, 506, 3, '939Q3E'),
-	(273, 509, 3, '93SQAE'),
-	(274, 510, 3, '938QME'),
-	(275, 511, 3, '93AQTE'),
-	(276, 512, 3, '93ZR4E'),
-	(277, 513, 3, '937R4E'),
-	(278, 514, 3, '93BR5E'),
-	(279, 515, 3, '93XR6E'),
-	(280, 518, 3, '933Y4E'),
-	(281, 519, 3, '93NZ9F'),
-	(282, 520, 3, '939E5K'),
-	(283, 521, 3, '93PV7K'),
-	(284, 522, 3, '935Q9K'),
-	(285, 523, 3, '93RKAK'),
-	(286, 524, 3, '93ZJCK'),
-	(287, 525, 3, '93KJDK'),
-	(288, 526, 3, '93ZWGK'),
-	(289, 527, 3, '93YNHK'),
-	(290, 529, 3, '93DMKK'),
-	(291, 530, 3, '93AAMK'),
-	(292, 531, 3, '93TEXK'),
-	(293, 532, 3, '939FQK'),
-	(294, 534, 3, '93RTTK'),
-	(295, 536, 3, '93EBYK'),
-	(296, 538, 3, '93PM6K'),
-	(297, 541, 3, '93YMBK'),
-	(298, 542, 3, '93FMGK'),
-	(299, 543, 3, '93RMHK'),
-	(300, 545, 3, '93XMBK'),
-	(301, 546, 3, '935MNK'),
-	(302, 547, 3, '93MNZK'),
-	(303, 548, 3, '93JN3K'),
-	(304, 549, 3, '93AN7K'),
-	(305, 550, 3, '93ANJK'),
-	(306, 551, 3, '93DNGK'),
-	(307, 552, 3, '93FNMK'),
-	(308, 553, 3, '93QNNK'),
-	(309, 554, 3, '93UNSK'),
-	(310, 555, 3, '93YNPK'),
-	(311, 557, 3, '93YNRK'),
-	(312, 558, 3, '93DNTK'),
-	(313, 560, 3, '93QYHK'),
-	(314, 561, 3, '93YYBK'),
-	(315, 562, 3, '932YKK'),
-	(316, 563, 3, '933YMK'),
-	(317, 564, 3, '93PYTK'),
-	(318, 566, 3, '93AYRK'),
-	(319, 567, 3, '93KYTK'),
-	(320, 569, 3, '938YWK'),
-	(321, 571, 3, '932Z4A'),
-	(322, 572, 3, '93DZ7G'),
-	(323, 573, 3, '935Z9A'),
-	(324, 574, 3, '93TZAQ'),
-	(325, 575, 3, '93WZDJ'),
-	(326, 576, 3, '937ZFV'),
-	(327, 578, 3, '933ZCG'),
-	(328, 579, 3, '937ZKN'),
-	(329, 580, 3, '93CZVV'),
-	(330, 581, 3, '93JZMJ'),
-	(331, 582, 3, '93ZZGM'),
-	(332, 583, 3, '93SZPT'),
-	(333, 585, 3, '935ZSX'),
-	(334, 586, 3, '93AZTR'),
-	(335, 587, 3, '93WZUN'),
-	(336, 594, 3, '93A8MP'),
-	(337, 595, 3, '93A9FT'),
-	(338, 597, 3, '93QB7G'),
-	(339, 598, 3, '936EBP'),
-	(340, 599, 3, '933M9M'),
-	(343, 616, 4, '93R9ZP'),
-	(344, 618, 4, '93DA6P'),
-	(345, 619, 4, '93QAVP'),
-	(349, 636, 4, '93FAYT'),
-	(348, 637, 4, '93FANT'),
-	(350, 638, 4, '93YHHT'),
-	(351, 639, 4, '93VYRT'),
-	(353, 641, 4, '936UGY'),
-	(355, 643, 4, '93KWSY'),
-	(358, 649, 3, '94862Z'),
-	(359, 650, 4, '94Q6CZ'),
-	(360, 661, 4, '94PX76'),
-	(363, 666, 4, '94Y2X2'),
-	(364, 667, 4, '94U2Y2'),
-	(365, 668, 5, '94C3J2'),
-	(368, 669, 5, '9466H2'),
-	(371, 671, 5, '9469F2'),
-	(366, 672, 4, '9483Q2'),
-	(367, 673, 4, '94P3M2'),
-	(369, 674, 5, '9476H2'),
-	(372, 675, 5, '9429F2'),
-	(373, 676, 5, '94UCC2'),
-	(370, 680, 4, '9486T2'),
-	(374, 683, 4, '9484C4'),
-	(375, 684, 4, '94AJ64'),
-	(376, 688, 4, '94R7J6'),
-	(377, 689, 4, '94K9K6'),
-	(378, 693, 3, '94JY87'),
-	(379, 694, 3, '94K2Z8'),
-	(380, 695, 3, '94F3C8'),
-	(381, 696, 4, '94MBVE'),
-	(382, 700, 4, '94BG4E'),
-	(383, 701, 4, '947GHE'),
-	(384, 707, 4, '94ZKDG'),
-	(385, 709, 4, '94W9TC'),
-	(386, 712, 3, '94FX5J'),
-	(387, 718, 4, '94P4XS'),
-	(388, 720, 4, '956XM6'),
-	(389, 737, 4, '973R5W'),
-	(392, 742, 4, '98A499'),
-	(393, 744, 4, '98RETF'),
-	(394, 750, 3, '984TXT'),
-	(395, 751, 3, '985TXB'),
-	(396, 770, 4, '99F6RU'),
-	(409, 777, 4, '99HMJS'),
-	(411, 778, 4, '999MMS'),
-	(416, 780, 4, '993MQS'),
-	(415, 782, 4, '99ZMQS'),
-	(414, 784, 4, '99KMPS'),
-	(413, 786, 4, '99ZMPS'),
-	(410, 795, 4, '99JMUS'),
-	(417, 797, 4, '9A4MT3'),
-	(418, 799, 3, '9ABUB3'),
-	(420, 800, 5, '9AAVX3'),
-	(419, 802, 3, '9AXV53'),
-	(421, 803, 4, '9AAY23'),
-	(422, 806, 4, '9AD2R4'),
-	(423, 807, 4, '9AA2M4'),
-	(424, 809, 4, '9AJMY5'),
-	(425, 811, 4, '9A2NW5'),
-	(426, 813, 4, '9AWS4J'),
-	(427, 814, 3, '9AVT5J'),
-	(428, 815, 4, '9ABJMX'),
-	(429, 816, 4, '9AQUNX'),
-	(430, 817, 4, '9AGV2X'),
-	(431, 818, 3, '9BVHPZ'),
-	(432, 819, 3, '9BCMYZ'),
-	(433, 820, 3, '9BC2D3'),
-	(434, 821, 3, '9BM2N2'),
-	(435, 822, 3, '9BGKN2'),
-	(436, 823, 3, '9BMKS2'),
-	(437, 824, 3, '9BRYFA'),
-	(438, 825, 4, '9BBS4C'),
-	(439, 826, 4, '9B6S6C');
-/*!40000 ALTER TABLE `notifyesirius_workflow_save_appointement_created` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `notifyesirius_workflow_task_take_appointement_cf`;
 CREATE TABLE IF NOT EXISTS `notifyesirius_workflow_task_take_appointement_cf` (
@@ -4057,67 +3599,6 @@ CREATE TABLE IF NOT EXISTS `notifyesirius_workflow_task_take_appointement_cf` (
   PRIMARY KEY (`id_task_take_appointment`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `notifyesirius_workflow_task_take_appointement_cf` DISABLE KEYS */;
-INSERT INTO `notifyesirius_workflow_task_take_appointement_cf` (`id_task_take_appointment`, `organization`, `group_of_site`, `site`, `service`, `reason`, `entry_motif`) VALUES
-	(12, '', '', 'site3', '211', '', 5),
-	(20, '', '', 'site3', '211', '', NULL),
-	(21, '', '', 'site3', '211', '', NULL),
-	(24, '', '', 'site3', '211', '', NULL),
-	(25, '', '', 'site3', '211', '', NULL),
-	(26, '', '', 'site3', '211', '', 5),
-	(27, '', '', 'site3', '211', '', 5),
-	(28, '', '', 'site3', '211', '', 5),
-	(30, '', '', 'site3', '211', '', 5),
-	(31, '', '', 'site3', '211', '', 5),
-	(32, '', '', 'site3', '211', '', 5),
-	(33, '', '', 'site3', '211', '', 5),
-	(35, '', '', 'site3', '211', '', NULL),
-	(36, '', '', 'site3', '211', '', NULL),
-	(37, '', '', 'site3', '211', '', NULL),
-	(40, '', '', 'site3', '211', '', 5),
-	(41, '', '', 'site3', '211', '', NULL),
-	(42, '', '', 'site50', '789', '', 5),
-	(48, '', '', 'site50', '789', '', NULL),
-	(55, '', '', 'site50', '789', '', NULL),
-	(58, '', '', 'site50', '789', '', NULL),
-	(62, '', '', 'site50', '789', '', NULL),
-	(110, '', '', 'site50', '789', '', 5),
-	(111, '', '', 'site50', '789', '', 5),
-	(112, '', '', 'site50', '789', '', 5),
-	(134, '', '', '1', '1', '', 5),
-	(135, '', '', 'site38', '400', '', NULL),
-	(137, '', '', 'site38', '400', '', 6),
-	(138, '', '', 'site38', '400', '', NULL),
-	(139, '', '', 'site38', '400', '', NULL),
-	(163, '', '', 'site50', '789', '', 5),
-	(164, '', '', 'site50', '789', '', 5),
-	(165, '', '', 'site50', '789', '', 5),
-	(166, '', '', 'site50', '789', '', 5),
-	(173, '', '', 'site50', '789', '', 5),
-	(174, '', '', 'site50', '789', '', 5),
-	(242, '', '', 'site50', '789', '', 5),
-	(252, '', '', 'site50', '789', '', 5),
-	(253, '', '', 'site50', '789', '', 5),
-	(255, '', '', 'site50', '789', '', 5),
-	(257, '', '', 'site50', '789', '', 5),
-	(258, '', '', 'site50', '789', '', NULL),
-	(259, '', '', 'site50', '789', '', NULL),
-	(260, '', '', 'site50', '789', '', NULL),
-	(262, '', '', 'site50', '789', '', NULL),
-	(271, '', '', 'site50', '789', '', 5),
-	(313, '', '', 'site50', '789', '', 5),
-	(316, '', '', 'site3', '211', '', NULL),
-	(317, '', '', 'site3', '211', '', 5),
-	(319, '', '', 'site3', '211', '', 5),
-	(322, '', '', 'site3', '211', '', 0),
-	(324, '', '', 'site3', '211', '', 5),
-	(330, '', '', 'XXXXX', 'ZZ', '', 0),
-	(332, '', '', 'XXXXX', 'ZZ', '', 0),
-	(334, '', '', 'XXXXX', 'ZZ', '', 0),
-	(335, '', '', 'XXXXX', 'ZZ', '', 0),
-	(336, '', '', 'test', 'test', '', 1),
-	(339, '', '', 'site50', '789', '', 0);
-/*!40000 ALTER TABLE `notifyesirius_workflow_task_take_appointement_cf` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `openamidentityclient_key`;
 CREATE TABLE IF NOT EXISTS `openamidentityclient_key` (
@@ -4141,16 +3622,7 @@ CREATE TABLE IF NOT EXISTS `profile_action` (
   PRIMARY KEY (`id_action`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*!40000 ALTER TABLE `profile_action` DISABLE KEYS */;
-INSERT INTO `profile_action` (`id_action`, `name_key`, `description_key`, `action_url`, `icon_url`, `action_permission`) VALUES
-	(1, 'profiles.action.modify_profile.name', 'profiles.action.modify_profile.description', 'jsp/admin/plugins/profiles/ModifyProfile.jsp', 'edit', 'MODIFY_PROFILE'),
-	(2, 'profiles.action.delete_profile.name', 'profiles.action.delete_profile.description', 'jsp/admin/plugins/profiles/RemoveProfile.jsp', 'trash', 'DELETE_DELETE'),
-	(3, 'profiles.action.manage_users_assignment.name', 'profiles.action.manage_users_assignment.description', 'jsp/admin/plugins/profiles/AssignUsersProfile.jsp', 'user', 'MANAGE_USERS_ASSIGNMENT'),
-	(4, 'profiles.action.manage_rights_assignment.name', 'profiles.action.manage_rights_assignment.description', 'jsp/admin/plugins/profiles/AssignRightsProfile.jsp', 'lock', 'MANAGE_RIGHTS_ASSIGNMENT'),
-	(5, 'profiles.action.manage_roles_assignment.name', 'profiles.action.manage_roles_assignment.description', 'jsp/admin/plugins/profiles/AssignRolesProfile.jsp', 'th-list', 'MANAGE_ROLES_ASSIGNMENT'),
-	(6, 'profiles.action.manage_workgroups_assignment.name', 'profiles.action.manage_workgroups_assignment.description', 'jsp/admin/plugins/profiles/AssignWorkgroupsProfile.jsp', 'users', 'MANAGE_WORKGROUPS_ASSIGNMENT'),
-	(7, 'profiles.action.manage_view_assignment.name', 'profiles.action.manage_view_assignment.description', 'jsp/admin/plugins/profiles/AssignViewProfile.jsp', 'eye', 'MANAGE_VIEW_ASSIGNMENT');
-/*!40000 ALTER TABLE `profile_action` ENABLE KEYS */;
+
 
 DROP TABLE IF EXISTS `profile_profile`;
 CREATE TABLE IF NOT EXISTS `profile_profile` (
@@ -4159,16 +3631,6 @@ CREATE TABLE IF NOT EXISTS `profile_profile` (
   PRIMARY KEY (`profile_key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*!40000 ALTER TABLE `profile_profile` DISABLE KEYS */;
-INSERT INTO `profile_profile` (`profile_key`, `profile_description`) VALUES
-	('AdministrateurMetier', 'Profil des administrateurs RdV - WF - messages - formulaire - gestion et planification'),
-	('AgentGuichet', 'Profil d\'agents d\'acceuil permettant de g├⌐rer les RdV - prises - annulation et export'),
-	('AgentMetier', 'Gestion et plannification des RdV'),
-	('ChefDeService', 'Profil des Chefs de service, DGA, DGAS'),
-	('ReferentLocal', 'Profil applicable pour les r├⌐f├⌐rents locaux'),
-	('SRU', 'Profil applicable pour les administrateurs fonctionnels'),
-	('Teleconseiller3975', 'Profil permettant de g├⌐rer les RdV - prises - annulation et export');
-/*!40000 ALTER TABLE `profile_profile` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `profile_right`;
 CREATE TABLE IF NOT EXISTS `profile_right` (
@@ -4177,65 +3639,6 @@ CREATE TABLE IF NOT EXISTS `profile_right` (
   PRIMARY KEY (`profile_key`,`id_right`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*!40000 ALTER TABLE `profile_right` DISABLE KEYS */;
-INSERT INTO `profile_right` (`profile_key`, `id_right`) VALUES
-	('AdministrateurMetier', 'APPOINTMENT_COMMENT_MANAGEMENT'),
-	('AdministrateurMetier', 'APPOINTMENT_FORM_MANAGEMENT'),
-	('AdministrateurMetier', 'CORE_USERS_MANAGEMENT'),
-	('AdministrateurMetier', 'KIBANA_MANAGEMENT'),
-	('AdministrateurMetier', 'MATOMO_MANAGEMENT'),
-	('AdministrateurMetier', 'MULTIVIEW_APPOINTMENT'),
-	('AdministrateurMetier', 'VIEW_TEMP_FILES'),
-	('AdministrateurMetier', 'WORKFLOW_MANAGEMENT'),
-	('AgentGuichet', 'APPOINTMENT_FORM_MANAGEMENT'),
-	('AgentGuichet', 'MULTIVIEW_APPOINTMENT'),
-	('AgentGuichet', 'VIEW_TEMP_FILES'),
-	('AgentMetier', 'APPOINTMENT_FORM_MANAGEMENT'),
-	('AgentMetier', 'MULTIVIEW_APPOINTMENT'),
-	('AgentMetier', 'VIEW_TEMP_FILES'),
-	('ChefDeService', 'APPOINTMENT_COMMENT_MANAGEMENT'),
-	('ChefDeService', 'APPOINTMENT_FORM_MANAGEMENT'),
-	('ChefDeService', 'CORE_USERS_MANAGEMENT'),
-	('ChefDeService', 'KIBANA_MANAGEMENT'),
-	('ChefDeService', 'MATOMO_MANAGEMENT'),
-	('ChefDeService', 'MULTIVIEW_APPOINTMENT'),
-	('ChefDeService', 'VIEW_TEMP_FILES'),
-	('ChefDeService', 'WORKFLOW_MANAGEMENT'),
-	('ReferentLocal', 'APPOINTMENT_COMMENT_MANAGEMENT'),
-	('ReferentLocal', 'APPOINTMENT_FORM_MANAGEMENT'),
-	('ReferentLocal', 'CORE_MAILINGLISTS_MANAGEMENT'),
-	('ReferentLocal', 'CORE_USERS_MANAGEMENT'),
-	('ReferentLocal', 'KIBANA_MANAGEMENT'),
-	('ReferentLocal', 'MATOMO_MANAGEMENT'),
-	('ReferentLocal', 'MULTIVIEW_APPOINTMENT'),
-	('ReferentLocal', 'RESOURCE_MANAGE_RESOURCES'),
-	('ReferentLocal', 'VIEW_TEMP_FILES'),
-	('ReferentLocal', 'WORKFLOW_MANAGEMENT'),
-	('SRU', 'APPOINTMENT_CATEGORY_MANAGEMENT'),
-	('SRU', 'APPOINTMENT_COMMENT_MANAGEMENT'),
-	('SRU', 'APPOINTMENT_FORM_MANAGEMENT'),
-	('SRU', 'CORE_MAILINGLISTS_MANAGEMENT'),
-	('SRU', 'CORE_RBAC_MANAGEMENT'),
-	('SRU', 'CORE_RIGHT_MANAGEMENT'),
-	('SRU', 'CORE_USERS_MANAGEMENT'),
-	('SRU', 'CORE_WORKGROUPS_MANAGEMENT'),
-	('SRU', 'ELASTICDATA_MANAGEMENT'),
-	('SRU', 'GFA_MANAGEMENT'),
-	('SRU', 'HTMLPAGE_MANAGEMENT'),
-	('SRU', 'KIBANA_MANAGEMENT'),
-	('SRU', 'MATOMO_MANAGEMENT'),
-	('SRU', 'MODULENOTIFYGRUMAPPINGMANAGER_MANAGEMENT'),
-	('SRU', 'MULTIVIEW_APPOINTMENT'),
-	('SRU', 'PROFILES_MANAGEMENT'),
-	('SRU', 'PROFILES_VIEWS_MANAGEMENT'),
-	('SRU', 'REGULAR_EXPRESSION_MANAGEMENT'),
-	('SRU', 'RESOURCE_MANAGE_RESOURCES'),
-	('SRU', 'SITELABELS_MANAGEMENT'),
-	('SRU', 'VIEW_TEMP_FILES'),
-	('SRU', 'WORKFLOW_MANAGEMENT'),
-	('Teleconseiller3975', 'APPOINTMENT_FORM_MANAGEMENT'),
-	('Teleconseiller3975', 'MULTIVIEW_APPOINTMENT');
-/*!40000 ALTER TABLE `profile_right` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `profile_role`;
 CREATE TABLE IF NOT EXISTS `profile_role` (
@@ -4244,62 +3647,6 @@ CREATE TABLE IF NOT EXISTS `profile_role` (
   PRIMARY KEY (`profile_key`,`role_key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*!40000 ALTER TABLE `profile_role` DISABLE KEYS */;
-INSERT INTO `profile_role` (`profile_key`, `role_key`) VALUES
-	('AdministrateurMetier', 'APP_OVERBOOK'),
-	('AdministrateurMetier', 'COMMENT_ADD'),
-	('AdministrateurMetier', 'COMMENT_MODERATE'),
-	('AdministrateurMetier', 'CONSULTATION_KIBANA'),
-	('AdministrateurMetier', 'kibana_dashboards_manager'),
-	('AdministrateurMetier', 'LISTE_DIFF'),
-	('AdministrateurMetier', 'LISTE_DIFF_ERREUR_GFA'),
-	('AdministrateurMetier', 'rdv_agentAccueil'),
-	('AdministrateurMetier', 'RDV_form'),
-	('AdministrateurMetier', 'rdv_planificateur'),
-	('AdministrateurMetier', 'workflow_manager'),
-	('AgentGuichet', 'rdv_agentAccueil'),
-	('AgentMetier', 'rdv_agentAccueil'),
-	('AgentMetier', 'rdv_planificateur'),
-	('ChefDeService', 'APP_OVERBOOK'),
-	('ChefDeService', 'COMMENT_ADD'),
-	('ChefDeService', 'COMMENT_MODERATE'),
-	('ChefDeService', 'CONSULTATION_KIBANA'),
-	('ChefDeService', 'LISTE_DIFF'),
-	('ChefDeService', 'LISTE_DIFF_ERREUR_GFA'),
-	('ChefDeService', 'rdv_agentAccueil'),
-	('ChefDeService', 'RDV_form'),
-	('ChefDeService', 'rdv_planificateur'),
-	('ChefDeService', 'workflow_manager'),
-	('ReferentLocal', 'APP_OVERBOOK'),
-	('ReferentLocal', 'COMMENT_ADD'),
-	('ReferentLocal', 'COMMENT_MODERATE'),
-	('ReferentLocal', 'CONSULTATION_KIBANA'),
-	('ReferentLocal', 'kibana_dashboards_manager'),
-	('ReferentLocal', 'LISTE_DIFF'),
-	('ReferentLocal', 'LISTE_DIFF_ERREUR_GFA'),
-	('ReferentLocal', 'RDV_ADMIN'),
-	('ReferentLocal', 'rdv_agentAccueil'),
-	('ReferentLocal', 'RDV_form'),
-	('ReferentLocal', 'rdv_planificateur'),
-	('ReferentLocal', 'workflow_manager'),
-	('SRU', 'APP_OVERBOOK'),
-	('SRU', 'assign_roles'),
-	('SRU', 'COMMENT_ADD'),
-	('SRU', 'COMMENT_MODERATE'),
-	('SRU', 'CONFIG_GFA'),
-	('SRU', 'CONSULTATION_KIBANA'),
-	('SRU', 'Gestion_utilisateurs_avancee'),
-	('SRU', 'kibana_dashboards_manager'),
-	('SRU', 'LISTE_DIFF'),
-	('SRU', 'LISTE_DIFF_ERREUR_GFA'),
-	('SRU', 'profiles_manager'),
-	('SRU', 'RDV_ADMIN'),
-	('SRU', 'rdv_agentAccueil'),
-	('SRU', 'RDV_form'),
-	('SRU', 'rdv_planificateur'),
-	('SRU', 'workflow_manager'),
-	('Teleconseiller3975', 'rdv_agentAccueil');
-/*!40000 ALTER TABLE `profile_role` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `profile_user`;
 CREATE TABLE IF NOT EXISTS `profile_user` (
@@ -4332,13 +3679,6 @@ CREATE TABLE IF NOT EXISTS `profile_view_action` (
   PRIMARY KEY (`id_action`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*!40000 ALTER TABLE `profile_view_action` DISABLE KEYS */;
-INSERT INTO `profile_view_action` (`id_action`, `name_key`, `description_key`, `action_url`, `icon_url`, `action_permission`) VALUES
-	(1, 'profiles.action.modify_view.name', 'profiles.action.modify_view.description', 'jsp/admin/plugins/profiles/ModifyView.jsp', 'edit', 'MODIFY_VIEW'),
-	(2, 'profiles.action.delete_view.name', 'profiles.action.delete_view.description', 'jsp/admin/plugins/profiles/RemoveView.jsp', 'trash', 'DELETE_VIEW'),
-	(3, 'profiles.action.manage_views_assignment.name', 'profiles.action.manage_views_assignment.description', 'jsp/admin/plugins/profiles/AssignProfilesView.jsp', 'user-tag', 'MANAGE_PROFILES_ASSIGNMENT'),
-	(4, 'profiles.action.manage_dashboards.name', 'profiles.action.manage_dashboards.description', 'jsp/admin/plugins/profiles/ManageDashboards.jsp', 'wrench', 'MANAGE_DASHBOARDS');
-/*!40000 ALTER TABLE `profile_view_action` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `profile_view_dashboard`;
 CREATE TABLE IF NOT EXISTS `profile_view_dashboard` (
@@ -4383,15 +3723,6 @@ CREATE TABLE IF NOT EXISTS `regularexpression_regular_expression` (
   PRIMARY KEY (`id_expression`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `regularexpression_regular_expression` DISABLE KEYS */;
-INSERT INTO `regularexpression_regular_expression` (`id_expression`, `title`, `regular_expression_value`, `valid_exemple`, `information_message`, `error_message`) VALUES
-	(1, 'Fichier JPG', '(image/jpeg)', 'image/jpeg', '<p>Expression r&eacute;guli&egrave;re pour les fichiers de type jpeg.</p>', '<p>Le format du fichier n\'est pas valide. Veuillez choisir une image de type jpeg.</p>'),
-	(2, 'Email', '(^([a-zA-Z0-9]+(([\\.\\-\\_]?[a-zA-Z0-9]+)+)?)\\@(([a-zA-Z0-9]+[\\.\\-\\_])+[a-zA-Z]{2,4})$)|(^$)', 'admin@lutece.fr', 'Expression r├⌐guli├¿re pour les emails.', 'Le format de l\'email est incorrect.'),
-	(3, 'T├⌐l├⌐phone mobile', '(^(06|07)[0-9]{8}$)', '0602030405', '<p>Format de num&eacute;ro de t&eacute;l&eacute;phone mobile</p>', '<p>Le format de ce champ doit &ecirc;tre 0602030405</p>'),
-	(4, 'T├⌐l├⌐phone fixe', '(^(01|02|03|04|05)[0-9]{8}$)', '0102030405', '<p>Format de num&eacute;ro de t&eacute;l&eacute;phone fixe</p>', '<p>Le format de ce champ doit &ecirc;tre 0102030405</p>'),
-	(5, 'T├⌐l├⌐phone', '(^(01|02|03|04|05|06|07)[0-9]{8}$)', '0102030405', '<p>Format de num&eacute;ro de t&eacute;l&eacute;phone (fixe ou mobile)</p>', '<p>Le format de ce champ doit &ecirc;tre 0102030405</p>'),
-	(6, 'Tous fichiers images', '(^(image|application)/(bmp|gif|jpeg|png|tiff|pdf)$)', 'image/jpeg', '<p>Expression r&eacute;guli&egrave;re pour les fichiers de type image et pdf</p>', '<p>Le format du fichier n\'est pas valide. Veuillez choisir un fichier de type image ou pdf. ex : image.png</p>');
-/*!40000 ALTER TABLE `regularexpression_regular_expression` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `resource_resource`;
 CREATE TABLE IF NOT EXISTS `resource_resource` (
@@ -4489,23 +3820,6 @@ CREATE TABLE IF NOT EXISTS `workflow_action` (
   KEY `action_id_icon_fk` (`id_icon`)
 ) ENGINE=InnoDB AUTO_INCREMENT=250 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `workflow_action` DISABLE KEYS */;
-INSERT INTO `workflow_action` (`id_action`, `name`, `description`, `id_workflow`, `id_state_before`, `id_state_after`, `id_icon`, `is_automatic`, `is_mass_action`, `display_order`, `is_automatic_reflexive_action`) VALUES
-	(236, 'Validation automatique', 'Validation automatique', 51, 170, 171, 4, 0, 0, 1, 0),
-	(237, 'Annulation usager avant rappel', 'Annulation usager avant rappel', 51, 171, 173, 5, 0, 0, 2, 0),
-	(238, 'Annulation administration avant rappel avec motif', 'Annulation administration avant rappel avec motif', 51, 171, 173, 2, 0, 0, 4, 0),
-	(239, 'Annulation usager apr├¿s rappel', 'Annulation usager apr├¿s rappel', 51, 172, 173, 5, 0, 0, 3, 0),
-	(240, 'Annulation administration apr├¿s rappel avec motif', 'Annulation administration apr├¿s rappel avec motif', 51, 172, 173, 2, 0, 0, 5, 0),
-	(241, 'Pr├⌐sentation de l\'usager avant rappel', 'Pr├⌐sentation de l\'usager avant rappel', 51, 171, 174, 7, 0, 0, 10, 0),
-	(242, 'Pr├⌐sentation de l\'usager apr├¿s rappel', 'Pr├⌐sentation de l\'usager apr├¿s rappel', 51, 172, 174, 7, 0, 0, 11, 0),
-	(243, 'Non pr├⌐sentation de l\'usager avant rappel', 'Non pr├⌐sentation de l\'usager avant rappel', 51, 171, 175, 8, 0, 0, 12, 0),
-	(244, 'Non pr├⌐sentation de l\'usager apr├¿s rappel', 'Non pr├⌐sentation de l\'usager apr├¿s rappel', 51, 172, 175, 8, 0, 0, 13, 0),
-	(245, 'Modification des donn├⌐es du RdV avant rappel', 'Modification des donn├⌐es du RdV avant rappel', 51, 171, 171, 3, 0, 0, 6, 0),
-	(246, 'Modification des donn├⌐es du RdV apr├¿s rappel', 'Modification des donn├⌐es du RdV apr├¿s rappel', 51, 172, 172, 3, 0, 0, 7, 0),
-	(247, 'Report du rendez-vous avant rappel', 'Report du rendez-vous avant rappel', 51, 171, 171, 9, 0, 0, 8, 0),
-	(248, 'Report du rendez-vous apr├¿s rappel', 'Report du rendez-vous apr├¿s rappel', 51, 172, 172, 9, 0, 0, 9, 0),
-	(249, 'Action d\'arriver sur l\'&#233;tat Valid├⌐', '', 51, 171, 171, 1, 0, 0, 0, 1);
-/*!40000 ALTER TABLE `workflow_action` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `workflow_action_action`;
 CREATE TABLE IF NOT EXISTS `workflow_action_action` (
@@ -4641,20 +3955,6 @@ CREATE TABLE IF NOT EXISTS `workflow_resource_workflow` (
   KEY `fk_document_id_state` (`id_state`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `workflow_resource_workflow` DISABLE KEYS */;
-INSERT INTO `workflow_resource_workflow` (`id_resource`, `resource_type`, `id_state`, `id_workflow`, `id_external_parent`, `is_associated_workgroups`) VALUES
-	(841, 'appointment', 170, 51, 5, 0),
-	(842, 'appointment', 170, 51, 5, 0),
-	(843, 'appointment', 170, 51, 5, 0),
-	(844, 'appointment', 170, 51, 5, 0),
-	(845, 'appointment', 170, 51, 5, 0),
-	(846, 'appointment', 170, 51, 5, 0),
-	(847, 'appointment', 170, 51, 5, 0),
-	(848, 'appointment', 170, 51, 5, 0),
-	(849, 'appointment', 170, 51, 5, 0),
-	(850, 'appointment', 170, 51, 5, 0),
-	(851, 'appointment', 170, 51, 5, 0);
-/*!40000 ALTER TABLE `workflow_resource_workflow` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `workflow_resource_workgroup`;
 CREATE TABLE IF NOT EXISTS `workflow_resource_workgroup` (
@@ -4684,15 +3984,6 @@ CREATE TABLE IF NOT EXISTS `workflow_state` (
   KEY `fk_state_id_workflow` (`id_workflow`)
 ) ENGINE=InnoDB AUTO_INCREMENT=177 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `workflow_state` DISABLE KEYS */;
-INSERT INTO `workflow_state` (`id_state`, `name`, `description`, `id_workflow`, `is_initial_state`, `is_required_workgroup_assigned`, `id_icon`, `display_order`) VALUES
-	(170, 'Non valid├⌐', 'Non valid├⌐', 51, 1, 0, NULL, 1),
-	(171, 'Valid├⌐', 'Valid├⌐', 51, 0, 0, NULL, 2),
-	(172, 'Valid├⌐ - Rappel├⌐', 'Valid├⌐ - Rappel├⌐', 51, 0, 0, NULL, 3),
-	(173, 'Annul├⌐', 'Annul├⌐', 51, 0, 0, NULL, 4),
-	(174, 'Honor├⌐', 'Honor├⌐', 51, 0, 0, NULL, 5),
-	(175, 'Non honor├⌐', 'Non honor├⌐', 51, 0, 0, NULL, 6);
-/*!40000 ALTER TABLE `workflow_state` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `workflow_task`;
 CREATE TABLE IF NOT EXISTS `workflow_task` (
@@ -4704,18 +3995,6 @@ CREATE TABLE IF NOT EXISTS `workflow_task` (
   KEY `task_id_action_fk` (`id_action`)
 ) ENGINE=InnoDB AUTO_INCREMENT=437 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `workflow_task` DISABLE KEYS */;
-INSERT INTO `workflow_task` (`id_task`, `task_type_key`, `id_action`, `display_order`) VALUES
-	(428, 'taskReportAppointment', 247, 1),
-	(429, 'taskReportAppointment', 248, 1),
-	(430, 'taskUpdateAppointment', 246, 1),
-	(431, 'taskUpdateAppointment', 245, 1),
-	(432, 'taskUpdateAppointmentCancelAction', 236, 1),
-	(433, 'taskTypeComment', 238, 1),
-	(434, 'taskUpdateAppointment', 245, 2),
-	(435, 'taskReportAppointment', 247, 2),
-	(436, 'taskAlertGru', 249, 1);
-/*!40000 ALTER TABLE `workflow_task` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `workflow_task_alert_gru_cf`;
 CREATE TABLE IF NOT EXISTS `workflow_task_alert_gru_cf` (
@@ -5080,10 +4359,6 @@ CREATE TABLE IF NOT EXISTS `workflow_task_notify_gru_mapping_manager` (
   PRIMARY KEY (`id_notifygrumappingmanager`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `workflow_task_notify_gru_mapping_manager` DISABLE KEYS */;
-INSERT INTO `workflow_task_notify_gru_mapping_manager` (`id_notifygrumappingmanager`, `beankey`, `connection_id`, `customer_id`, `mobilephonenumber`, `fixedphonenumber`, `email`, `demandetype`, `demand_reference`) VALUES
-	(5, 'notifygru-appointment.ProviderService.@.5', -1, -1, -1, -1, -1, 231, -1);
-/*!40000 ALTER TABLE `workflow_task_notify_gru_mapping_manager` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `workflow_task_notify_reminder_cf`;
 CREATE TABLE IF NOT EXISTS `workflow_task_notify_reminder_cf` (
@@ -5159,10 +4434,6 @@ CREATE TABLE IF NOT EXISTS `workflow_workflow` (
   PRIMARY KEY (`id_workflow`)
 ) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `workflow_workflow` DISABLE KEYS */;
-INSERT INTO `workflow_workflow` (`id_workflow`, `name`, `description`, `creation_date`, `is_enabled`, `workgroup_key`) VALUES
-	(51, 'Workflow Générique - validation automatique', 'Workflow complet, générique avec validation automatique', '2021-11-19 17:51:33', 1, 'all');
-/*!40000 ALTER TABLE `workflow_workflow` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `workflow_workgroup_cf`;
 CREATE TABLE IF NOT EXISTS `workflow_workgroup_cf` (
