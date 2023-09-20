@@ -43,11 +43,6 @@ CREATE TABLE IF NOT EXISTS `contact` (
   PRIMARY KEY (`id_contact`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `contact` DISABLE KEYS */;
-INSERT INTO `contact` (`id_contact`, `description`, `email`, `workgroup_key`, `hits`) VALUES
-	(1, 'Contact 1', 'adresse_email_du_contact_1@domaine.com', 'all', 0),
-	(2, 'Contact 2', 'adresse_email_du_contact_2@domaine.com', 'all', 2);
-/*!40000 ALTER TABLE `contact` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `contact_list`;
 CREATE TABLE IF NOT EXISTS `contact_list` (
@@ -62,11 +57,6 @@ CREATE TABLE IF NOT EXISTS `contact_list` (
   PRIMARY KEY (`id_contact_list`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `contact_list` DISABLE KEYS */;
-INSERT INTO `contact_list` (`id_contact_list`, `label_contact_list`, `description_contact_list`, `workgroup_key`, `role`, `contact_list_order`, `is_tos_active`, `tos_message`) VALUES
-	(1, 'Liste de contacts', 'Ceci est une liste de contacts', 'all', 'none', 1, 1, 'Message a valider');
-/*!40000 ALTER TABLE `contact_list` ENABLE KEYS */;
-
 DROP TABLE IF EXISTS `contact_list_contact`;
 CREATE TABLE IF NOT EXISTS `contact_list_contact` (
   `id_contact_list` int(11) NOT NULL DEFAULT 0,
@@ -76,12 +66,6 @@ CREATE TABLE IF NOT EXISTS `contact_list_contact` (
   PRIMARY KEY (`id_contact_list`,`id_contact`,`contact_order`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `contact_list_contact` DISABLE KEYS */;
-INSERT INTO `contact_list_contact` (`id_contact_list`, `id_contact`, `contact_order`, `hits`) VALUES
-	(1, 1, 1, 0),
-	(1, 2, 2, 2);
-/*!40000 ALTER TABLE `contact_list_contact` ENABLE KEYS */;
-
 DROP TABLE IF EXISTS `core_admin_dashboard`;
 CREATE TABLE IF NOT EXISTS `core_admin_dashboard` (
   `dashboard_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
@@ -90,18 +74,6 @@ CREATE TABLE IF NOT EXISTS `core_admin_dashboard` (
   PRIMARY KEY (`dashboard_name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `core_admin_dashboard` DISABLE KEYS */;
-INSERT INTO `core_admin_dashboard` (`dashboard_name`, `dashboard_column`, `dashboard_order`) VALUES
-	('usersAdminDashboardComponent', 1, 1),
-	('searchAdminDashboardComponent', 1, 2),
-	('editorAdminDashboardComponent', 1, 3),
-	('autoIncludesAdminDashboardComponent', 1, 4),
-	('featuresAdminDashboardComponent', 1, 5),
-	('xslExportAdminDashboardComponent', 1, 6),
-	('myluteceAuthenticationFilterAdminDashboardComponent', 1, 3),
-	('databaseAdminDashboardComponent', 1, 1),
-	('workflowAdminDashboardComponent', 1, 1);
-/*!40000 ALTER TABLE `core_admin_dashboard` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `core_admin_mailinglist`;
 CREATE TABLE IF NOT EXISTS `core_admin_mailinglist` (
@@ -112,10 +84,6 @@ CREATE TABLE IF NOT EXISTS `core_admin_mailinglist` (
   PRIMARY KEY (`id_mailinglist`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `core_admin_mailinglist` DISABLE KEYS */;
-INSERT INTO `core_admin_mailinglist` (`id_mailinglist`, `name`, `description`, `workgroup`) VALUES
-	(1, 'admin', 'admin', 'all');
-/*!40000 ALTER TABLE `core_admin_mailinglist` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `core_admin_mailinglist_filter`;
 CREATE TABLE IF NOT EXISTS `core_admin_mailinglist_filter` (
@@ -125,10 +93,6 @@ CREATE TABLE IF NOT EXISTS `core_admin_mailinglist_filter` (
   PRIMARY KEY (`id_mailinglist`,`workgroup`,`role`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `core_admin_mailinglist_filter` DISABLE KEYS */;
-INSERT INTO `core_admin_mailinglist_filter` (`id_mailinglist`, `workgroup`, `role`) VALUES
-	(1, 'all', 'super_admin');
-/*!40000 ALTER TABLE `core_admin_mailinglist_filter` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `core_admin_right`;
 CREATE TABLE IF NOT EXISTS `core_admin_right` (
@@ -148,57 +112,6 @@ CREATE TABLE IF NOT EXISTS `core_admin_right` (
   KEY `index_right` (`level_right`,`admin_url`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `core_admin_right` DISABLE KEYS */;
-INSERT INTO `core_admin_right` (`id_right`, `name`, `level_right`, `admin_url`, `description`, `is_updatable`, `plugin_name`, `id_feature_group`, `icon_url`, `documentation_url`, `id_order`, `is_external_feature`) VALUES
-	('CORE_ADMIN_SITE', 'portal.site.adminFeature.admin_site.name', 2, 'jsp/admin/site/AdminSite.jsp', 'portal.site.adminFeature.admin_site.description', 1, NULL, 'SITE', 'images/admin/skin/features/admin_site.png', 'jsp/admin/documentation/AdminDocumentation.jsp?doc=admin-site', 1, 0),
-	('CORE_CACHE_MANAGEMENT', 'portal.system.adminFeature.cache_management.name', 0, 'jsp/admin/system/ManageCaches.jsp', 'portal.system.adminFeature.cache_management.description', 1, '', 'SYSTEM', 'images/admin/skin/features/manage_caches.png', NULL, 1, 0),
-	('CORE_SEARCH_INDEXATION', 'portal.search.adminFeature.indexer.name', 0, 'jsp/admin/search/ManageSearchIndexation.jsp', 'portal.search.adminFeature.indexer.description', 0, '', 'SYSTEM', NULL, NULL, 2, 0),
-	('CORE_SEARCH_MANAGEMENT', 'portal.search.adminFeature.search_management.name', 0, NULL, 'portal.search.adminFeature.search_management.description', 0, '', 'SYSTEM', NULL, NULL, 3, 0),
-	('CORE_LOGS_VISUALISATION', 'portal.system.adminFeature.logs_visualisation.name', 0, 'jsp/admin/system/ManageFilesSystem.jsp', 'portal.system.adminFeature.logs_visualisation.description', 1, '', 'SYSTEM', 'images/admin/skin/features/view_logs.png', NULL, 4, 0),
-	('CORE_PAGE_TEMPLATE_MANAGEMENT', 'portal.style.adminFeature.page_template_management.name', 0, 'jsp/admin/style/ManagePageTemplates.jsp', 'portal.style.adminFeature.page_template_management.description', 0, '', 'STYLE', 'images/admin/skin/features/manage_page_templates.png', NULL, 1, 0),
-	('CORE_PLUGINS_MANAGEMENT', 'portal.system.adminFeature.plugins_management.name', 0, 'jsp/admin/system/ManagePlugins.jsp', 'portal.system.adminFeature.plugins_management.description', 1, '', 'SYSTEM', 'images/admin/skin/features/manage_plugins.png', NULL, 5, 0),
-	('CORE_PROPERTIES_MANAGEMENT', 'portal.site.adminFeature.properties_management.name', 2, 'jsp/admin/ManageProperties.jsp', 'portal.site.adminFeature.properties_management.description', 0, NULL, 'SITE', NULL, 'jsp/admin/documentation/AdminDocumentation.jsp?doc=admin-properties', 2, 0),
-	('CORE_STYLESHEET_MANAGEMENT', 'portal.style.adminFeature.stylesheet_management.name', 0, 'jsp/admin/style/ManageStyleSheets.jsp', 'portal.style.adminFeature.stylesheet_management.description', 1, '', 'STYLE', 'images/admin/skin/features/manage_stylesheets.png', NULL, 2, 0),
-	('CORE_STYLES_MANAGEMENT', 'portal.style.adminFeature.styles_management.name', 0, 'jsp/admin/style/ManageStyles.jsp', 'portal.style.adminFeature.styles_management.description', 1, '', 'STYLE', 'images/admin/skin/features/manage_styles.png', NULL, 3, 0),
-	('CORE_USERS_MANAGEMENT', 'portal.users.adminFeature.users_management.name', 2, 'jsp/admin/user/ManageUsers.jsp', 'portal.users.adminFeature.users_management.description', 1, '', 'MANAGERS', 'images/admin/skin/features/manage_users.png', NULL, 2, 0),
-	('CORE_FEATURES_MANAGEMENT', 'portal.admin.adminFeature.features_management.name', 0, NULL, 'portal.admin.adminFeature.features_management.description', 0, '', 'SYSTEM', 'images/admin/skin/features/manage_features.png', NULL, 6, 0),
-	('CORE_RBAC_MANAGEMENT', 'portal.rbac.adminFeature.rbac_management.name', 0, 'jsp/admin/rbac/ManageRoles.jsp', 'portal.rbac.adminFeature.rbac_management.description', 0, '', 'MANAGERS', 'images/admin/skin/features/manage_rbac.png', NULL, 1, 0),
-	('CORE_DAEMONS_MANAGEMENT', 'portal.system.adminFeature.daemons_management.name', 0, 'jsp/admin/system/ManageDaemons.jsp', 'portal.system.adminFeature.daemons_management.description', 0, '', 'SYSTEM', NULL, NULL, 7, 0),
-	('CORE_WORKGROUPS_MANAGEMENT', 'portal.workgroup.adminFeature.workgroups_management.name', 2, 'jsp/admin/workgroup/ManageWorkgroups.jsp', 'portal.workgroup.adminFeature.workgroups_management.description', 0, '', 'MANAGERS', 'images/admin/skin/features/manage_workgroups.png', NULL, 3, 0),
-	('CORE_ROLES_MANAGEMENT', 'portal.role.adminFeature.roles_management.name', 2, 'jsp/admin/role/ManagePageRole.jsp', 'portal.role.adminFeature.roles_management.description', 0, '', 'USERS', 'images/admin/skin/features/manage_roles.png', NULL, 2, 0),
-	('CORE_MAILINGLISTS_MANAGEMENT', 'portal.mailinglist.adminFeature.mailinglists_management.name', 2, 'jsp/admin/mailinglist/ManageMailingLists.jsp', 'portal.mailinglist.adminFeature.mailinglists_management.description', 0, '', 'MANAGERS', 'images/admin/skin/features/manage_mailinglists.png', NULL, 4, 0),
-	('CORE_LEVEL_RIGHT_MANAGEMENT', 'portal.users.adminFeature.level_right_management.name', 2, NULL, 'portal.users.adminFeature.level_right_management.description', 0, '', 'MANAGERS', 'images/admin/skin/features/manage_rights_levels.png', NULL, 5, 0),
-	('CORE_LINK_SERVICE_MANAGEMENT', 'portal.insert.adminFeature.linkService_management.name', 2, NULL, 'portal.insert.adminFeature.linkService_management.description', 0, NULL, NULL, NULL, NULL, 1, 0),
-	('CORE_RIGHT_MANAGEMENT', 'portal.users.adminFeature.right_management.name', 0, 'jsp/admin/features/ManageRights.jsp', 'portal.users.adminFeature.right_management.description', 0, '', 'MANAGERS', 'images/admin/skin/features/manage_rights_levels.png', NULL, 6, 0),
-	('CORE_ADMINDASHBOARD_MANAGEMENT', 'portal.admindashboard.adminFeature.right_management.name', 0, NULL, 'portal.admindashboard.adminFeature.right_management.description', 0, '', 'SYSTEM', 'images/admin/skin/features/manage_admindashboards.png', NULL, 8, 0),
-	('CORE_DASHBOARD_MANAGEMENT', 'portal.dashboard.adminFeature.dashboard_management.name', 0, NULL, 'portal.dashboard.adminFeature.dashboard_management.description', 0, '', 'SYSTEM', 'images/admin/skin/features/manage_dashboards.png', NULL, 9, 0),
-	('CORE_XSL_EXPORT_MANAGEMENT', 'portal.xsl.adminFeature.xsl_export_management.name', 2, NULL, 'portal.xsl.adminFeature.xsl_export_management.description', 1, '', 'SYSTEM', NULL, NULL, 11, 0),
-	('CORE_TEMPLATES_AUTO_INCLUDES_MANAGEMENT', 'portal.templates.adminFeature.ManageAutoIncludes.name', 1, NULL, 'portal.templates.adminFeature.ManageAutoIncludes.description', 1, '', 'STYLE', 'images/admin/skin/features/manage_templates.png', NULL, 4, 0),
-	('CORE_EDITORS_MANAGEMENT', 'portal.admindashboard.editorManagement.right.name', 2, NULL, 'portal.admindashboard.editorManagement.right.description', 1, '', 'SYSTEM', NULL, NULL, 10, 0),
-	('CONTACT_MANAGEMENT', 'contact.adminFeature.contact_management.name', 3, 'jsp/admin/plugins/contact/ManageContactsHome.jsp', 'contact.adminFeature.contact_management.description', 0, 'contact', 'APPLICATIONS', NULL, NULL, 7, 0),
-	('VIEW_TEMP_FILES', 'filegenerator.adminFeature.temporary_files.name', 2, 'jsp/admin/plugins/filegenerator/ManageMyFiles.jsp', 'filegenerator.adminFeature.temporary_files.description', 0, '', 'CONTENT', NULL, NULL, 3, 0),
-	('FORMS_MANAGEMENT', 'forms.adminFeature.manageForms.name', 1, 'jsp/admin/plugins/forms/ManageForms.jsp', 'forms.adminFeature.manageForms.description', 0, 'forms', 'CONTENT', NULL, NULL, 1, 0),
-	('FORMS_MULTIVIEW', 'forms.adminFeature.multiviewForms.name', 2, 'jsp/admin/plugins/forms/MultiviewForms.jsp', 'forms.adminFeature.multiviewForms.description', 0, 'forms', 'CONTENT', NULL, NULL, 2, 0),
-	('BREADCRUMBACCORDION_MANAGEMENT', 'module.forms.breadcrumbaccordion.adminFeature.manageBreadcrumbAccordion.name', 1, 'jsp/admin/plugins/forms/modules/breadcrumbaccordion/ManageBreadcrumbAccordion.jsp', 'module.forms.breadcrumbaccordion.adminFeature.manageBreadcrumbAccordion.description', 0, 'forms-breadcrumbaccordion', 'CONTENT', NULL, NULL, 4, 0),
-	('CONFIG_DOCUMENT_PRODUCER_MANAGEMENT', 'module.forms.documentproducer.adminFeature.ManageConfigDocumentProducer.name', 1, 'jsp/admin/plugins/forms/modules/documentproducer/ManageConfigProducer.jsp?view=getSelectForm', 'module.forms.documentproducer.adminFeature.ManageConfigDocumentProducer.description', 0, 'forms-documentproducer', 'APPLICATIONS', NULL, NULL, 2, 0),
-	('ENTRY_TYPE_MANAGEMENT', 'genericattributes.adminFeature.manageEntryType.name', 1, 'jsp/admin/plugins/genericattributes/ManageEntryType.jsp', 'genericattributes.adminFeature.manageEntryType.description', 0, 'genericattributes', 'APPLICATIONS', NULL, NULL, 3, 0),
-	('HTMLPAGE_MANAGEMENT', 'htmlpage.adminFeature.htmlpage_management.name', 2, 'jsp/admin/plugins/htmlpage/ManageHtmlPage.jsp', 'htmlpage.adminFeature.htmlpage_management.description', 0, 'htmlpage', 'CONTENT', NULL, 'jsp/admin/documentation/AdminDocumentation.jsp?doc=admin-htmlpage', 5, 0),
-	('MATOMO_MANAGEMENT', 'matomo.adminFeature.ManageMatomo.name', 1, 'jsp/admin/plugins/matomo/Matomo.jsp', 'matomo.adminFeature.ManageMatomo.description', 0, 'matomo', 'SITE', NULL, NULL, 3, 0),
-	('MYLUTECE_MANAGEMENT', 'mylutece.adminFeature.mylutece_management.name', 2, 'jsp/admin/plugins/mylutece/attribute/ManageAttributes.jsp', 'mylutece.adminFeature.mylutece_management.description', 0, 'mylutece', 'USERS', NULL, NULL, 1, 0),
-	('MYLUTECE_MANAGE_AUTHENTICATION_FILTER', 'mylutece.adminFeature.mylutece_management_authentication_filter.name', 3, 'jsp/admin/plugins/mylutece/security/ManageAuthenticationFilter.jsp', 'mylutece.adminFeature.mylutece_management_authentication_filter.description', 0, 'mylutece', 'SYSTEM', NULL, NULL, 15, 0),
-	('DATABASE_MANAGEMENT_USERS', 'module.mylutece.database.adminFeature.database_management_user.name', 3, 'jsp/admin/plugins/mylutece/modules/database/ManageUsers.jsp', 'module.mylutece.database.adminFeature.database_management_user.description', 0, 'mylutece-database', 'USERS', NULL, NULL, 4, 0),
-	('DATABASE_GROUPS_MANAGEMENT', 'module.mylutece.database.adminFeature.groups_management.name', 3, 'jsp/admin/plugins/mylutece/modules/database/ManageGroups.jsp', 'module.mylutece.database.adminFeature.groups_management.description', 0, 'mylutece-database', 'USERS', NULL, NULL, 5, 0),
-	('POLL_MANAGEMENT', 'poll.adminFeature.Manage.name', 1, 'jsp/admin/plugins/poll/ManagePollForms.jsp', 'poll.adminFeature.Manage.description', 0, 'poll', 'APPLICATIONS', NULL, NULL, 4, 0),
-	('PROFILES_MANAGEMENT', 'profiles.adminFeature.profiles_management.name', 0, 'jsp/admin/plugins/profiles/ManageProfiles.jsp', 'profiles.adminFeature.profiles_management.description', 0, 'profiles', 'MANAGERS', NULL, 'jsp/admin/documentation/AdminDocumentation.jsp?doc=admin-profiles', 7, 0),
-	('PROFILES_VIEWS_MANAGEMENT', 'profiles.adminFeature.views_management.name', 0, 'jsp/admin/plugins/profiles/ManageViews.jsp', 'profiles.adminFeature.views_management.description', 0, 'profiles', 'MANAGERS', NULL, 'jsp/admin/documentation/AdminDocumentation.jsp?doc=admin-profiles', 8, 0),
-	('REFERENCELIST_MANAGEMENT', 'referencelist.adminFeature.ReferenceListManage.name', 0, 'jsp/admin/plugins/referencelist/ManageReferences.jsp', 'referencelist.adminFeature.ReferenceListManage.description', 0, 'referencelist', 'APPLICATIONS', NULL, NULL, 5, 0),
-	('REGULAR_EXPRESSION_MANAGEMENT', 'regularexpression.adminFeature.regularexpression_management.name', 0, 'jsp/admin/plugins/regularexpression/ManageRegularExpression.jsp', 'regularexpression.adminFeature.regularexpression_management.description', 0, 'regularexpression', 'SYSTEM', NULL, NULL, 16, 0),
-	('SEO_MANAGEMENT', 'seo.adminFeature.seo_management.name', 0, 'jsp/admin/plugins/seo/ManageSEO.jsp', 'seo.adminFeature.seo_management.description', 0, 'seo', 'SYSTEM', NULL, NULL, 17, 0),
-	('SYSTEMINFO_MANAGEMENT', 'systeminfo.adminFeature.systeminfo_management.name', 0, 'jsp/admin/plugins/systeminfo/ManageSystemInfo.jsp', 'systeminfo.adminFeature.systeminfo_management.description', 0, 'systeminfo', 'SYSTEM', NULL, NULL, 18, 0),
-	('UNITS_MANAGEMENT', 'unittree.adminFeature.unitsManagement.name', 2, 'jsp/admin/plugins/unittree/ManageUnits.jsp', 'unittree.adminFeature.unitsManagement.description', 0, 'unittree', 'APPLICATIONS', NULL, '', 6, 0),
-	('WORKFLOW_MANAGEMENT', 'workflow.adminFeature.workflow_management.name', 3, 'jsp/admin/plugins/workflow/ManageWorkflow.jsp', 'workflow.adminFeature.workflow_management.description', 0, 'workflow', 'APPLICATIONS', NULL, NULL, 1, 0),
-	('MYLUTECE_MANAGE_EXTERNAL_APPLICATION', 'mylutece.adminFeature.mylutece_management_external_application.name', 3, 'jsp/admin/plugins/mylutece/ManageExternalApplicationUser.jsp', 'mylutece.adminFeature.mylutece_management_external_application.description', 0, 'mylutece', 'USERS', NULL, NULL, 6, 0);
-/*!40000 ALTER TABLE `core_admin_right` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `core_admin_role`;
 CREATE TABLE IF NOT EXISTS `core_admin_role` (
@@ -207,22 +120,6 @@ CREATE TABLE IF NOT EXISTS `core_admin_role` (
   PRIMARY KEY (`role_key`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `core_admin_role` DISABLE KEYS */;
-INSERT INTO `core_admin_role` (`role_key`, `role_description`) VALUES
-	('all_site_manager', 'Site Manager'),
-	('super_admin', 'Super Administrateur'),
-	('forms_manager', 'FORMS - Gestion des formulaires'),
-	('forms_multiview', 'FORMS - Visualisation des résultats des formulaires'),
-	('assign_roles', 'Assigner des roles aux utilisateurs'),
-	('assign_groups', 'Assigner des groupes aux utilisateurs'),
-	('mylutece_manager', 'Gérer les patramètres avancés Mylutece'),
-	('mylutece_database_manager', 'Mylutece Database management'),
-	('profiles_manager', 'Profiles management'),
-	('profiles_views_manager', 'Profiles Views management'),
-	('CREATE_REFERENCE_IMPORT', 'Import csv file'),
-	('unittree_management', 'Gestion des entités'),
-	('workflow_manager', 'Workflow management');
-/*!40000 ALTER TABLE `core_admin_role` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `core_admin_role_resource`;
 CREATE TABLE IF NOT EXISTS `core_admin_role_resource` (
@@ -233,29 +130,6 @@ CREATE TABLE IF NOT EXISTS `core_admin_role_resource` (
   `permission` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`rbac_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1910 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-/*!40000 ALTER TABLE `core_admin_role_resource` DISABLE KEYS */;
-INSERT INTO `core_admin_role_resource` (`rbac_id`, `role_key`, `resource_type`, `resource_id`, `permission`) VALUES
-	(57, 'all_site_manager', 'PAGE', '*', 'VIEW'),
-	(58, 'all_site_manager', 'PAGE', '*', 'MANAGE'),
-	(77, 'super_admin', 'INSERT_SERVICE', '*', '*'),
-	(101, 'all_site_manager', 'PORTLET_TYPE', '*', '*'),
-	(111, 'all_site_manager', 'ADMIN_USER', '*', '*'),
-	(137, 'all_site_manager', 'SEARCH_SERVICE', '*', '*'),
-	(164, 'all_site_manager', 'XSL_EXPORT', '*', '*'),
-	(1907, 'forms_manager', 'FORMS_FORM', '*', '*'),
-	(1908, 'forms_multiview', 'FORM_PANEL_CONF', '*', '*'),
-	(205, 'assign_roles', 'ROLE_TYPE', '*', 'ASSIGN_ROLE'),
-	(207, 'mylutece_manager', 'MYLUTECE', '*', '*'),
-	(206, 'assign_groups', 'GROUP_TYPE', '*', 'ASSIGN_GROUP'),
-	(350, 'mylutece_database_manager', 'DATABASE', '*', '*'),
-	(150, 'profiles_manager', 'PROFILES', '*', '*'),
-	(151, 'profiles_views_manager', 'PROFILES_VIEWS', '*', '*'),
-	(165, 'CREATE_REFERENCE_IMPORT', 'REFERENCE_IMPORT', '*', '*'),
-	(210, 'unittree_management', 'UNIT_TYPE', '*', '*'),
-	(912, 'workflow_manager', 'WORKFLOW_ACTION_TYPE', '*', '*'),
-	(923, 'workflow_manager', 'WORKFLOW_STATE_TYPE', '*', '*');
-/*!40000 ALTER TABLE `core_admin_role_resource` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `core_admin_user`;
 CREATE TABLE IF NOT EXISTS `core_admin_user` (
@@ -278,11 +152,6 @@ CREATE TABLE IF NOT EXISTS `core_admin_user` (
   PRIMARY KEY (`id_user`)
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `core_admin_user` DISABLE KEYS */;
-INSERT INTO `core_admin_user` (`id_user`, `access_code`, `last_name`, `first_name`, `email`, `status`, `password`, `locale`, `level_user`, `reset_password`, `accessibility_mode`, `password_max_valid_date`, `account_max_valid_date`, `nb_alerts_sent`, `last_login`, `workgroup_key`) VALUES
-	(1, 'admin', 'Admin', 'admin', 'admin@lutece.fr', 0, 'PBKDF2WITHHMACSHA512:40000:6d50268735088106a7c44f6c771ad0c4:55ab62976ec4a288b8fcee8c63f5dcb8d7a7e7478916670e84a38f1116e80bae90325d31ffa7481ad137f83f03d3d86fdcfcbb9a4d897883374ee2b94d7a10e9f519e8620f19e1a604cf8a99c306e3c773b2b3115f56d3ce5e77506de6474813a09206e7fef520512e58bafe103257197394759ae012d6be52c787453a9c2070', 'fr', 0, 0, 0, NULL, 1677084136720, 0, '2022-02-22 16:42:16', 'all'),
-	(5, 'adminpack', 'PACK', 'User', 'useradmin@anymail.com', 0, 'PBKDF2WITHHMACSHA512:40000:9d655481370c0bdd487ff85e2c3c1cbc:c4fe352ef4ea0ad2b08b915cdeedec3d47e3582b943c4b5e6bc6c9fabca3820f9ab548ee3ed533b94a761e9e2dbe49069d894d96212d3b8fbc26957543f8bbb72710b2276e533ba79f2f265a2345475ba2c221de9ce7d7e6bed4c520cd92f2b93a91662164928f52bde8af70b5d22978e8056129e88aa2a64a05da8f28a60c79', 'fr', 1, 0, 0, NULL, 1676972803980, 0, '2022-02-21 09:46:43', 'all');
-/*!40000 ALTER TABLE `core_admin_user` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `core_admin_user_anonymize_field`;
 CREATE TABLE IF NOT EXISTS `core_admin_user_anonymize_field` (
@@ -290,14 +159,6 @@ CREATE TABLE IF NOT EXISTS `core_admin_user_anonymize_field` (
   `anonymize` smallint(6) NOT NULL,
   PRIMARY KEY (`field_name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-/*!40000 ALTER TABLE `core_admin_user_anonymize_field` DISABLE KEYS */;
-INSERT INTO `core_admin_user_anonymize_field` (`field_name`, `anonymize`) VALUES
-	('access_code', 1),
-	('last_name', 1),
-	('first_name', 1),
-	('email', 1);
-/*!40000 ALTER TABLE `core_admin_user_anonymize_field` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `core_admin_user_field`;
 CREATE TABLE IF NOT EXISTS `core_admin_user_field` (
@@ -311,12 +172,6 @@ CREATE TABLE IF NOT EXISTS `core_admin_user_field` (
   KEY `core_admin_user_field_idx_file` (`id_file`)
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `core_admin_user_field` DISABLE KEYS */;
-INSERT INTO `core_admin_user_field` (`id_user_field`, `id_user`, `id_attribute`, `id_field`, `id_file`, `user_field_value`) VALUES
-	(6, 5, 1, 5, NULL, 'technical_admin_forms'),
-	(5, 5, 1, 4, NULL, 'forms_response_manager'),
-	(4, 5, 1, 3, NULL, 'forms_admin');
-/*!40000 ALTER TABLE `core_admin_user_field` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `core_admin_user_preferences`;
 CREATE TABLE IF NOT EXISTS `core_admin_user_preferences` (
@@ -366,10 +221,6 @@ CREATE TABLE IF NOT EXISTS `core_attribute` (
   PRIMARY KEY (`id_attribute`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `core_attribute` DISABLE KEYS */;
-INSERT INTO `core_attribute` (`id_attribute`, `type_class_name`, `title`, `help_message`, `is_mandatory`, `is_shown_in_search`, `is_shown_in_result_list`, `is_field_in_line`, `attribute_position`, `plugin_name`, `anonymize`) VALUES
-	(1, 'fr.paris.lutece.portal.business.user.attribute.AttributeComboBox', 'Profil', '', 0, 0, 0, 0, 0, 'profiles', NULL);
-/*!40000 ALTER TABLE `core_attribute` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `core_attribute_field`;
 CREATE TABLE IF NOT EXISTS `core_attribute_field` (
@@ -386,13 +237,6 @@ CREATE TABLE IF NOT EXISTS `core_attribute_field` (
   PRIMARY KEY (`id_field`)
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `core_attribute_field` DISABLE KEYS */;
-INSERT INTO `core_attribute_field` (`id_field`, `id_attribute`, `title`, `DEFAULT_value`, `is_DEFAULT_value`, `height`, `width`, `max_size_enter`, `is_multiple`, `field_position`) VALUES
-	(1, 1, NULL, NULL, 0, 0, 0, 0, 1, 1),
-	(3, 1, 'forms_admin', 'Admin manager for Forms - create, update and delete forms', 0, 0, 0, 0, 0, 2),
-	(4, 1, 'forms_response_manager', 'User that manage responses made through forms', 0, 0, 0, 0, 0, 3),
-	(5, 1, 'technical_admin_forms', 'Admin technical manager that can configure all necessary features to admin forms', 0, 0, 0, 0, 0, 4);
-/*!40000 ALTER TABLE `core_attribute_field` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `core_connections_log`;
 CREATE TABLE IF NOT EXISTS `core_connections_log` (
@@ -403,10 +247,6 @@ CREATE TABLE IF NOT EXISTS `core_connections_log` (
   KEY `index_connections_log` (`ip_address`,`date_login`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `core_connections_log` DISABLE KEYS */;
-INSERT INTO `core_connections_log` (`access_code`, `ip_address`, `date_login`, `login_status`) VALUES
-	('laurent.hohl@gmail.com', '0:0:0:0:0:0:0:1', '2022-02-17 08:06:09', 0);
-/*!40000 ALTER TABLE `core_connections_log` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `core_dashboard`;
 CREATE TABLE IF NOT EXISTS `core_dashboard` (
@@ -416,15 +256,6 @@ CREATE TABLE IF NOT EXISTS `core_dashboard` (
   PRIMARY KEY (`dashboard_name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `core_dashboard` DISABLE KEYS */;
-INSERT INTO `core_dashboard` (`dashboard_name`, `dashboard_column`, `dashboard_order`) VALUES
-	('CORE_SYSTEM', 1, 2),
-	('CORE_USERS', 1, 1),
-	('CORE_USER', 4, 1),
-	('CORE_PAGES', 2, 2),
-	('FORMS', 2, 1),
-	('WORKFLOW', 3, 1);
-/*!40000 ALTER TABLE `core_dashboard` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `core_datastore`;
 CREATE TABLE IF NOT EXISTS `core_datastore` (
@@ -433,268 +264,6 @@ CREATE TABLE IF NOT EXISTS `core_datastore` (
   PRIMARY KEY (`entity_key`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `core_datastore` DISABLE KEYS */;
-INSERT INTO `core_datastore` (`entity_key`, `entity_value`) VALUES
-	('core.advanced_parameters.password_duration', '120'),
-	('core.advanced_parameters.default_user_level', '0'),
-	('core.advanced_parameters.default_user_notification', '1'),
-	('core.advanced_parameters.default_user_language', 'fr'),
-	('core.advanced_parameters.default_user_status', '0'),
-	('core.advanced_parameters.email_pattern', '^[\\w_.\\-!\\#\\$\\%\\&\'\\*\\+\\/\\=\\?\\^\\`\\}\\{\\|\\~]+@[\\w_.\\-]+\\.[\\w]+$'),
-	('core.advanced_parameters.email_pattern_verify_by', ''),
-	('core.advanced_parameters.force_change_password_reinit', 'false'),
-	('core.advanced_parameters.password_minimum_length', '8'),
-	('core.advanced_parameters.password_format_upper_lower_case', 'false'),
-	('core.advanced_parameters.password_format_numero', 'false'),
-	('core.advanced_parameters.password_format_special_characters', 'false'),
-	('core.advanced_parameters.password_history_size', ''),
-	('core.advanced_parameters.maximum_number_password_change', ''),
-	('core.advanced_parameters.tsw_size_password_change', ''),
-	('core.advanced_parameters.use_advanced_security_parameters', ''),
-	('core.advanced_parameters.account_life_time', '12'),
-	('core.advanced_parameters.time_before_alert_account', '30'),
-	('core.advanced_parameters.nb_alert_account', '2'),
-	('core.advanced_parameters.time_between_alerts_account', '10'),
-	('core.advanced_parameters.access_failures_max', '3'),
-	('core.advanced_parameters.access_failures_interval', '10'),
-	('core.advanced_parameters.expired_alert_mail_sender', 'lutece@nowhere.com'),
-	('core.advanced_parameters.expired_alert_mail_subject', 'Votre compte a expiré'),
-	('core.advanced_parameters.first_alert_mail_sender', 'lutece@nowhere.com'),
-	('core.advanced_parameters.first_alert_mail_subject', 'Votre compte va bientôt expirer'),
-	('core.advanced_parameters.other_alert_mail_sender', 'lutece@nowhere.com'),
-	('core.advanced_parameters.other_alert_mail_subject', 'Votre compte va bientôt expirer'),
-	('core.advanced_parameters.account_reactivated_mail_sender', 'lutece@nowhere.com'),
-	('core.advanced_parameters.account_reactivated_mail_subject', 'Votre compte a bien été réactivé'),
-	('core.advanced_parameters.access_failures_captcha', '1'),
-	('core.advanced_parameters.notify_user_password_expired', ''),
-	('core.advanced_parameters.password_expired_mail_sender', 'lutece@nowhere.com'),
-	('core.advanced_parameters.password_expired_mail_subject', 'Votre mot de passe a expiré'),
-	('core.advanced_parameters.reset_token_validity', '60'),
-	('core.advanced_parameters.lock_reset_token_to_session', 'false'),
-	('core.backOffice.defaultEditor', 'tinymce'),
-	('core.frontOffice.defaultEditor', 'markitupbbcode'),
-	('core_banned_domain_names', 'yopmail.com'),
-	('portal.site.site_property.name', 'FORMS By LUTECE'),
-	('portal.site.site_property.meta.author', '<author>'),
-	('portal.site.site_property.meta.copyright', '<copyright>'),
-	('portal.site.site_property.meta.description', '<description>'),
-	('portal.site.site_property.meta.keywords', '<keywords>'),
-	('portal.site.site_property.email', 'webmaster@mydomain.com'),
-	('portal.site.site_property.noreply_email', 'no-reply@mydomain.com'),
-	('portal.site.site_property.home_url', 'jsp/site/Portal.jsp'),
-	('portal.site.site_property.admin_home_url', 'jsp/admin/AdminMenu.jsp'),
-	('portal.site.site_property.popup_credits.textblock', '&lt;credits text&gt;'),
-	('portal.site.site_property.popup_legal_info.copyright.textblock', '&lt;copyright text&gt;'),
-	('portal.site.site_property.popup_legal_info.privacy.textblock', '&lt;privacy text&gt;'),
-	('portal.site.site_property.logo_url', 'images/logo-pack-light.min.svg'),
-	('portal.site.site_property.locale.default', 'fr'),
-	('portal.site.site_property.avatar_default', 'images/admin/skin/unknown.png'),
-	('portal.site.site_property.back_images', '\'images/admin/skin/bg_login1.svg\' , \'images/admin/skin/bg_login2.svg\' , \'images/admin/skin/bg_login3.svg\' , \'images/admin/skin/bg_login4.svg\''),
-	('portal.site.site_property.portlet.title.maxlength', '75'),
-	('themecity.site_property.footer.cookieLink', '#cookiecitypack'),
-	('themecity.site_property.footer.cookieLabel', 'Cookies management'),
-	('themecity.site_property.footer.about', 'Lutece is made for cities, by cities, upon open source principals.'),
-	('captcha.defaultProvider', 'JCaptcha'),
-	('core.crypto.key', '0edadd4933ca32122952069a6c714a92e0897228bb5e89bb8db16cad7b61a09e'),
-	('themecity.site_property.bannerMessage.Type', 'info'),
-	('themecity.site_property.bannerMessage.Title', ''),
-	('core.plugins.status.themecity.installed', 'true'),
-	('themecity.site_property.bannerMessage.Position', 'bottom-right'),
-	('themecity.site_property.bannerMessage.htmlblock', ''),
-	('themecity.site_property.bannerMessage.CloseButton.checkbox', '1'),
-	('themecity.site_property.bannerMessage.Duration', '5000'),
-	('adminavatar.site_property.avatarserver.Url', ''),
-	('core.cache.status.EntryTypeServiceManagerCache.enabled', '1'),
-	('limitconnectedusers.site_property.limit_message.textblock', '<div class=\'alert alert-danger\'>Le nombre maximal d\'utilisateur connecté simultanément a été atteint</div>'),
-	('limitconnectedusers.site_property.limit_notification_mailing_list.textblock', ''),
-	('limitconnectedusers.site_property.limit_notification_message.textblock', 'Le nombre maximal d\'utilisateur connecté simultanément a été atteint'),
-	('limitconnectedusers.site_property.limit_notification_sender_name', 'LUTECE'),
-	('limitconnectedusers.site_property.limit_notification_subject.textblock', 'Le nombre maximal d\'utilisateur connecté simultanément a été atteint'),
-	('mylutece.security.public_url.mylutece.url.login.page', 'jsp/site/Portal.jsp?page=mylutece&action=login'),
-	('mylutece.security.public_url.mylutece.url.doLogin', 'jsp/site/plugins/mylutece/DoMyLuteceLogin.jsp'),
-	('mylutece.security.public_url.mylutece.url.doLogout', 'jsp/site/plugins/mylutece/DoMyLuteceLogout.jsp'),
-	('mylutece.security.public_url.mylutece.url.createAccount.page', 'jsp/site/Portal.jsp?page=mylutece&action=createAccount'),
-	('mylutece.security.public_url.mylutece.url.modifyAccount.page', 'jsp/site/Portal.jsp?page=mylutece&action=modifyAccount'),
-	('mylutece.security.public_url.mylutece.url.lostPassword.page', 'jsp/site/Portal.jsp?page=mylutece&action=lostPassword'),
-	('mylutece.security.public_url.mylutece.url.lostLogin.page', 'jsp/site/Portal.jsp?page=mylutecedatabase&action=lostLogin'),
-	('mylutece.security.public_url.mylutece.url.doActionsAll', 'jsp/site/plugins/mylutece/Do*'),
-	('mylutece-database_banned_domain_names', 'yopmail.com'),
-	('mylutece.security.public_url.mylutece-database.url.login.page', 'jsp/site/Portal.jsp?page=mylutece&action=login'),
-	('mylutece.security.public_url.mylutece-database.url.doLogin', 'jsp/site/plugins/mylutece/DoMyLuteceLogin.jsp'),
-	('mylutece.security.public_url.mylutece-database.url.doLogout', 'jsp/site/plugins/mylutece/DoMyLuteceLogout.jsp'),
-	('mylutece.security.public_url.mylutece-database.url.createAccount.page', 'jsp/site/Portal.jsp?page=mylutecedatabase&action=createAccount'),
-	('mylutece.security.public_url.mylutece-database.url.lostPassword.page', 'jsp/site/Portal.jsp?page=mylutecedatabase&action=lostPassword'),
-	('mylutece.security.public_url.mylutece-database.url.lostLogin.page', 'jsp/site/Portal.jsp?page=mylutecedatabase&action=lostLogin'),
-	('mylutece.security.public_url.mylutece-database.url.reinitPassword.page', 'jsp/site/Portal.jsp?page=mylutecedatabase&action=reinitPassword'),
-	('mylutece.security.public_url.mylutece-database.url.doActionsAll', 'jsp/site/plugins/mylutece/modules/database/Do*'),
-	('seo.rewrite.config.lastUpdate', 'Dernière mise à jour du fichier de configuration : 17 févr. 2022 à 11:23:24 Nombre d\'url : 8 Resultat : OK'),
-	('seo.config.uptodate', 'true'),
-	('seo.generator.option.addPath', 'false'),
-	('seo.generator.option.addHtmlSuffix', 'true'),
-	('seo.replaceUrl.enabled', 'false'),
-	('seo.generator.daemon.enabled', 'false'),
-	('seo.canonicalUrls.enabled', 'false'),
-	('seo.sitmap.daemon.enabled', 'true'),
-	('seo.sitemap.update.log', 'Dernière génération : 22 févr. 2022 à 17:32:50 Nombre d\'url : 5 Resultat : OK'),
-	('core.cache.status.PortalMenuService.enabled', '0'),
-	('core.cache.status.PortletCacheService.enabled', '0'),
-	('core.cache.status.StaticFilesCachingFilter.timeToLiveSeconds', '604800'),
-	('core.cache.status.MyPortalWidgetContentService.enabled', '1'),
-	('core.cache.status.PageCachingFilter.enabled', '0'),
-	('core.cache.status.MailAttachmentCacheService.timeToLiveSeconds', '7200'),
-	('core.cache.status.MailAttachmentCacheService.overflowToDisk', 'true'),
-	('core.cache.status.MailAttachmentCacheService.maxElementsInMemory', '10'),
-	('core.cache.status.MailAttachmentCacheService.enabled', '1'),
-	('core.cache.status.BaseUserPreferencesCacheService.enabled', '0'),
-	('core.cache.status.MailAttachmentCacheService.diskPersistent', 'true'),
-	('core.cache.status.StaticFilesCachingFilter.enabled', '0'),
-	('core.cache.status.LinksIncludeCacheService.enabled', '0'),
-	('core.cache.status.MyPortalWidgetService.enabled', '1'),
-	('core.cache.status.LuteceUserCacheService.maxElementsInMemory', '1000'),
-	('core.cache.status.LuteceUserCacheService.enabled', '1'),
-	('core.cache.status.pathCacheService.enabled', '0'),
-	('core.cache.status.BaseUserPreferencesCacheService.maxElementsInMemory', '1000'),
-	('core.cache.status.SiteMapService.enabled', '1'),
-	('core.cache.status.PageCacheService.enabled', '0'),
-	('forms.display.form.columnTitle', 'true'),
-	('forms.display.form.csv.separator', ';'),
-	('core.plugins.status.core_extensions.installed', 'true'),
-	('core.plugins.status.lucene.installed', 'true'),
-	('core.daemon.indexer.interval', '300'),
-	('core.daemon.indexer.onStartUp', 'true'),
-	('core.daemon.mailSender.interval', '86400'),
-	('core.daemon.mailSender.onStartUp', 'true'),
-	('core.daemon.anonymizationDaemon.interval', '86400'),
-	('core.daemon.anonymizationDaemon.onStartUp', 'false'),
-	('core.daemon.accountLifeTimeDaemon.interval', '86400'),
-	('core.daemon.accountLifeTimeDaemon.onStartUp', 'true'),
-	('core.daemon.threadLauncherDaemon.interval', '86400'),
-	('core.daemon.threadLauncherDaemon.onStartUp', 'true'),
-	('core.daemon.archiveIndexer.interval', '360'),
-	('core.daemon.archiveIndexer.onStartUp', 'true'),
-	('core.daemon.fullIndexingDaemon.interval', '86400'),
-	('core.daemon.fullIndexingDaemon.onStartUp', 'true'),
-	('core.daemon.incrementalIndexingDaemon.interval', '3000'),
-	('core.daemon.incrementalIndexingDaemon.onStartUp', 'true'),
-	('core.daemon.temporaryfilesDaemon.interval', '86400'),
-	('core.daemon.temporaryfilesDaemon.onStartUp', 'false'),
-	('core.cache.status.JasperService.enabled', '0'),
-	('core.daemon.jasperPurgeImage.interval', '10'),
-	('core.daemon.jasperPurgeImage.onStartUp', 'false'),
-	('matomo.site_property.site.id', '0'),
-	('matomo.site_property.server.http.url', ''),
-	('matomo.site_property.server.https.url', ''),
-	('matomo.site_property.widget.auth.token', ''),
-	('core.daemon.databaseAnonymizationDaemon.interval', '86400'),
-	('core.daemon.databaseAnonymizationDaemon.onStartUp', 'true'),
-	('core.daemon.databaseAccountLifeTimeDaemon.interval', '86400'),
-	('core.daemon.databaseAccountLifeTimeDaemon.onStartUp', 'true'),
-	('core.daemon.seoFriendlyUrlGenerator.interval', '3600'),
-	('core.daemon.seoFriendlyUrlGenerator.onStartUp', 'true'),
-	('core.daemon.seoSitemapGenerator.interval', '3600'),
-	('core.daemon.seoSitemapGenerator.onStartUp', 'true'),
-	('core.daemon.alert.interval', '43200'),
-	('core.daemon.alert.onStartUp', 'true'),
-	('core.daemon.alertCleaner.interval', '43200'),
-	('core.daemon.alertCleaner.onStartUp', 'true'),
-	('core.daemon.automaticActionDaemon.interval', '14400'),
-	('core.daemon.automaticActionDaemon.onStartUp', 'true'),
-	('core.daemon.archiveDaemon.interval', '86400'),
-	('core.daemon.archiveDaemon.onStartUp', 'false'),
-	('core.daemon.chooseStateActionDaemon.interval', '10'),
-	('core.daemon.chooseStateActionDaemon.onStartUp', 'false'),
-	('core.daemon.changeStateDaemon.interval', '10'),
-	('core.daemon.changeStateDaemon.onStartUp', 'false'),
-	('core.templates.currentCommonsInclude', 'Boostrap5Tabler'),
-	('core.startup.time', '22 févr. 2022 à 17:32:48'),
-	('core.cache.status.DatastoreCacheService.enabled', '0'),
-	('core.cache.status.XMLTransformerCacheService(XSLT).enabled', '1'),
-	('themecity.site_property.banner.image', 'images/header-software-app.png'),
-	('themecity.site_property.footer.links', '[{"Our wiki","https://lutece.paris.fr/support/wiki/home.html"},{"Read our Terms & Conditions","https://lutece.paris.fr/support/wiki/home.html"},]'),
-	('themecity.site_property.robotIndex.checkbox', '1'),
-	('core.plugins.status.archive.installed', 'true'),
-	('core.plugins.status.archive.pool', 'portal'),
-	('core.plugins.status.archive-client.installed', 'true'),
-	('core.plugins.status.asynchronous-upload.installed', 'true'),
-	('core.plugins.status.asynchronous-upload.pool', 'portal'),
-	('core.plugins.status.avatar.installed', 'true'),
-	('core.plugins.status.blobstore.installed', 'true'),
-	('core.plugins.status.blobstore.pool', 'portal'),
-	('core.plugins.status.blobstoreclient.installed', 'true'),
-	('core.plugins.status.captcha.installed', 'true'),
-	('core.plugins.status.contact.installed', 'true'),
-	('core.plugins.status.contact.pool', 'portal'),
-	('core.plugins.status.filegenerator.installed', 'true'),
-	('core.plugins.status.filegenerator.pool', 'portal'),
-	('core.plugins.status.forms.installed', 'true'),
-	('core.plugins.status.forms.pool', 'portal'),
-	('core.plugins.status.forms-breadcrumbaccordion.installed', 'true'),
-	('core.plugins.status.forms-breadcrumbaccordion.pool', 'portal'),
-	('core.plugins.status.forms-documentproducer.installed', 'true'),
-	('core.plugins.status.forms-documentproducer.pool', 'portal'),
-	('core.plugins.status.forms-template.installed', 'true'),
-	('core.plugins.status.forms-template.pool', 'portal'),
-	('core.plugins.status.forms-unittree.installed', 'true'),
-	('core.plugins.status.forms-unittree.pool', 'portal'),
-	('core.plugins.status.forms-userassignment.installed', 'true'),
-	('core.plugins.status.forms-userassignment.pool', 'portal'),
-	('core.plugins.status.genericattributes.installed', 'true'),
-	('core.plugins.status.genericattributes.pool', 'portal'),
-	('core.plugins.status.genericattributes-address.installed', 'false'),
-	('core.plugins.status.adminavatar.installed', 'true'),
-	('core.plugins.status.genericattributes-openstreetmap.installed', 'true'),
-	('core.plugins.status.html.installed', 'true'),
-	('core.plugins.status.htmlpage.installed', 'true'),
-	('core.plugins.status.htmlpage.pool', 'portal'),
-	('core.plugins.status.jasper.installed', 'false'),
-	('core.plugins.status.jasper.pool', 'portal'),
-	('core.plugins.status.jcaptcha.installed', 'false'),
-	('core.plugins.status.mermaidjs.installed', 'true'),
-	('core.plugins.status.mermaidjs.pool', 'portal'),
-	('core.plugins.status.mylutece.installed', 'true'),
-	('core.plugins.status.mylutece.pool', 'portal'),
-	('core.plugins.status.mylutece-database.installed', 'true'),
-	('core.plugins.status.mylutece-database.pool', 'portal'),
-	('core.plugins.status.poll.installed', 'true'),
-	('core.plugins.status.poll.pool', 'portal'),
-	('core.plugins.status.profiles.installed', 'true'),
-	('core.plugins.status.profiles.pool', 'portal'),
-	('core.plugins.status.referencelist.installed', 'true'),
-	('core.plugins.status.referencelist.pool', 'portal'),
-	('core.plugins.status.regularexpression.installed', 'true'),
-	('core.plugins.status.regularexpression.pool', 'portal'),
-	('core.plugins.status.rest.installed', 'true'),
-	('core.plugins.status.seo.installed', 'true'),
-	('core.plugins.status.seo.pool', 'portal'),
-	('core.plugins.status.systeminfo.installed', 'true'),
-	('core.plugins.status.theme_city.installed', 'true'),
-	('core.plugins.status.unittree.installed', 'true'),
-	('core.plugins.status.unittree.pool', 'portal'),
-	('core.plugins.status.unittreeuserassignment.installed', 'true'),
-	('core.plugins.status.unittreeuserassignment.pool', 'portal'),
-	('core.plugins.status.userassignment.installed', 'true'),
-	('core.plugins.status.userassignment.pool', 'portal'),
-	('core.plugins.status.workflow.installed', 'true'),
-	('core.plugins.status.workflow.pool', 'portal'),
-	('core.plugins.status.workflow-alertforms.installed', 'true'),
-	('core.plugins.status.workflow-alertforms.pool', 'portal'),
-	('core.plugins.status.workflow-forms.installed', 'true'),
-	('core.plugins.status.workflow-forms.pool', 'portal'),
-	('core.plugins.status.workflow-formsautomaticassignment.installed', 'true'),
-	('core.plugins.status.workflow-formsautomaticassignment.pool', 'portal'),
-	('core.plugins.status.workflow-formsjasper.installed', 'false'),
-	('core.plugins.status.workflow-formsjasper.pool', 'portal'),
-	('core.plugins.status.workflow-formspdf.installed', 'true'),
-	('core.plugins.status.workflow-formspdf.pool', 'portal'),
-	('core.plugins.status.workflow-rest.installed', 'true'),
-	('core.plugins.status.workflow-unittree.installed', 'true'),
-	('core.plugins.status.workflow-unittree.pool', 'portal'),
-	('core.plugins.status.workflow-userassignment.installed', 'true'),
-	('core.plugins.status.workflow-userassignment.pool', 'portal'),
-	('core.cache.status.PageCachingFilter(CAUTION:NEVERUSEWITHUSERDYNAMICDATA).enabled', '0'),
-	('core.cache.status.SEOFriendlyUrlCacheService.enabled', '0'),
-	('core.cache.status.asynchronousupload.asynchronousUploadCacheService.enabled', '0');
-/*!40000 ALTER TABLE `core_datastore` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `core_feature_group`;
 CREATE TABLE IF NOT EXISTS `core_feature_group` (
@@ -705,16 +274,6 @@ CREATE TABLE IF NOT EXISTS `core_feature_group` (
   PRIMARY KEY (`id_feature_group`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `core_feature_group` DISABLE KEYS */;
-INSERT INTO `core_feature_group` (`id_feature_group`, `feature_group_description`, `feature_group_label`, `feature_group_order`) VALUES
-	('CONTENT', 'portal.features.group.content.description', 'portal.features.group.content.label', 1),
-	('APPLICATIONS', 'portal.features.group.applications.description', 'portal.features.group.applications.label', 3),
-	('SYSTEM', 'portal.features.group.system.description', 'portal.features.group.system.label', 7),
-	('SITE', 'portal.features.group.site.description', 'portal.features.group.site.label', 2),
-	('STYLE', 'portal.features.group.charter.description', 'portal.features.group.charter.label', 6),
-	('USERS', 'portal.features.group.users.description', 'portal.features.group.users.label', 4),
-	('MANAGERS', 'portal.features.group.managers.description', 'portal.features.group.managers.label', 5);
-/*!40000 ALTER TABLE `core_feature_group` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `core_file`;
 CREATE TABLE IF NOT EXISTS `core_file` (
@@ -727,15 +286,6 @@ CREATE TABLE IF NOT EXISTS `core_file` (
   PRIMARY KEY (`id_file`)
 ) ENGINE=MyISAM AUTO_INCREMENT=131 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `core_file` DISABLE KEYS */;
-INSERT INTO `core_file` (`id_file`, `title`, `id_physical_file`, `file_size`, `mime_type`, `date_creation`) VALUES
-	(125, 'export_users_csv.xml', 125, 2523, 'application/xml', '2005-10-10 08:10:10'),
-	(126, 'export_users_xml.xml', 126, 259, 'application/xml', '2005-10-10 08:10:10'),
-	(127, 'export_users_csv.xml', 127, 1861, 'application/xml', NULL),
-	(128, 'export_users_xml.xml', 128, 259, 'application/xml', NULL),
-	(129, 'users.csv', 129, 12597, 'text/csv', '2022-02-21 15:36:05'),
-	(130, 'Flex_et__Calcul.ods', 130, 18373, 'application/vnd.oasis.opendocument.spreadsheet', '2022-02-21 15:36:05');
-/*!40000 ALTER TABLE `core_file` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `core_id_generator`;
 CREATE TABLE IF NOT EXISTS `core_id_generator` (
@@ -767,13 +317,6 @@ CREATE TABLE IF NOT EXISTS `core_level_right` (
   PRIMARY KEY (`id_level`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `core_level_right` DISABLE KEYS */;
-INSERT INTO `core_level_right` (`id_level`, `name`) VALUES
-	(0, 'Level 0 - Technical administrator'),
-	(1, 'Level 1 - Fonctionnal administrator'),
-	(2, 'Level 2 - Site Manager - Webmaster'),
-	(3, 'Level 3 - Contributor');
-/*!40000 ALTER TABLE `core_level_right` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `core_mail_item`;
 CREATE TABLE IF NOT EXISTS `core_mail_item` (
@@ -782,11 +325,6 @@ CREATE TABLE IF NOT EXISTS `core_mail_item` (
   PRIMARY KEY (`id_mail_queue`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `core_mail_item` DISABLE KEYS */;
-INSERT INTO `core_mail_item` (`id_mail_queue`, `mail_item`) VALUES
-	(1, _binary 0xaced00057372002c66722e70617269732e6c75746563652e706f7274616c2e736572766963652e6d61696c2e4d61696c4974656d000000000000000102000d5a000d5f624372656174654576656e745a00135f62556e69717565526563697069656e74546f4900085f6e466f726d61744c00155f6c69737446696c6573417474616368656d656e747400104c6a6176612f7574696c2f4c6973743b4c00145f6c69737455726c73417474616368656d656e7471007e00014c00135f73747243616c656e6461724d6573736167657400124c6a6176612f6c616e672f537472696e673b4c000b5f7374724d65737361676571007e00024c00115f737472526563697069656e747342636371007e00024c00105f737472526563697069656e7473436371007e00024c00105f737472526563697069656e7473546f71007e00024c000f5f73747253656e646572456d61696c71007e00024c000e5f73747253656e6465724e616d6571007e00024c000b5f7374725375626a65637471007e000278700000000000007070707401e33c7374726f6e673e4d6573736167652070726f76656e616e74206465203a203c2f7374726f6e673e3c62722f3e0d0a266e6273703b266e6273703b3c7374726f6e673e4e6f6d3c2f7374726f6e673e203a266e6273703b436cc3a96d656e6365203c62722f3e0d0a266e6273703b266e6273703b3c7374726f6e673e5072c3a96e6f6d3c2f7374726f6e673e203a266e6273703b484f484c203c62722f3e0d0a266e6273703b266e6273703b3c7374726f6e673e416472657373653c2f7374726f6e673e203a266e6273703b352052756520447563203c62722f3e0d0a266e6273703b266e6273703b3c7374726f6e673e452d6d61696c3c2f7374726f6e673e203a266e6273703b636c656d656e63652e686f686c40676d61696c2e636f6d20203c62722f3e3c62722f3e0d0a3c7374726f6e673e44617465203a3c2f7374726f6e673e266e6273703b31382f30322f323032323c62722f3e0d0a3c7374726f6e673e44657374696e617461697265203a203c2f7374726f6e673e266e6273703b436f6e746163742032203c62722f3e3c62722f3e0d0a3c68722f3e0d0a3c7374726f6e673e4d657373616765203a203c2f7374726f6e673e3c62722f3e3c62722f3e0d0a617a65617a65617a65617a65617a652061657a617a6520617a652065617a7070740026616472657373655f656d61696c5f64755f636f6e746163745f3240646f6d61696e652e636f6d740017636c656d656e63652e686f686c40676d61696c2e636f6d740009436cc3a96d656e63657400056172617a72),
-	(2, _binary 0xaced00057372002c66722e70617269732e6c75746563652e706f7274616c2e736572766963652e6d61696c2e4d61696c4974656d000000000000000102000d5a000d5f624372656174654576656e745a00135f62556e69717565526563697069656e74546f4900085f6e466f726d61744c00155f6c69737446696c6573417474616368656d656e747400104c6a6176612f7574696c2f4c6973743b4c00145f6c69737455726c73417474616368656d656e7471007e00014c00135f73747243616c656e6461724d6573736167657400124c6a6176612f6c616e672f537472696e673b4c000b5f7374724d65737361676571007e00024c00115f737472526563697069656e747342636371007e00024c00105f737472526563697069656e7473436371007e00024c00105f737472526563697069656e7473546f71007e00024c000f5f73747253656e646572456d61696c71007e00024c000e5f73747253656e6465724e616d6571007e00024c000b5f7374725375626a65637471007e000278700000000000007070707401d43c7374726f6e673e4d6573736167652070726f76656e616e74206465203a203c2f7374726f6e673e3c62722f3e0d0a266e6273703b266e6273703b3c7374726f6e673e4e6f6d3c2f7374726f6e673e203a266e6273703b436cc3a96d656e6365203c62722f3e0d0a266e6273703b266e6273703b3c7374726f6e673e5072c3a96e6f6d3c2f7374726f6e673e203a266e6273703b484f484c203c62722f3e0d0a266e6273703b266e6273703b3c7374726f6e673e416472657373653c2f7374726f6e673e203a266e6273703b352052756520447563203c62722f3e0d0a266e6273703b266e6273703b3c7374726f6e673e452d6d61696c3c2f7374726f6e673e203a266e6273703b636c656d656e63652e686f686c40676d61696c2e636f6d20203c62722f3e3c62722f3e0d0a3c7374726f6e673e44617465203a3c2f7374726f6e673e266e6273703b31382f30322f323032323c62722f3e0d0a3c7374726f6e673e44657374696e617461697265203a203c2f7374726f6e673e266e6273703b436f6e746163742032203c62722f3e3c62722f3e0d0a3c68722f3e0d0a3c7374726f6e673e4d657373616765203a203c2f7374726f6e673e3c62722f3e3c62722f3e0d0a6461207a64617a2064617a64617a647070740026616472657373655f656d61696c5f64755f636f6e746163745f3240646f6d61696e652e636f6d740017636c656d656e63652e686f686c40676d61696c2e636f6d740009436cc3a96d656e63657400056172617a72);
-/*!40000 ALTER TABLE `core_mail_item` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `core_mail_queue`;
 CREATE TABLE IF NOT EXISTS `core_mail_queue` (
@@ -796,11 +334,6 @@ CREATE TABLE IF NOT EXISTS `core_mail_queue` (
   KEY `is_locked_core_mail_queue` (`is_locked`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `core_mail_queue` DISABLE KEYS */;
-INSERT INTO `core_mail_queue` (`id_mail_queue`, `is_locked`) VALUES
-	(1, 0),
-	(2, 0);
-/*!40000 ALTER TABLE `core_mail_queue` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `core_mode`;
 CREATE TABLE IF NOT EXISTS `core_mode` (
@@ -817,12 +350,6 @@ CREATE TABLE IF NOT EXISTS `core_mode` (
   PRIMARY KEY (`id_mode`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `core_mode` DISABLE KEYS */;
-INSERT INTO `core_mode` (`id_mode`, `description_mode`, `path`, `output_xsl_method`, `output_xsl_version`, `output_xsl_media_type`, `output_xsl_encoding`, `output_xsl_indent`, `output_xsl_omit_xml_dec`, `output_xsl_standalone`) VALUES
-	(0, 'Normal', 'normal/', 'xml', '1.0', 'text/xml', 'UTF-8', 'yes', 'yes', NULL),
-	(1, 'Administration', 'admin/', 'xml', '1.0', 'text/xml', 'UTF-8', 'yes', 'yes', NULL),
-	(2, 'Wap', 'wml/', 'xml', '1.0', 'text/xml', 'UTF-8', 'yes', 'yes', NULL);
-/*!40000 ALTER TABLE `core_mode` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `core_page`;
 CREATE TABLE IF NOT EXISTS `core_page` (
@@ -1143,79 +670,6 @@ CREATE TABLE IF NOT EXISTS `core_user_right` (
   KEY `index_user_right` (`id_user`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `core_user_right` DISABLE KEYS */;
-INSERT INTO `core_user_right` (`id_right`, `id_user`) VALUES
-	('BREADCRUMBACCORDION_MANAGEMENT', 1),
-	('BREADCRUMBACCORDION_MANAGEMENT', 5),
-	('CONFIG_DOCUMENT_PRODUCER_MANAGEMENT', 1),
-	('CONTACT_MANAGEMENT', 1),
-	('CONTACT_MANAGEMENT', 5),
-	('CORE_ADMIN_SITE', 1),
-	('CORE_ADMINDASHBOARD_MANAGEMENT', 1),
-	('CORE_CACHE_MANAGEMENT', 1),
-	('CORE_DAEMONS_MANAGEMENT', 1),
-	('CORE_DASHBOARD_MANAGEMENT', 1),
-	('CORE_EDITORS_MANAGEMENT', 1),
-	('CORE_FEATURES_MANAGEMENT', 1),
-	('CORE_LEVEL_RIGHT_MANAGEMENT', 1),
-	('CORE_LINK_SERVICE_MANAGEMENT', 1),
-	('CORE_LINK_SERVICE_MANAGEMENT', 5),
-	('CORE_LOGS_VISUALISATION', 1),
-	('CORE_LOGS_VISUALISATION', 5),
-	('CORE_MAILINGLISTS_MANAGEMENT', 1),
-	('CORE_MAILINGLISTS_MANAGEMENT', 5),
-	('CORE_MODES_MANAGEMENT', 1),
-	('CORE_PAGE_TEMPLATE_MANAGEMENT', 1),
-	('CORE_PLUGINS_MANAGEMENT', 1),
-	('CORE_PROPERTIES_MANAGEMENT', 1),
-	('CORE_RBAC_MANAGEMENT', 1),
-	('CORE_RIGHT_MANAGEMENT', 1),
-	('CORE_ROLES_MANAGEMENT', 1),
-	('CORE_ROLES_MANAGEMENT', 5),
-	('CORE_SEARCH_INDEXATION', 1),
-	('CORE_SEARCH_INDEXATION', 5),
-	('CORE_SEARCH_MANAGEMENT', 1),
-	('CORE_STYLES_MANAGEMENT', 1),
-	('CORE_STYLESHEET_MANAGEMENT', 1),
-	('CORE_TEMPLATES_AUTO_INCLUDES_MANAGEMENT', 1),
-	('CORE_TEMPLATES_AUTO_INCLUDES_MANAGEMENT', 5),
-	('CORE_USERS_MANAGEMENT', 1),
-	('CORE_USERS_MANAGEMENT', 5),
-	('CORE_WORKGROUPS_MANAGEMENT', 1),
-	('CORE_WORKGROUPS_MANAGEMENT', 5),
-	('CORE_XSL_EXPORT_MANAGEMENT', 1),
-	('DATABASE_GROUPS_MANAGEMENT', 1),
-	('DATABASE_MANAGEMENT_USERS', 1),
-	('DATABASE_MANAGEMENT_USERS', 5),
-	('ENTRY_TYPE_MANAGEMENT', 1),
-	('ENTRY_TYPE_MANAGEMENT', 5),
-	('FORMS_MANAGEMENT', 1),
-	('FORMS_MANAGEMENT', 5),
-	('FORMS_MULTIVIEW', 1),
-	('FORMS_MULTIVIEW', 5),
-	('HTMLPAGE_MANAGEMENT', 1),
-	('MATOMO_MANAGEMENT', 1),
-	('MYLUTECE_MANAGE_AUTHENTICATION_FILTER', 1),
-	('MYLUTECE_MANAGE_EXTERNAL_APPLICATION', 1),
-	('MYLUTECE_MANAGEMENT', 1),
-	('POLL_MANAGEMENT', 1),
-	('PROFILES_MANAGEMENT', 1),
-	('PROFILES_VIEWS_MANAGEMENT', 1),
-	('REFERENCELIST_MANAGEMENT', 1),
-	('REFERENCELIST_MANAGEMENT', 5),
-	('REGULAR_EXPRESSION_MANAGEMENT', 1),
-	('REGULAR_EXPRESSION_MANAGEMENT', 5),
-	('SEO_MANAGEMENT', 1),
-	('SYSTEMINFO_MANAGEMENT', 1),
-	('SYSTEMINFO_MANAGEMENT', 5),
-	('UNITS_MANAGEMENT', 1),
-	('UNITS_MANAGEMENT', 5),
-	('VIEW_TEMP_FILES', 1),
-	('VIEW_TEMP_FILES', 5),
-	('WORKFLOW_MANAGEMENT', 1),
-	('WORKFLOW_MANAGEMENT', 5);
-/*!40000 ALTER TABLE `core_user_right` ENABLE KEYS */;
-
 DROP TABLE IF EXISTS `core_user_role`;
 CREATE TABLE IF NOT EXISTS `core_user_role` (
   `role_key` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
@@ -1223,30 +677,6 @@ CREATE TABLE IF NOT EXISTS `core_user_role` (
   PRIMARY KEY (`role_key`,`id_user`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `core_user_role` DISABLE KEYS */;
-INSERT INTO `core_user_role` (`role_key`, `id_user`) VALUES
-	('all_site_manager', 1),
-	('assign_groups', 1),
-	('assign_groups', 5),
-	('assign_roles', 1),
-	('assign_roles', 5),
-	('CREATE_REFERENCE_IMPORT', 1),
-	('CREATE_REFERENCE_IMPORT', 5),
-	('forms_manager', 1),
-	('forms_manager', 5),
-	('forms_multiview', 1),
-	('forms_multiview', 5),
-	('mylutece_database_manager', 1),
-	('mylutece_database_manager', 5),
-	('mylutece_manager', 1),
-	('profiles_manager', 1),
-	('profiles_views_manager', 1),
-	('super_admin', 1),
-	('unittree_management', 1),
-	('unittree_management', 5),
-	('workflow_manager', 1),
-	('workflow_manager', 5);
-/*!40000 ALTER TABLE `core_user_role` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `core_xsl_export`;
 CREATE TABLE IF NOT EXISTS `core_xsl_export` (
@@ -1259,13 +689,6 @@ CREATE TABLE IF NOT EXISTS `core_xsl_export` (
   PRIMARY KEY (`id_xsl_export`)
 ) ENGINE=MyISAM AUTO_INCREMENT=129 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `core_xsl_export` DISABLE KEYS */;
-INSERT INTO `core_xsl_export` (`id_xsl_export`, `title`, `description`, `extension`, `id_file`, `plugin`) VALUES
-	(125, 'Core - Export users to a CSV file', 'Export back office users to a CSV file', 'csv', 125, 'core'),
-	(126, 'Core - Export users to a XML file', 'Export back office users to a XML file', 'xml', 126, 'core'),
-	(127, 'MyLutece Database - Export CSV des utilisateurs', 'Export des utilisateur MyLutece Database dans un fichier CSV', 'csv', 127, 'mylutece-database'),
-	(128, 'MyLutece Database - Export XML des utilisateurs', 'Export des utilisateur MyLutece Database dans un fichier XML', 'xml', 128, 'mylutece-database');
-/*!40000 ALTER TABLE `core_xsl_export` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `filegen_temporary_file`;
 CREATE TABLE IF NOT EXISTS `filegen_temporary_file` (
@@ -1295,18 +718,6 @@ CREATE TABLE IF NOT EXISTS `forms_action` (
   PRIMARY KEY (`id_action`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `forms_action` DISABLE KEYS */;
-INSERT INTO `forms_action` (`id_action`, `name_key`, `description_key`, `action_url`, `icon_url`, `action_permission`, `form_state`) VALUES
-	(1, 'forms.action.modify.name', 'forms.action.modify.description', 'jsp/admin/plugins/forms/ManageForms.jsp?view=modifyForm', 'cog', 'MODIFY', 0),
-	(3, 'forms.action.params.name', 'forms.action.params.description', 'jsp/admin/plugins/forms/ManageSteps.jsp?view=manageSteps', 'step-forward', 'PARAM', 0),
-	(2, 'forms.action.delete.name', 'forms.action.delete.description', 'jsp/admin/plugins/forms/ManageForms.jsp?view=confirmRemoveForm', 'trash', 'DELETE', 0),
-	(4, 'forms.action.publish.name', 'forms.action.publish.description', 'jsp/admin/plugins/forms/ManageForms.jsp?view=modifyPublication', 'calendar', 'PUBLISH', 0),
-	(5, 'forms.action.viewResponses.name', 'forms.action.viewResponses.description', 'jsp/admin/plugins/forms/MultiviewForms.jsp?current_selected_panel=forms', 'list-alt', 'VIEW_FORM_RESPONSE', 0),
-	(6, 'forms.action.json.copy.name', 'forms.json.copy.description', 'jsp/admin/plugins/forms/ManageForms.jsp?action=duplicateForm', 'copy', 'MODIFY', 0),
-	(7, 'forms.action.json.download.name', 'forms.json.download.description', 'jsp/admin/plugins/forms/ManageForms.jsp?action=doExportJson', 'download', 'MODIFY', 0),
-	(100, 'module.forms.documentproducer.actions.extractpdf.name', 'module.forms.documentproducer.actions.extractpdf.description', 'jsp/admin/plugins/forms/modules/documentproducer/ManageConfigProducer.jsp?view=getManageConfigProducer', 'file-pdf-o', 'MODIFY', 0);
-/*!40000 ALTER TABLE `forms_action` ENABLE KEYS */;
-
 DROP TABLE IF EXISTS `forms_breadcrumbaccordion_config_item`;
 CREATE TABLE IF NOT EXISTS `forms_breadcrumbaccordion_config_item` (
   `id_form` int(11) NOT NULL DEFAULT 0,
@@ -1315,13 +726,6 @@ CREATE TABLE IF NOT EXISTS `forms_breadcrumbaccordion_config_item` (
   PRIMARY KEY (`id_form`,`id_step`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `forms_breadcrumbaccordion_config_item` DISABLE KEYS */;
-INSERT INTO `forms_breadcrumbaccordion_config_item` (`id_form`, `id_step`, `position`) VALUES
-	(1, 4, 4),
-	(1, 3, 3),
-	(1, 2, 2),
-	(1, 1, 1);
-/*!40000 ALTER TABLE `forms_breadcrumbaccordion_config_item` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `forms_config_producer`;
 CREATE TABLE IF NOT EXISTS `forms_config_producer` (
@@ -1361,10 +765,6 @@ CREATE TABLE IF NOT EXISTS `forms_control` (
   KEY `index_fc_id_control_target` (`id_control_target`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `forms_control` DISABLE KEYS */;
-INSERT INTO `forms_control` (`id_control`, `value`, `error_message`, `validator_name`, `control_type`, `id_control_target`) VALUES
-	(1, '125', NULL, 'forms.listValueValidator', 'conditional', 22);
-/*!40000 ALTER TABLE `forms_control` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `forms_control_question`;
 CREATE TABLE IF NOT EXISTS `forms_control_question` (
@@ -1373,10 +773,6 @@ CREATE TABLE IF NOT EXISTS `forms_control_question` (
   PRIMARY KEY (`id_control`,`id_question`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `forms_control_question` DISABLE KEYS */;
-INSERT INTO `forms_control_question` (`id_control`, `id_question`) VALUES
-	(1, 14);
-/*!40000 ALTER TABLE `forms_control_question` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `forms_control_question_mapping`;
 CREATE TABLE IF NOT EXISTS `forms_control_question_mapping` (
@@ -1417,27 +813,6 @@ CREATE TABLE IF NOT EXISTS `forms_display` (
   KEY `index_fd_id_parent` (`id_parent`)
 ) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `forms_display` DISABLE KEYS */;
-INSERT INTO `forms_display` (`id_display`, `id_form`, `id_step`, `id_composite`, `id_parent`, `display_order`, `composite_type`, `display_depth`) VALUES
-	(1, 1, 1, 1, 0, 1, 'group', 0),
-	(2, 1, 1, 1, 1, 1, 'question', 1),
-	(3, 1, 1, 2, 1, 2, 'question', 1),
-	(4, 1, 2, 2, 0, 1, 'group', 0),
-	(5, 1, 2, 3, 4, 1, 'question', 1),
-	(12, 1, 2, 8, 4, 2, 'question', 1),
-	(13, 1, 2, 9, 4, 3, 'question', 1),
-	(14, 1, 2, 10, 4, 4, 'question', 1),
-	(15, 1, 3, 5, 0, 1, 'group', 0),
-	(16, 1, 3, 11, 15, 1, 'question', 1),
-	(17, 1, 3, 12, 15, 2, 'question', 1),
-	(18, 1, 3, 13, 0, 2, 'question', 0),
-	(19, 1, 4, 14, 0, 1, 'question', 0),
-	(20, 1, 2, 15, 0, 2, 'question', 0),
-	(21, 1, 2, 16, 0, 3, 'question', 0),
-	(22, 1, 4, 17, 0, 2, 'question', 0),
-	(24, 1, 3, 19, 15, 3, 'question', 1);
-/*!40000 ALTER TABLE `forms_display` ENABLE KEYS */;
-
 DROP TABLE IF EXISTS `forms_export_config`;
 CREATE TABLE IF NOT EXISTS `forms_export_config` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1477,10 +852,6 @@ CREATE TABLE IF NOT EXISTS `forms_form` (
   PRIMARY KEY (`id_form`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `forms_form` DISABLE KEYS */;
-INSERT INTO `forms_form` (`id_form`, `title`, `description`, `creation_date`, `update_date`, `availability_start_date`, `availability_end_date`, `max_number_response`, `workgroup`, `id_workflow`, `authentification_needed`, `one_response_by_user`, `breadcrumb_name`, `display_summary`, `return_url`, `captcha_step_initial`, `captcha_step_final`, `captcha_recap`, `count_responses`, `label_final_button`, `unavailable_message`, `id_logo`) VALUES
-	(1, 'Citizen\'s demand', '', '2022-02-18 15:57:09', '2022-02-21 15:39:39', '2022-02-17 11:00:00', '2022-03-31 10:00:00', 0, NULL, 0, 0, 1, 'forms-breadcrumbaccordion.breadcrumbAccordion', 1, 'jsp/site/Portal.jsp', 0, 0, 0, 0, '', '', 0);
-/*!40000 ALTER TABLE `forms_form` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `forms_global_action`;
 CREATE TABLE IF NOT EXISTS `forms_global_action` (
@@ -1494,11 +865,6 @@ CREATE TABLE IF NOT EXISTS `forms_global_action` (
   KEY `index_fga_code` (`code`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `forms_global_action` DISABLE KEYS */;
-INSERT INTO `forms_global_action` (`id_action`, `code`, `name_key`, `description_key`, `action_url`, `icon_url`) VALUES
-	(1, 'multiviewconfig', 'forms.action.multiviewConfig.labelKey', 'forms.action.multiviewConfig.descriptionKey', 'jsp/admin/plugins/forms/MultiviewForms.jsp?view=view_multiview_config', 'edit'),
-	(2, 'multiviewExport', 'forms.action.multiviewExport.labelKey', 'forms.action.multiviewExport.descriptionKey', 'jsp/admin/plugins/forms/MultiviewForms.jsp', 'edit');
-/*!40000 ALTER TABLE `forms_global_action` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `forms_group`;
 CREATE TABLE IF NOT EXISTS `forms_group` (
@@ -1513,12 +879,6 @@ CREATE TABLE IF NOT EXISTS `forms_group` (
   PRIMARY KEY (`id_group`)
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `forms_group` DISABLE KEYS */;
-INSERT INTO `forms_group` (`id_group`, `title`, `description`, `id_step`, `iteration_min`, `iteration_max`, `iteration_add_label`, `iteration_remove_label`) VALUES
-	(1, 'Informations', '', 1, 1, 1, '', ''),
-	(2, 'Etat Civil', '', 2, 1, 1, '', ''),
-	(5, 'My demand', '', 3, 1, 3, 'Add a demand', 'Remove my demand');
-/*!40000 ALTER TABLE `forms_group` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `forms_indexer_action`;
 CREATE TABLE IF NOT EXISTS `forms_indexer_action` (
@@ -1543,11 +903,6 @@ CREATE TABLE IF NOT EXISTS `forms_message` (
   KEY `index_fm_id_form` (`id_form`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `forms_message` DISABLE KEYS */;
-INSERT INTO `forms_message` (`id`, `id_form`, `end_message_display`, `end_message`) VALUES
-	(1, 1, 1, 'Authoritatively reinvent just in time schemas with proactive resources. Credibly drive vertical bandwidth and alternative initiatives. Monotonectally evolve front-end e-services without compelling outsourcing. Progressively deliver viral vortals for client-centric opportunities. Continually fashion multimedia based bandwidth after principle-centered expertise.<br /><br />Progressively synthesize cross-platform content with covalent initiatives. Completely provide access to resource sucking methods of empowerment with robust supply chains. Conveniently syndicate client-focused applications with adaptive.');
-/*!40000 ALTER TABLE `forms_message` ENABLE KEYS */;
-
 DROP TABLE IF EXISTS `forms_question`;
 CREATE TABLE IF NOT EXISTS `forms_question` (
   `id_question` int(11) NOT NULL AUTO_INCREMENT,
@@ -1569,23 +924,6 @@ CREATE TABLE IF NOT EXISTS `forms_question` (
   KEY `index_fg_id_step` (`id_step`)
 ) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `forms_question` DISABLE KEYS */;
-INSERT INTO `forms_question` (`id_question`, `title`, `code`, `description`, `id_entry`, `id_step`, `is_visible_multiview_global`, `is_visible_multiview_form_selected`, `multiview_column_order`, `column_title`, `is_filterable_multiview_global`, `is_filterable_multiview_form_selected`) VALUES
-	(1, 'commentaire', 'question_1', '<p>Distinctively foster equity invested initiatives without business e-commerce. Compellingly benchmark client-centered supply chains and business information. Compellingly re-engineer process-centric resources via team driven intellectual capital. Uniquely innovate team driven products and stand-alone communities. Assertively enable web-enabled web services for plug-and-play information.</p>\r\n<p>Dynamically negotiate competitive strategic theme areas before seamless initiatives. Objectively matrix exceptional innovation and highly efficient e-commerce. Continually aggregate process-centric architectures whereas web-enabled communities. Compellingly extend emerging ideas without market-driven customer service. Compellingly syndicate B2C products vis-a-vis high-payoff methods of empowerment.</p>\r\n<p>Synergistically mesh sustainable e-business vis-a-vis unique niches. Compellingly negotiate cutting-edge e-tailers via just in time opportunities. Interactively brand client-centered growth strategies before flexible results. Dramatically grow e-business infrastructures for extensible schemas. Continually orchestrate.</p>\r\n<div id="gtx-trans" style="position: absolute; left: -52px; top: -17px;">&nbsp;</div>', 1, 1, 0, 0, 0, 'commentaire', 0, 0),
-	(2, 'Accepter les conditions !!!', 'question_2', NULL, 2, 1, 0, 0, 0, 'Accepter les conditions !!!', 0, 0),
-	(3, 'Name', 'question_3', '', 3, 2, 0, 0, 0, 'Name', 0, 0),
-	(8, 'Resume', 'question_8', '', 8, 2, 0, 0, 0, 'Resume', 0, 0),
-	(9, 'Birth date', 'question_9', '', 9, 2, 0, 0, 0, 'Birth date', 0, 0),
-	(10, 'Gender', 'question_10', '', 10, 2, 0, 0, 0, 'Gender', 0, 0),
-	(11, 'Demand\'s type', 'question_11', '', 11, 3, 1, 0, 0, 'Type', 1, 0),
-	(12, 'Add a file to your demand', 'question_12', '', 12, 3, 0, 0, 0, 'Add a file to your demand', 0, 0),
-	(13, 'Add a location', 'question_13', '', 13, 3, 0, 0, 0, 'Add a location', 0, 0),
-	(14, 'Anything else to add ?', 'question_14', '', 14, 4, 0, 0, 0, 'Anything else to add ?', 0, 0),
-	(15, 'Email', 'question_15', '', 15, 2, 0, 0, 0, 'Email', 0, 0),
-	(16, 'Add your phone', 'question_16', '', 16, 2, 0, 0, 0, 'Add your phone', 0, 0),
-	(17, 'Someting to say', 'question_17', '', 17, 4, 0, 0, 0, 'Someting to say', 0, 0),
-	(19, 'Number of people concerned', 'question_19', '', 19, 3, 0, 0, 0, 'Number of people concerned', 0, 0);
-/*!40000 ALTER TABLE `forms_question` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `forms_question_entry_response`;
 CREATE TABLE IF NOT EXISTS `forms_question_entry_response` (
@@ -1597,114 +935,6 @@ CREATE TABLE IF NOT EXISTS `forms_question_entry_response` (
   KEY `idx_fqer_id_entry_response` (`id_entry_response`)
 ) ENGINE=MyISAM AUTO_INCREMENT=106 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `forms_question_entry_response` DISABLE KEYS */;
-INSERT INTO `forms_question_entry_response` (`id_question_entry_response`, `id_question_response`, `id_entry_response`) VALUES
-	(1, 2, 1),
-	(2, 2, 2),
-	(3, 3, 3),
-	(4, 4, 4),
-	(5, 5, 5),
-	(6, 6, 6),
-	(7, 7, 7),
-	(8, 8, 8),
-	(9, 9, 9),
-	(10, 11, 10),
-	(11, 11, 11),
-	(12, 11, 12),
-	(13, 11, 13),
-	(14, 11, 14),
-	(15, 11, 15),
-	(16, 12, 16),
-	(17, 13, 17),
-	(18, 15, 18),
-	(19, 15, 19),
-	(20, 16, 20),
-	(21, 17, 21),
-	(22, 18, 22),
-	(23, 19, 23),
-	(24, 20, 24),
-	(25, 21, 25),
-	(26, 22, 26),
-	(27, 24, 27),
-	(28, 24, 28),
-	(29, 24, 29),
-	(30, 24, 30),
-	(31, 24, 31),
-	(32, 24, 32),
-	(33, 25, 33),
-	(34, 27, 34),
-	(35, 27, 35),
-	(36, 28, 36),
-	(37, 29, 37),
-	(38, 30, 38),
-	(39, 31, 39),
-	(40, 32, 40),
-	(41, 33, 41),
-	(42, 34, 42),
-	(43, 36, 43),
-	(44, 36, 44),
-	(45, 36, 45),
-	(46, 36, 46),
-	(47, 36, 47),
-	(48, 36, 48),
-	(49, 37, 49),
-	(50, 39, 50),
-	(51, 39, 51),
-	(52, 40, 52),
-	(53, 41, 53),
-	(54, 42, 54),
-	(55, 43, 55),
-	(56, 44, 56),
-	(57, 45, 57),
-	(58, 46, 58),
-	(59, 48, 59),
-	(60, 48, 60),
-	(61, 48, 61),
-	(62, 48, 62),
-	(63, 48, 63),
-	(64, 48, 64),
-	(65, 49, 65),
-	(66, 51, 66),
-	(67, 51, 67),
-	(68, 52, 68),
-	(69, 53, 69),
-	(70, 54, 70),
-	(71, 55, 71),
-	(72, 57, 72),
-	(73, 58, 73),
-	(74, 59, 74),
-	(75, 60, 75),
-	(76, 60, 76),
-	(77, 60, 77),
-	(78, 60, 78),
-	(79, 60, 79),
-	(80, 60, 80),
-	(81, 61, 81),
-	(82, 62, 82),
-	(83, 63, 83),
-	(84, 63, 84),
-	(85, 63, 85),
-	(86, 63, 86),
-	(87, 63, 87),
-	(88, 63, 88),
-	(89, 64, 89),
-	(90, 65, 90),
-	(91, 67, 91),
-	(92, 67, 92),
-	(93, 68, 93),
-	(94, 69, 94),
-	(95, 70, 95),
-	(96, 71, 96),
-	(97, 73, 97),
-	(98, 74, 98),
-	(99, 76, 99),
-	(100, 76, 100),
-	(101, 76, 101),
-	(102, 76, 102),
-	(103, 76, 103),
-	(104, 76, 104),
-	(105, 77, 105);
-/*!40000 ALTER TABLE `forms_question_entry_response` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `forms_question_response`;
 CREATE TABLE IF NOT EXISTS `forms_question_response` (
@@ -1719,86 +949,6 @@ CREATE TABLE IF NOT EXISTS `forms_question_response` (
   KEY `idx_fqr_id_step` (`id_step`)
 ) ENGINE=MyISAM AUTO_INCREMENT=78 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `forms_question_response` DISABLE KEYS */;
-INSERT INTO `forms_question_response` (`id_question_response`, `id_form_response`, `id_question`, `id_step`, `iteration_number`) VALUES
-	(1, 1, 1, 1, 0),
-	(2, 1, 2, 1, 0),
-	(3, 1, 3, 2, 0),
-	(4, 1, 8, 2, 0),
-	(5, 1, 9, 2, 0),
-	(6, 1, 10, 2, 0),
-	(7, 1, 15, 2, 0),
-	(8, 1, 16, 2, 0),
-	(9, 1, 11, 3, 0),
-	(10, 1, 12, 3, 0),
-	(11, 1, 13, 3, 0),
-	(12, 1, 14, 4, 0),
-	(13, 1, 17, 4, 0),
-	(14, 2, 1, 1, 0),
-	(15, 2, 2, 1, 0),
-	(16, 2, 3, 2, 0),
-	(17, 2, 8, 2, 0),
-	(18, 2, 9, 2, 0),
-	(19, 2, 10, 2, 0),
-	(20, 2, 15, 2, 0),
-	(21, 2, 16, 2, 0),
-	(22, 2, 11, 3, 0),
-	(23, 2, 12, 3, 0),
-	(24, 2, 13, 3, 0),
-	(25, 2, 14, 4, 0),
-	(26, 3, 1, 1, 0),
-	(27, 3, 2, 1, 0),
-	(28, 3, 3, 2, 0),
-	(29, 3, 8, 2, 0),
-	(30, 3, 9, 2, 0),
-	(31, 3, 10, 2, 0),
-	(32, 3, 15, 2, 0),
-	(33, 3, 16, 2, 0),
-	(34, 3, 11, 3, 0),
-	(35, 3, 12, 3, 0),
-	(36, 3, 13, 3, 0),
-	(37, 3, 14, 4, 0),
-	(38, 4, 1, 1, 0),
-	(39, 4, 2, 1, 0),
-	(40, 4, 3, 2, 0),
-	(41, 4, 8, 2, 0),
-	(42, 4, 9, 2, 0),
-	(43, 4, 10, 2, 0),
-	(44, 4, 15, 2, 0),
-	(45, 4, 16, 2, 0),
-	(46, 4, 11, 3, 0),
-	(47, 4, 12, 3, 0),
-	(48, 4, 13, 3, 0),
-	(49, 4, 14, 4, 0),
-	(50, 5, 1, 1, 0),
-	(51, 5, 2, 1, 0),
-	(52, 5, 3, 2, 0),
-	(53, 5, 8, 2, 0),
-	(54, 5, 9, 2, 0),
-	(55, 5, 10, 2, 0),
-	(56, 5, 15, 2, 0),
-	(57, 5, 16, 2, 0),
-	(58, 5, 11, 3, 0),
-	(59, 5, 12, 3, 0),
-	(60, 5, 13, 3, 0),
-	(61, 5, 11, 3, 1),
-	(62, 5, 12, 3, 1),
-	(63, 5, 13, 3, 1),
-	(64, 5, 14, 4, 0),
-	(65, 5, 17, 4, 0),
-	(66, 6, 1, 1, 0),
-	(67, 6, 2, 1, 0),
-	(68, 6, 3, 2, 0),
-	(69, 6, 8, 2, 0),
-	(70, 6, 9, 2, 0),
-	(71, 6, 10, 2, 0),
-	(72, 6, 15, 2, 0),
-	(73, 6, 16, 2, 0),
-	(74, 6, 11, 3, 0),
-	(75, 6, 12, 3, 0),
-	(76, 6, 13, 3, 0),
-	(77, 6, 14, 4, 0);
-/*!40000 ALTER TABLE `forms_question_response` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `forms_response`;
 CREATE TABLE IF NOT EXISTS `forms_response` (
@@ -1812,15 +962,6 @@ CREATE TABLE IF NOT EXISTS `forms_response` (
   KEY `idx_fr_id_form` (`id_form`)
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `forms_response` DISABLE KEYS */;
-INSERT INTO `forms_response` (`id_response`, `id_form`, `guid`, `creation_date`, `update_date`, `from_save`) VALUES
-	(1, 1, NULL, '2022-02-21 10:52:59', '2022-02-21 10:52:59', 0),
-	(2, 1, NULL, '2022-02-21 10:54:31', '2022-02-21 10:54:31', 0),
-	(3, 1, NULL, '2022-02-21 10:56:39', '2022-02-21 10:56:39', 0),
-	(4, 1, NULL, '2022-02-21 10:57:31', '2022-02-21 10:57:31', 0),
-	(5, 1, NULL, '2022-02-21 15:36:05', '2022-02-21 15:36:05', 0),
-	(6, 1, NULL, '2022-02-21 15:39:13', '2022-02-21 15:39:13', 0);
-/*!40000 ALTER TABLE `forms_response` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `forms_response_step`;
 CREATE TABLE IF NOT EXISTS `forms_response_step` (
@@ -1833,34 +974,6 @@ CREATE TABLE IF NOT EXISTS `forms_response_step` (
   KEY `idx_frs_id_step` (`id_step`)
 ) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `forms_response_step` DISABLE KEYS */;
-INSERT INTO `forms_response_step` (`id`, `id_form_response`, `id_step`, `order_response`) VALUES
-	(1, 1, 1, 0),
-	(2, 1, 2, 1),
-	(3, 1, 3, 2),
-	(4, 1, 4, 3),
-	(5, 2, 1, 0),
-	(6, 2, 2, 1),
-	(7, 2, 3, 2),
-	(8, 2, 4, 3),
-	(9, 3, 1, 0),
-	(10, 3, 2, 1),
-	(11, 3, 3, 2),
-	(12, 3, 4, 3),
-	(13, 4, 1, 0),
-	(14, 4, 2, 1),
-	(15, 4, 3, 2),
-	(16, 4, 4, 3),
-	(17, 5, 1, 0),
-	(18, 5, 2, 1),
-	(19, 5, 3, 2),
-	(20, 5, 4, 3),
-	(21, 6, 1, 0),
-	(22, 6, 2, 1),
-	(23, 6, 3, 2),
-	(24, 6, 4, 3);
-/*!40000 ALTER TABLE `forms_response_step` ENABLE KEYS */;
-
 DROP TABLE IF EXISTS `forms_step`;
 CREATE TABLE IF NOT EXISTS `forms_step` (
   `id_step` int(11) NOT NULL AUTO_INCREMENT,
@@ -1872,13 +985,6 @@ CREATE TABLE IF NOT EXISTS `forms_step` (
   PRIMARY KEY (`id_step`)
 ) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `forms_step` DISABLE KEYS */;
-INSERT INTO `forms_step` (`id_step`, `title`, `description`, `id_form`, `is_initial`, `is_final`) VALUES
-	(1, 'Introduction', '', 1, 1, 0),
-	(2, 'Citizen\'s informations', '', 1, 0, 0),
-	(3, 'Demand', '', 1, 0, 0),
-	(4, 'Complementary informations', '', 1, 0, 1);
-/*!40000 ALTER TABLE `forms_step` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `forms_transition`;
 CREATE TABLE IF NOT EXISTS `forms_transition` (
@@ -1889,12 +995,6 @@ CREATE TABLE IF NOT EXISTS `forms_transition` (
   PRIMARY KEY (`id_transition`)
 ) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `forms_transition` DISABLE KEYS */;
-INSERT INTO `forms_transition` (`id_transition`, `from_step`, `next_step`, `priority`) VALUES
-	(1, 1, 2, 1),
-	(2, 2, 3, 1),
-	(3, 3, 4, 1);
-/*!40000 ALTER TABLE `forms_transition` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `forms_unittree_unit_selection_config`;
 CREATE TABLE IF NOT EXISTS `forms_unittree_unit_selection_config` (
@@ -1951,23 +1051,6 @@ CREATE TABLE IF NOT EXISTS `genatt_entry` (
   KEY `fk_genatt_entry_type` (`id_type`)
 ) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `genatt_entry` DISABLE KEYS */;
-INSERT INTO `genatt_entry` (`id_entry`, `id_resource`, `resource_type`, `id_type`, `id_parent`, `title`, `code`, `help_message`, `comment`, `mandatory`, `fields_in_line`, `pos`, `id_field_depend`, `field_unique`, `css_class`, `pos_conditional`, `error_message`, `is_only_display_back`, `is_indexed`) VALUES
-	(1, 1, 'FORMS_FORM', 103, NULL, NULL, 'question_1', NULL, '<p>Distinctively foster equity invested initiatives without business e-commerce. Compellingly benchmark client-centered supply chains and business information. Compellingly re-engineer process-centric resources via team driven intellectual capital. Uniquely innovate team driven products and stand-alone communities. Assertively enable web-enabled web services for plug-and-play information.</p>\r\n<p>Dynamically negotiate competitive strategic theme areas before seamless initiatives. Objectively matrix exceptional innovation and highly efficient e-commerce. Continually aggregate process-centric architectures whereas web-enabled communities. Compellingly extend emerging ideas without market-driven customer service. Compellingly syndicate B2C products vis-a-vis high-payoff methods of empowerment.</p>\r\n<p>Synergistically mesh sustainable e-business vis-a-vis unique niches. Compellingly negotiate cutting-edge e-tailers via just in time opportunities. Interactively brand client-centered growth strategies before flexible results. Dramatically grow e-business infrastructures for extensible schemas. Continually orchestrate.</p>\r\n<div id="gtx-trans" style="position: absolute; left: -52px; top: -17px;">&nbsp;</div>', 0, 0, 0, NULL, 0, '', 0, NULL, 0, 0),
-	(2, 1, 'FORMS_FORM', 116, NULL, 'Accepter les conditions !!!', 'question_2', NULL, NULL, 0, 0, 0, NULL, 0, '', 0, NULL, 0, 0),
-	(3, 1, 'FORMS_FORM', 106, NULL, 'Name', 'question_3', '', '', 0, 0, 0, NULL, 0, '', 0, '', 0, 1),
-	(8, 1, 'FORMS_FORM', 107, NULL, 'Resume', 'question_8', '', '', 0, 0, 0, NULL, 0, '', 0, NULL, 0, 1),
-	(9, 1, 'FORMS_FORM', 104, NULL, 'Birth date', 'question_9', '', '', 0, 0, 0, NULL, 0, '', 0, NULL, 0, 1),
-	(10, 1, 'FORMS_FORM', 101, NULL, 'Gender', 'question_10', '', '', 0, 1, 0, NULL, 0, '', 0, NULL, 0, 0),
-	(11, 1, 'FORMS_FORM', 105, NULL, 'Demand\'s type', 'question_11', '', '', 1, 0, 0, NULL, 0, '', 0, NULL, 0, 1),
-	(12, 1, 'FORMS_FORM', 108, NULL, 'Add a file to your demand', 'question_12', '', '', 0, 0, 0, NULL, 0, '', 0, NULL, 0, 0),
-	(13, 1, 'FORMS_FORM', 109, NULL, 'Add a location', 'question_13', '', '', 0, 0, 0, NULL, 0, ' ', 0, NULL, 0, 1),
-	(14, 1, 'FORMS_FORM', 101, NULL, 'Anything else to add ?', 'question_14', '', '', 1, 1, 0, NULL, 0, '', 0, NULL, 0, 0),
-	(15, 1, 'FORMS_FORM', 113, NULL, 'Email', 'question_15', '', '', 0, 0, 0, NULL, 0, '', 0, NULL, 0, 1),
-	(16, 1, 'FORMS_FORM', 119, NULL, 'Add your phone', 'question_16', 'If you want to be contact by our services', '', 0, 0, 0, NULL, 0, '', 0, '', 0, 1),
-	(17, 1, 'FORMS_FORM', 107, NULL, 'Someting to say', 'question_17', '', '', 0, 0, 0, NULL, 0, '', 0, NULL, 0, 1),
-	(19, 1, 'FORMS_FORM', 120, NULL, 'Number of people concerned', 'question_19', '', '', 0, 0, 0, NULL, 0, 'w-25', 0, '', 0, 1);
-/*!40000 ALTER TABLE `genatt_entry` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `genatt_entry_type`;
 CREATE TABLE IF NOT EXISTS `genatt_entry_type` (
@@ -1985,29 +1068,6 @@ CREATE TABLE IF NOT EXISTS `genatt_entry_type` (
   KEY `index_genatt_entry_type_plugin` (`plugin`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `genatt_entry_type` DISABLE KEYS */;
-INSERT INTO `genatt_entry_type` (`id_type`, `title`, `is_group`, `is_comment`, `is_mylutece_user`, `class_name`, `icon_name`, `plugin`, `display_order`, `inactive`) VALUES
-	(101, 'Bouton radio', 0, 0, 0, 'forms.entryTypeRadioButton', 'dot-circle', 'forms', 5, 0),
-	(102, 'Case à cocher', 0, 0, 0, 'forms.entryTypeCheckBox', 'check-square', 'forms', 6, 0),
-	(103, 'Commentaire', 0, 1, 0, 'forms.entryTypeComment', 'comment', 'forms', 11, 0),
-	(104, 'Date', 0, 0, 0, 'forms.entryTypeDate', 'calendar', 'forms', 4, 0),
-	(105, 'Liste déroulante', 0, 0, 0, 'forms.entryTypeSelect', 'list-alt', 'forms', 7, 0),
-	(106, 'Zone de texte court', 0, 0, 0, 'forms.entryTypeText', 'file-alt', 'forms', 2, 0),
-	(107, 'Zone de texte long', 0, 0, 0, 'forms.entryTypeTextArea', 'sticky-note', 'forms', 3, 0),
-	(108, 'Fichier', 0, 0, 0, 'forms.entryTypeFile', 'file', 'forms', 9, 0),
-	(109, 'Géolocalisation', 0, 0, 0, 'forms.entryTypeGeolocation', 'map-marked-alt', 'forms', 16, 0),
-	(110, 'Image', 0, 0, 0, 'forms.entryTypeImage', 'image', 'forms', 10, 1),
-	(111, 'Utilisateur MyLutece', 0, 0, 1, 'forms.entryTypeMyLuteceUser', 'user', 'forms', 13, 1),
-	(112, 'Numérotation', 0, 0, 0, 'forms.entryTypeNumbering', 'hashtag', 'forms', 8, 0),
-	(113, 'Attribut de l\'utilisateur MyLutece', 0, 0, 0, 'forms.entryTypeMyLuteceUserattribute', 'user', 'forms', 14, 0),
-	(114, 'Tableau', 0, 0, 0, 'forms.entryTypeArray', 'table', 'forms', 17, 1),
-	(115, 'Regroupement', 1, 0, 0, 'forms.entryTypeGroup', 'indent', 'forms', 1, 0),
-	(116, 'Conditions d\'utilisation', 0, 0, 0, 'forms.entryTypeTermsOfService', 'gavel', 'forms', 12, 0),
-	(117, 'Lecture automatique fichier (OCR)', 0, 0, 0, 'forms.entryTypeAutomaticFileReading', 'file', 'forms', 18, 1),
-	(118, 'Camera', 0, 0, 0, 'forms.entryTypeCamera', 'camera', 'forms', 15, 1),
-	(119, 'Numéro de téléphone', 0, 0, 0, 'forms.entryTypeTelephoneNumber', 'phone-square', 'forms', 19, 0),
-	(120, 'Nombre', 0, 0, 0, 'forms.entryTypeNumber', 'hashtag', 'forms', 5, 0);
-/*!40000 ALTER TABLE `genatt_entry_type` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `genatt_field`;
 CREATE TABLE IF NOT EXISTS `genatt_field` (
@@ -2025,135 +1085,6 @@ CREATE TABLE IF NOT EXISTS `genatt_field` (
   KEY `index_genatt_field_entry` (`id_entry`)
 ) ENGINE=MyISAM AUTO_INCREMENT=170 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `genatt_field` DISABLE KEYS */;
-INSERT INTO `genatt_field` (`id_field`, `id_entry`, `title`, `code`, `value`, `default_value`, `pos`, `value_type_date`, `no_display_title`, `comment`) VALUES
-	(1, 1, NULL, 'used_in_correct_form_response', 'false', 0, 1, NULL, 0, NULL),
-	(2, 1, NULL, 'used_in_complete_form_response', 'false', 0, 2, NULL, 0, NULL),
-	(3, 1, NULL, 'exportable', 'false', 0, 3, NULL, 0, NULL),
-	(4, 1, NULL, 'exportable_pdf', 'false', 0, 4, NULL, 0, NULL),
-	(5, 1, NULL, 'anonymizable', 'false', 0, 5, NULL, 0, NULL),
-	(6, 1, NULL, 'display_in_bo', 'false', 0, 6, NULL, 0, NULL),
-	(7, 2, NULL, 'used_in_correct_form_response', 'false', 0, 7, NULL, 0, NULL),
-	(8, 2, NULL, 'used_in_complete_form_response', 'false', 0, 8, NULL, 0, NULL),
-	(9, 2, NULL, 'exportable', 'false', 0, 9, NULL, 0, NULL),
-	(10, 2, NULL, 'exportable_pdf', 'false', 0, 10, NULL, 0, NULL),
-	(11, 2, NULL, 'anonymizable', 'false', 0, 11, NULL, 0, NULL),
-	(12, 2, NULL, 'link', 'voir les conditions ', 0, 12, NULL, 0, NULL),
-	(13, 2, NULL, 'tos', '<p>Holisticly target reliable alignments rather than customized e-tailers. Assertively parallel task timely architectures whereas sticky intellectual capital. Monotonectally coordinate enterprise benefits before worldwide action items. Appropriately deliver premier partnerships rather than market-driven models. Appropriately morph collaborative human capital rather than client-centric opportunities.</p>\r\n<p>Holisticly streamline cross-unit solutions before distributed platforms. Completely mesh flexible catalysts for change through 24/365 metrics. Assertively scale installed base potentialities whereas global ROI. Completely recaptiualize client-focused ROI via just in time networks. Intrinsicly cultivate vertical best practices after revolutionary infomediaries.</p>\r\n<p>Phosfluorescently orchestrate clicks-and-mortar solutions and client-centered e-markets. Phosfluorescently mesh worldwide infrastructures vis-a-vis inexpensive web-readiness. Completely syndicate team building methods of empowerment through pandemic growth strategies. Collaboratively unleash flexible core competencies vis-a-vis extensible bandwidth. Progressively productivate diverse resources without enterprise-wide best practices.</p>\r\n<p>Intrinsicly revolutionize dynamic information via bleeding-edge growth strategies. Objectively formulate magnetic strategic theme areas with standardized expertise. Globally create standards compliant paradigms rather than robust synergy. Synergistically enhance business technologies with plug-and-play internal or "organic" sources. Phosfluorescently pontificate empowered communities rather than value-added innovation.</p>\r\n<p>Completely incentivize holistic models after future-proof e-commerce. Synergistically generate distributed models after intermandated growth strategies. Quickly customize robust paradigms after future-proof relationships. Assertively promote cutting-edge deliverables whereas standards compliant expertise. Globally seize dynamic information vis-a-vis cross-media human capital.</p>\r\n<p>Quickly pursue tactical supply chains with distributed e-commerce. Synergistically transition ethical potentialities whereas leveraged opportunities. Authoritatively leverage existing pandemic functionalities with value-added expertise. Compellingly fashion plug-and-play synergy after process-centric methodologies. Dynamically conceptualize pandemic data through global.</p>', 0, 13, NULL, 0, NULL),
-	(14, 2, NULL, 'agreement', 'false', 0, 14, NULL, 0, NULL),
-	(15, 3, NULL, 'used_in_correct_form_response', 'false', 0, 15, NULL, 0, NULL),
-	(16, 3, NULL, 'used_in_complete_form_response', 'false', 0, 16, NULL, 0, NULL),
-	(17, 3, NULL, 'exportable', 'false', 0, 17, NULL, 0, NULL),
-	(18, 3, NULL, 'exportable_pdf', 'false', 0, 18, NULL, 0, NULL),
-	(19, 3, '', 'anonymizable', 'false', 0, 19, NULL, 0, NULL),
-	(20, 3, NULL, 'text_config', '', 0, 20, NULL, 0, NULL),
-	(21, 3, NULL, 'width', '0', 0, 21, NULL, 0, NULL),
-	(22, 3, NULL, 'max_size', '-1', 0, 22, NULL, 0, NULL),
-	(23, 3, NULL, 'placeholder', '', 0, 23, NULL, 0, NULL),
-	(24, 3, NULL, 'confirm_field', 'false', 0, 24, NULL, 0, NULL),
-	(66, 8, NULL, 'max_size', '-1', 0, 55, NULL, 0, NULL),
-	(65, 8, NULL, 'text_config', '', 0, 54, NULL, 0, NULL),
-	(64, 8, '', 'anonymizable', 'false', 0, 53, NULL, 0, NULL),
-	(63, 8, NULL, 'exportable_pdf', 'false', 0, 52, NULL, 0, NULL),
-	(62, 8, NULL, 'exportable', 'false', 0, 51, NULL, 0, NULL),
-	(61, 8, NULL, 'used_in_complete_form_response', 'false', 0, 50, NULL, 0, NULL),
-	(60, 8, NULL, 'used_in_correct_form_response', 'false', 0, 49, NULL, 0, NULL),
-	(67, 8, NULL, 'width', '0', 0, 56, NULL, 0, NULL),
-	(68, 8, NULL, 'height', '10', 0, 57, NULL, 0, NULL),
-	(69, 8, NULL, 'richtext', 'true', 0, 58, NULL, 0, NULL),
-	(70, 8, NULL, 'placeholder', '', 0, 59, NULL, 0, NULL),
-	(71, 9, NULL, 'used_in_correct_form_response', 'false', 0, 60, NULL, 0, NULL),
-	(72, 9, NULL, 'used_in_complete_form_response', 'false', 0, 61, NULL, 0, NULL),
-	(73, 9, NULL, 'exportable', 'false', 0, 62, NULL, 0, NULL),
-	(74, 9, NULL, 'exportable_pdf', 'false', 0, 63, NULL, 0, NULL),
-	(75, 9, '', 'anonymizable', 'false', 0, 64, NULL, 0, NULL),
-	(76, 9, NULL, 'placeholder', '', 0, 65, NULL, 0, NULL),
-	(77, 9, NULL, 'default_date_value', NULL, 0, 66, NULL, 0, NULL),
-	(78, 10, NULL, 'used_in_correct_form_response', 'false', 0, 67, NULL, 0, NULL),
-	(79, 10, NULL, 'used_in_complete_form_response', 'false', 0, 68, NULL, 0, NULL),
-	(80, 10, NULL, 'exportable', 'false', 0, 69, NULL, 0, NULL),
-	(81, 10, NULL, 'exportable_pdf', 'false', 0, 70, NULL, 0, NULL),
-	(82, 10, NULL, 'anonymizable', 'false', 0, 71, NULL, 0, NULL),
-	(83, 10, '1', 'use_ref_list', 'true', 0, 72, NULL, 0, NULL),
-	(84, 10, 'Woman', 'answer_choice', 'F', 0, 73, NULL, 0, NULL),
-	(85, 10, 'Man', 'answer_choice', 'H', 0, 74, NULL, 0, NULL),
-	(86, 10, 'Undefined', 'answer_choice', 'U', 0, 75, NULL, 0, NULL),
-	(87, 11, NULL, 'used_in_correct_form_response', 'false', 0, 76, NULL, 0, NULL),
-	(88, 11, NULL, 'used_in_complete_form_response', 'false', 0, 77, NULL, 0, NULL),
-	(89, 11, NULL, 'exportable', 'false', 0, 78, NULL, 0, NULL),
-	(90, 11, NULL, 'exportable_pdf', 'false', 0, 79, NULL, 0, NULL),
-	(91, 11, NULL, 'anonymizable', 'false', 0, 80, NULL, 0, NULL),
-	(92, 11, '2', 'use_ref_list', 'true', 0, 81, NULL, 0, NULL),
-	(93, 11, 'Environment', 'answer_choice', 'env', 0, 82, NULL, 0, NULL),
-	(94, 11, 'City shift', 'answer_choice', 'move', 0, 83, NULL, 0, NULL),
-	(95, 11, 'City cleanliness', 'answer_choice', 'clean', 0, 84, NULL, 0, NULL),
-	(96, 11, 'Healthcare', 'answer_choice', 'health', 0, 85, NULL, 0, NULL),
-	(97, 12, NULL, 'used_in_correct_form_response', 'false', 0, 86, NULL, 0, NULL),
-	(98, 12, NULL, 'used_in_complete_form_response', 'false', 0, 87, NULL, 0, NULL),
-	(99, 12, NULL, 'exportable', 'false', 0, 88, NULL, 0, NULL),
-	(100, 12, NULL, 'exportable_pdf', 'false', 0, 89, NULL, 0, NULL),
-	(101, 12, '%v', 'anonymizable', 'true', 0, 90, NULL, 0, NULL),
-	(102, 12, NULL, 'file_max_size', '250000000', 0, 91, NULL, 0, NULL),
-	(103, 12, NULL, 'max_files', '3', 0, 92, NULL, 0, NULL),
-	(104, 12, NULL, 'export_binary', 'false', 0, 93, NULL, 0, NULL),
-	(105, 13, NULL, 'used_in_correct_form_response', 'false', 0, 94, NULL, 0, NULL),
-	(106, 13, NULL, 'used_in_complete_form_response', 'false', 0, 95, NULL, 0, NULL),
-	(107, 13, NULL, 'exportable', 'false', 0, 96, NULL, 0, NULL),
-	(108, 13, NULL, 'exportable_pdf', 'false', 0, 97, NULL, 0, NULL),
-	(109, 13, '', 'anonymizable', 'false', 0, 98, NULL, 0, NULL),
-	(110, 13, NULL, 'provider', 'openstreetmap', 0, 99, NULL, 0, NULL),
-	(111, 13, NULL, 'editMode', 'Address', 0, 100, NULL, 0, NULL),
-	(112, 13, NULL, 'viewNumber', '1', 0, 101, NULL, 0, NULL),
-	(113, 13, NULL, 'idAddress', 'idAddress', 0, 102, NULL, 0, NULL),
-	(114, 13, NULL, 'address', 'address', 0, 103, NULL, 0, NULL),
-	(115, 13, NULL, 'additionalAddress', 'additionalAddress', 0, 104, NULL, 0, NULL),
-	(116, 13, NULL, 'X', 'X', 0, 105, NULL, 0, NULL),
-	(117, 13, NULL, 'Y', 'Y', 0, 106, NULL, 0, NULL),
-	(118, 13, NULL, 'geometry', 'geometry', 0, 107, NULL, 0, NULL),
-	(119, 14, NULL, 'used_in_correct_form_response', 'false', 0, 108, NULL, 0, NULL),
-	(120, 14, NULL, 'used_in_complete_form_response', 'false', 0, 109, NULL, 0, NULL),
-	(121, 14, NULL, 'exportable', 'false', 0, 110, NULL, 0, NULL),
-	(122, 14, NULL, 'exportable_pdf', 'false', 0, 111, NULL, 0, NULL),
-	(123, 14, NULL, 'anonymizable', 'false', 0, 112, NULL, 0, NULL),
-	(124, 14, '-1', 'use_ref_list', 'false', 0, 113, NULL, 0, NULL),
-	(125, 14, 'Yes', 'answer_choice', 'y', 0, 114, NULL, 0, ''),
-	(126, 14, 'No', 'answer_choice', 'no', 1, 115, NULL, 0, ''),
-	(127, 15, NULL, 'used_in_correct_form_response', 'false', 0, 116, NULL, 0, NULL),
-	(128, 15, NULL, 'used_in_complete_form_response', 'false', 0, 117, NULL, 0, NULL),
-	(129, 15, NULL, 'exportable', 'false', 0, 118, NULL, 0, NULL),
-	(130, 15, NULL, 'exportable_pdf', 'false', 0, 119, NULL, 0, NULL),
-	(131, 15, '', 'anonymizable', 'false', 0, 120, NULL, 0, NULL),
-	(132, 15, NULL, 'attribute_name', 'user.business-info.online.email', 0, 121, NULL, 0, NULL),
-	(133, 16, NULL, 'used_in_correct_form_response', 'false', 0, 122, NULL, 0, NULL),
-	(134, 16, NULL, 'used_in_complete_form_response', 'false', 0, 123, NULL, 0, NULL),
-	(135, 16, NULL, 'exportable', 'false', 0, 124, NULL, 0, NULL),
-	(136, 16, NULL, 'exportable_pdf', 'false', 0, 125, NULL, 0, NULL),
-	(137, 16, '', 'anonymizable', 'false', 0, 126, NULL, 0, NULL),
-	(138, 16, NULL, 'autocomplete', 'tel', 0, 127, NULL, 0, NULL),
-	(139, 16, NULL, 'defaultRegion', 'FR', 0, 128, NULL, 0, NULL),
-	(140, 16, NULL, 'placeholder', '06-06-06-06', 0, 129, NULL, 0, NULL),
-	(141, 17, NULL, 'used_in_correct_form_response', 'false', 0, 130, NULL, 0, NULL),
-	(142, 17, NULL, 'used_in_complete_form_response', 'false', 0, 131, NULL, 0, NULL),
-	(143, 17, NULL, 'exportable', 'false', 0, 132, NULL, 0, NULL),
-	(144, 17, NULL, 'exportable_pdf', 'false', 0, 133, NULL, 0, NULL),
-	(145, 17, '', 'anonymizable', 'false', 0, 134, NULL, 0, NULL),
-	(146, 17, NULL, 'text_config', '', 0, 135, NULL, 0, NULL),
-	(147, 17, NULL, 'max_size', '-1', 0, 136, NULL, 0, NULL),
-	(148, 17, NULL, 'width', '0', 0, 137, NULL, 0, NULL),
-	(149, 17, NULL, 'height', '10', 0, 138, NULL, 0, NULL),
-	(150, 17, NULL, 'richtext', 'false', 0, 139, NULL, 0, NULL),
-	(151, 17, NULL, 'placeholder', '', 0, 140, NULL, 0, NULL),
-	(160, 19, NULL, 'used_in_correct_form_response', 'false', 0, 141, NULL, 0, NULL),
-	(161, 19, NULL, 'used_in_complete_form_response', 'false', 0, 142, NULL, 0, NULL),
-	(162, 19, NULL, 'exportable', 'false', 0, 143, NULL, 0, NULL),
-	(163, 19, NULL, 'exportable_pdf', 'false', 0, 144, NULL, 0, NULL),
-	(164, 19, '', 'anonymizable', 'false', 0, 145, NULL, 0, NULL),
-	(165, 19, NULL, 'text_config', '1', 0, 146, NULL, 0, NULL),
-	(166, 19, NULL, 'min', '0', 0, 147, NULL, 0, NULL),
-	(167, 19, NULL, 'max', '100', 0, 148, NULL, 0, NULL),
-	(168, 19, NULL, 'suffix', 'nb', 0, 149, NULL, 0, NULL),
-	(169, 19, NULL, 'placeholder', '', 0, 150, NULL, 0, NULL);
-/*!40000 ALTER TABLE `genatt_field` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `genatt_referenceitem_field`;
 CREATE TABLE IF NOT EXISTS `genatt_referenceitem_field` (
@@ -2162,16 +1093,6 @@ CREATE TABLE IF NOT EXISTS `genatt_referenceitem_field` (
   PRIMARY KEY (`id_field`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `genatt_referenceitem_field` DISABLE KEYS */;
-INSERT INTO `genatt_referenceitem_field` (`id_field`, `id_item`) VALUES
-	(84, 1),
-	(85, 2),
-	(86, 3),
-	(93, 4),
-	(94, 6),
-	(95, 7),
-	(96, 8);
-/*!40000 ALTER TABLE `genatt_referenceitem_field` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `genatt_response`;
 CREATE TABLE IF NOT EXISTS `genatt_response` (
@@ -2185,115 +1106,6 @@ CREATE TABLE IF NOT EXISTS `genatt_response` (
   PRIMARY KEY (`id_response`),
   KEY `index_genatt_response_entry` (`id_entry`)
 ) ENGINE=MyISAM AUTO_INCREMENT=106 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-/*!40000 ALTER TABLE `genatt_response` DISABLE KEYS */;
-INSERT INTO `genatt_response` (`id_response`, `response_value`, `id_entry`, `iteration_number`, `id_field`, `id_file`, `status`) VALUES
-	(1, 'true', 2, 0, 14, NULL, 1),
-	(2, '<p>Holisticly target reliable alignments rather than customized e-tailers. Assertively parallel task timely architectures whereas sticky intellectual capital. Monotonectally coordinate enterprise benefits before worldwide action items. Appropriately deliver premier partnerships rather than market-driven models. Appropriately morph collaborative human capital rather than client-centric opportunities.</p>\r\n<p>Holisticly streamline cross-unit solutions before distributed platforms. Completely mesh flexible catalysts for change through 24/365 metrics. Assertively scale installed base potentialities whereas global ROI. Completely recaptiualize client-focused ROI via just in time networks. Intrinsicly cultivate vertical best practices after revolutionary infomediaries.</p>\r\n<p>Phosfluorescently orchestrate clicks-and-mortar solutions and client-centered e-markets. Phosfluorescently mesh worldwide infrastructures vis-a-vis inexpensive web-readiness. Completely syndicate team building methods of empowerment through pandemic growth strategies. Collaboratively unleash flexible core competencies vis-a-vis extensible bandwidth. Progressively productivate diverse resources without enterprise-wide best practices.</p>\r\n<p>Intrinsicly revolutionize dynamic information via bleeding-edge growth strategies. Objectively formulate magnetic strategic theme areas with standardized expertise. Globally create standards compliant paradigms rather than robust synergy. Synergistically enhance business technologies with plug-and-play internal or "organic" sources. Phosfluorescently pontificate empowered communities rather than value-added innovation.</p>\r\n<p>Completely incentivize holistic models after future-proof e-commerce. Synergistically generate distributed models after intermandated growth strategies. Quickly customize robust paradigms after future-proof relationships. Assertively promote cutting-edge deliverables whereas standards compliant expertise. Globally seize dynamic information vis-a-vis cross-media human capital.</p>\r\n<p>Quickly pursue tactical supply chains with distributed e-commerce. Synergistically transition ethical potentialities whereas leveraged opportunities. Authoritatively leverage existing pandemic functionalities with value-added expertise. Compellingly fashion plug-and-play synergy after process-centric methodologies. Dynamically conceptualize pandemic data through global.</p>', 2, 0, 13, NULL, 1),
-	(3, 'Laurent HOHL', 3, 0, NULL, NULL, 1),
-	(4, 'azdazda dazazd', 8, 0, NULL, NULL, 1),
-	(5, '1645052400000', 9, 0, NULL, NULL, 1),
-	(6, 'H', 10, 0, 85, NULL, 1),
-	(7, 'laurent.hohl@gmail.com', 15, 0, NULL, NULL, 1),
-	(8, '+33606060606', 16, 0, NULL, NULL, 1),
-	(9, 'env', 11, 0, 93, NULL, 1),
-	(10, '', 13, 0, 113, NULL, 1),
-	(11, '227 rue de Bercy', 13, -1, 114, NULL, 1),
-	(12, NULL, 13, 0, 115, NULL, 1),
-	(13, '', 13, -1, 116, NULL, 1),
-	(14, '', 13, -1, 117, NULL, 1),
-	(15, '', 13, -1, 118, NULL, 1),
-	(16, 'y', 14, 0, 125, NULL, 1),
-	(17, 'azdazd', 17, 0, NULL, NULL, 1),
-	(18, 'true', 2, 0, 14, NULL, 1),
-	(19, '<p>Holisticly target reliable alignments rather than customized e-tailers. Assertively parallel task timely architectures whereas sticky intellectual capital. Monotonectally coordinate enterprise benefits before worldwide action items. Appropriately deliver premier partnerships rather than market-driven models. Appropriately morph collaborative human capital rather than client-centric opportunities.</p>\r\n<p>Holisticly streamline cross-unit solutions before distributed platforms. Completely mesh flexible catalysts for change through 24/365 metrics. Assertively scale installed base potentialities whereas global ROI. Completely recaptiualize client-focused ROI via just in time networks. Intrinsicly cultivate vertical best practices after revolutionary infomediaries.</p>\r\n<p>Phosfluorescently orchestrate clicks-and-mortar solutions and client-centered e-markets. Phosfluorescently mesh worldwide infrastructures vis-a-vis inexpensive web-readiness. Completely syndicate team building methods of empowerment through pandemic growth strategies. Collaboratively unleash flexible core competencies vis-a-vis extensible bandwidth. Progressively productivate diverse resources without enterprise-wide best practices.</p>\r\n<p>Intrinsicly revolutionize dynamic information via bleeding-edge growth strategies. Objectively formulate magnetic strategic theme areas with standardized expertise. Globally create standards compliant paradigms rather than robust synergy. Synergistically enhance business technologies with plug-and-play internal or "organic" sources. Phosfluorescently pontificate empowered communities rather than value-added innovation.</p>\r\n<p>Completely incentivize holistic models after future-proof e-commerce. Synergistically generate distributed models after intermandated growth strategies. Quickly customize robust paradigms after future-proof relationships. Assertively promote cutting-edge deliverables whereas standards compliant expertise. Globally seize dynamic information vis-a-vis cross-media human capital.</p>\r\n<p>Quickly pursue tactical supply chains with distributed e-commerce. Synergistically transition ethical potentialities whereas leveraged opportunities. Authoritatively leverage existing pandemic functionalities with value-added expertise. Compellingly fashion plug-and-play synergy after process-centric methodologies. Dynamically conceptualize pandemic data through global.</p>', 2, 0, 13, NULL, 1),
-	(20, 'Laurent HOHL', 3, 0, NULL, NULL, 1),
-	(21, 'dazazdaz', 8, 0, NULL, NULL, 1),
-	(22, '1643756400000', 9, 0, NULL, NULL, 1),
-	(23, 'F', 10, 0, 84, NULL, 1),
-	(24, 'laurent.hohl@gmail.com', 15, 0, NULL, NULL, 1),
-	(25, '+33606060606', 16, 0, NULL, NULL, 1),
-	(26, 'env', 11, 0, 93, NULL, 1),
-	(27, '', 13, 0, 113, NULL, 1),
-	(28, '', 13, -1, 114, NULL, 1),
-	(29, NULL, 13, 0, 115, NULL, 1),
-	(30, '', 13, -1, 116, NULL, 1),
-	(31, '', 13, -1, 117, NULL, 1),
-	(32, '', 13, -1, 118, NULL, 1),
-	(33, 'no', 14, 0, 126, NULL, 1),
-	(34, 'true', 2, 0, 14, NULL, 1),
-	(35, '<p>Holisticly target reliable alignments rather than customized e-tailers. Assertively parallel task timely architectures whereas sticky intellectual capital. Monotonectally coordinate enterprise benefits before worldwide action items. Appropriately deliver premier partnerships rather than market-driven models. Appropriately morph collaborative human capital rather than client-centric opportunities.</p>\r\n<p>Holisticly streamline cross-unit solutions before distributed platforms. Completely mesh flexible catalysts for change through 24/365 metrics. Assertively scale installed base potentialities whereas global ROI. Completely recaptiualize client-focused ROI via just in time networks. Intrinsicly cultivate vertical best practices after revolutionary infomediaries.</p>\r\n<p>Phosfluorescently orchestrate clicks-and-mortar solutions and client-centered e-markets. Phosfluorescently mesh worldwide infrastructures vis-a-vis inexpensive web-readiness. Completely syndicate team building methods of empowerment through pandemic growth strategies. Collaboratively unleash flexible core competencies vis-a-vis extensible bandwidth. Progressively productivate diverse resources without enterprise-wide best practices.</p>\r\n<p>Intrinsicly revolutionize dynamic information via bleeding-edge growth strategies. Objectively formulate magnetic strategic theme areas with standardized expertise. Globally create standards compliant paradigms rather than robust synergy. Synergistically enhance business technologies with plug-and-play internal or "organic" sources. Phosfluorescently pontificate empowered communities rather than value-added innovation.</p>\r\n<p>Completely incentivize holistic models after future-proof e-commerce. Synergistically generate distributed models after intermandated growth strategies. Quickly customize robust paradigms after future-proof relationships. Assertively promote cutting-edge deliverables whereas standards compliant expertise. Globally seize dynamic information vis-a-vis cross-media human capital.</p>\r\n<p>Quickly pursue tactical supply chains with distributed e-commerce. Synergistically transition ethical potentialities whereas leveraged opportunities. Authoritatively leverage existing pandemic functionalities with value-added expertise. Compellingly fashion plug-and-play synergy after process-centric methodologies. Dynamically conceptualize pandemic data through global.</p>', 2, 0, 13, NULL, 1),
-	(36, 'Laurent HOHL', 3, 0, NULL, NULL, 1),
-	(37, 'dzad ad', 8, 0, NULL, NULL, 1),
-	(38, NULL, 9, 0, NULL, NULL, 1),
-	(39, NULL, 10, 0, NULL, NULL, 1),
-	(40, 'laurent.hohl@gmail.com', 15, 0, NULL, NULL, 1),
-	(41, '', 16, 0, NULL, NULL, 1),
-	(42, 'clean', 11, 0, 95, NULL, 1),
-	(43, '', 13, 0, 113, NULL, 1),
-	(44, '', 13, -1, 114, NULL, 1),
-	(45, NULL, 13, 0, 115, NULL, 1),
-	(46, '', 13, -1, 116, NULL, 1),
-	(47, '', 13, -1, 117, NULL, 1),
-	(48, '', 13, -1, 118, NULL, 1),
-	(49, 'no', 14, 0, 126, NULL, 1),
-	(50, 'true', 2, 0, 14, NULL, 1),
-	(51, '<p>Holisticly target reliable alignments rather than customized e-tailers. Assertively parallel task timely architectures whereas sticky intellectual capital. Monotonectally coordinate enterprise benefits before worldwide action items. Appropriately deliver premier partnerships rather than market-driven models. Appropriately morph collaborative human capital rather than client-centric opportunities.</p>\r\n<p>Holisticly streamline cross-unit solutions before distributed platforms. Completely mesh flexible catalysts for change through 24/365 metrics. Assertively scale installed base potentialities whereas global ROI. Completely recaptiualize client-focused ROI via just in time networks. Intrinsicly cultivate vertical best practices after revolutionary infomediaries.</p>\r\n<p>Phosfluorescently orchestrate clicks-and-mortar solutions and client-centered e-markets. Phosfluorescently mesh worldwide infrastructures vis-a-vis inexpensive web-readiness. Completely syndicate team building methods of empowerment through pandemic growth strategies. Collaboratively unleash flexible core competencies vis-a-vis extensible bandwidth. Progressively productivate diverse resources without enterprise-wide best practices.</p>\r\n<p>Intrinsicly revolutionize dynamic information via bleeding-edge growth strategies. Objectively formulate magnetic strategic theme areas with standardized expertise. Globally create standards compliant paradigms rather than robust synergy. Synergistically enhance business technologies with plug-and-play internal or "organic" sources. Phosfluorescently pontificate empowered communities rather than value-added innovation.</p>\r\n<p>Completely incentivize holistic models after future-proof e-commerce. Synergistically generate distributed models after intermandated growth strategies. Quickly customize robust paradigms after future-proof relationships. Assertively promote cutting-edge deliverables whereas standards compliant expertise. Globally seize dynamic information vis-a-vis cross-media human capital.</p>\r\n<p>Quickly pursue tactical supply chains with distributed e-commerce. Synergistically transition ethical potentialities whereas leveraged opportunities. Authoritatively leverage existing pandemic functionalities with value-added expertise. Compellingly fashion plug-and-play synergy after process-centric methodologies. Dynamically conceptualize pandemic data through global.</p>', 2, 0, 13, NULL, 1),
-	(52, '', 3, 0, NULL, NULL, 1),
-	(53, '', 8, 0, NULL, NULL, 1),
-	(54, NULL, 9, 0, NULL, NULL, 1),
-	(55, NULL, 10, 0, NULL, NULL, 1),
-	(56, 'laurent.hohl@gmail.com', 15, 0, NULL, NULL, 1),
-	(57, '', 16, 0, NULL, NULL, 1),
-	(58, 'clean', 11, 0, 95, NULL, 1),
-	(59, '', 13, 0, 113, NULL, 1),
-	(60, '', 13, -1, 114, NULL, 1),
-	(61, NULL, 13, 0, 115, NULL, 1),
-	(62, '', 13, -1, 116, NULL, 1),
-	(63, '', 13, -1, 117, NULL, 1),
-	(64, '', 13, -1, 118, NULL, 1),
-	(65, 'no', 14, 0, 126, NULL, 1),
-	(66, 'true', 2, 0, 14, NULL, 1),
-	(67, '<p>Holisticly target reliable alignments rather than customized e-tailers. Assertively parallel task timely architectures whereas sticky intellectual capital. Monotonectally coordinate enterprise benefits before worldwide action items. Appropriately deliver premier partnerships rather than market-driven models. Appropriately morph collaborative human capital rather than client-centric opportunities.</p>\r\n<p>Holisticly streamline cross-unit solutions before distributed platforms. Completely mesh flexible catalysts for change through 24/365 metrics. Assertively scale installed base potentialities whereas global ROI. Completely recaptiualize client-focused ROI via just in time networks. Intrinsicly cultivate vertical best practices after revolutionary infomediaries.</p>\r\n<p>Phosfluorescently orchestrate clicks-and-mortar solutions and client-centered e-markets. Phosfluorescently mesh worldwide infrastructures vis-a-vis inexpensive web-readiness. Completely syndicate team building methods of empowerment through pandemic growth strategies. Collaboratively unleash flexible core competencies vis-a-vis extensible bandwidth. Progressively productivate diverse resources without enterprise-wide best practices.</p>\r\n<p>Intrinsicly revolutionize dynamic information via bleeding-edge growth strategies. Objectively formulate magnetic strategic theme areas with standardized expertise. Globally create standards compliant paradigms rather than robust synergy. Synergistically enhance business technologies with plug-and-play internal or "organic" sources. Phosfluorescently pontificate empowered communities rather than value-added innovation.</p>\r\n<p>Completely incentivize holistic models after future-proof e-commerce. Synergistically generate distributed models after intermandated growth strategies. Quickly customize robust paradigms after future-proof relationships. Assertively promote cutting-edge deliverables whereas standards compliant expertise. Globally seize dynamic information vis-a-vis cross-media human capital.</p>\r\n<p>Quickly pursue tactical supply chains with distributed e-commerce. Synergistically transition ethical potentialities whereas leveraged opportunities. Authoritatively leverage existing pandemic functionalities with value-added expertise. Compellingly fashion plug-and-play synergy after process-centric methodologies. Dynamically conceptualize pandemic data through global.</p>', 2, 0, 13, NULL, 1),
-	(68, 'laurent.hohl@paris.fr', 3, 0, NULL, NULL, 1),
-	(69, 'dH ZDAZDH AZUDHA ZDAZUH DAZUDHAZIU DH', 8, 0, NULL, NULL, 1),
-	(70, '1645052400000', 9, 0, NULL, NULL, 1),
-	(71, NULL, 10, 0, NULL, NULL, 1),
-	(72, '+33688385653', 16, 0, NULL, NULL, 1),
-	(73, 'clean', 11, 0, 95, NULL, 1),
-	(74, NULL, 12, 0, NULL, 129, 1),
-	(75, '', 13, 0, 113, NULL, 1),
-	(76, 'Sookie, 2 bis, Rue Commines, Quartier des Enfants-Rouges, Paris 3e Arrondissement, Paris, Île-de-France, France métropolitaine, 75003, France', 13, -1, 114, NULL, 1),
-	(77, NULL, 13, 0, 115, NULL, 1),
-	(78, '2.365107536315918', 13, -1, 116, NULL, 1),
-	(79, '48.861544805019086', 13, -1, 117, NULL, 1),
-	(80, '', 13, -1, 118, NULL, 1),
-	(81, 'env', 11, 1, 93, NULL, 1),
-	(82, NULL, 12, 1, NULL, 130, 1),
-	(83, '', 13, 1, 113, NULL, 1),
-	(84, 'Sookie, 2 bis, Rue Commines, Quartier des Enfants-Rouges, Paris 3e Arrondissement, Paris, Île-de-France, France métropolitaine, 75003, France', 13, -1, 114, NULL, 1),
-	(85, NULL, 13, 1, 115, NULL, 1),
-	(86, '2.365107536315918', 13, -1, 116, NULL, 1),
-	(87, '48.861544805019086', 13, -1, 117, NULL, 1),
-	(88, '', 13, -1, 118, NULL, 1),
-	(89, 'y', 14, 0, 125, NULL, 1),
-	(90, 'TEST', 17, 0, NULL, NULL, 1),
-	(91, 'true', 2, 0, 14, NULL, 1),
-	(92, '<p>Holisticly target reliable alignments rather than customized e-tailers. Assertively parallel task timely architectures whereas sticky intellectual capital. Monotonectally coordinate enterprise benefits before worldwide action items. Appropriately deliver premier partnerships rather than market-driven models. Appropriately morph collaborative human capital rather than client-centric opportunities.</p>\r\n<p>Holisticly streamline cross-unit solutions before distributed platforms. Completely mesh flexible catalysts for change through 24/365 metrics. Assertively scale installed base potentialities whereas global ROI. Completely recaptiualize client-focused ROI via just in time networks. Intrinsicly cultivate vertical best practices after revolutionary infomediaries.</p>\r\n<p>Phosfluorescently orchestrate clicks-and-mortar solutions and client-centered e-markets. Phosfluorescently mesh worldwide infrastructures vis-a-vis inexpensive web-readiness. Completely syndicate team building methods of empowerment through pandemic growth strategies. Collaboratively unleash flexible core competencies vis-a-vis extensible bandwidth. Progressively productivate diverse resources without enterprise-wide best practices.</p>\r\n<p>Intrinsicly revolutionize dynamic information via bleeding-edge growth strategies. Objectively formulate magnetic strategic theme areas with standardized expertise. Globally create standards compliant paradigms rather than robust synergy. Synergistically enhance business technologies with plug-and-play internal or "organic" sources. Phosfluorescently pontificate empowered communities rather than value-added innovation.</p>\r\n<p>Completely incentivize holistic models after future-proof e-commerce. Synergistically generate distributed models after intermandated growth strategies. Quickly customize robust paradigms after future-proof relationships. Assertively promote cutting-edge deliverables whereas standards compliant expertise. Globally seize dynamic information vis-a-vis cross-media human capital.</p>\r\n<p>Quickly pursue tactical supply chains with distributed e-commerce. Synergistically transition ethical potentialities whereas leveraged opportunities. Authoritatively leverage existing pandemic functionalities with value-added expertise. Compellingly fashion plug-and-play synergy after process-centric methodologies. Dynamically conceptualize pandemic data through global.</p>', 2, 0, 13, NULL, 1),
-	(93, 'laurent.hohl@paris.fr', 3, 0, NULL, NULL, 1),
-	(94, 'dzadza azdazd', 8, 0, NULL, NULL, 1),
-	(95, '1645138800000', 9, 0, NULL, NULL, 1),
-	(96, 'H', 10, 0, 85, NULL, 1),
-	(97, '+33606060606', 16, 0, NULL, NULL, 1),
-	(98, 'move', 11, 0, 94, NULL, 1),
-	(99, '', 13, 0, 113, NULL, 1),
-	(100, '', 13, -1, 114, NULL, 1),
-	(101, NULL, 13, 0, 115, NULL, 1),
-	(102, '', 13, -1, 116, NULL, 1),
-	(103, '', 13, -1, 117, NULL, 1),
-	(104, '', 13, -1, 118, NULL, 1),
-	(105, 'no', 14, 0, 126, NULL, 1);
-/*!40000 ALTER TABLE `genatt_response` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `genatt_verify_by`;
 CREATE TABLE IF NOT EXISTS `genatt_verify_by` (
@@ -2377,10 +1189,6 @@ CREATE TABLE IF NOT EXISTS `mylutece_connections_log` (
   `login_status` int(11) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `mylutece_connections_log` DISABLE KEYS */;
-INSERT INTO `mylutece_connections_log` (`ip_address`, `date_login`, `login_status`) VALUES
-	('0:0:0:0:0:0:0:1', '2022-02-17 15:11:39', 0);
-/*!40000 ALTER TABLE `mylutece_connections_log` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `mylutece_database_group`;
 CREATE TABLE IF NOT EXISTS `mylutece_database_group` (
@@ -2429,10 +1237,6 @@ CREATE TABLE IF NOT EXISTS `mylutece_database_user` (
   PRIMARY KEY (`mylutece_database_user_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `mylutece_database_user` DISABLE KEYS */;
-INSERT INTO `mylutece_database_user` (`mylutece_database_user_id`, `login`, `password`, `name_given`, `name_family`, `email`, `is_active`, `reset_password`, `password_max_valid_date`, `account_max_valid_date`, `nb_alerts_sent`, `last_login`) VALUES
-	(1, 'laurent.hohl@gmail.com', 'PBKDF2WITHHMACSHA512:40000:d812ffa87cb979a45099c919f6acd64a:2030e46e70e0b731ee180047daafac227159a5e9b5e33c1d5ddc310e6e410e72777147f8088f4ff5323303db89aa44f8be67fc64565cd06820f18e6e8a2af6699af97c7f7f68a8c2013f33f69bd4c1c2db77ec06136381ab3d62d017f46601c2b1e2e49dcf1816c12e9b31075a2cd7e3447d1a5a98ab7ab7eebe61f8eb321a78', 'Laurent', 'HOHLA', 'laurent.hohl@gmail.com', 1, 0, NULL, 1676652179713, 0, '2022-02-22 16:42:59');
-/*!40000 ALTER TABLE `mylutece_database_user` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `mylutece_database_user_group`;
 CREATE TABLE IF NOT EXISTS `mylutece_database_user_group` (
@@ -2451,47 +1255,6 @@ CREATE TABLE IF NOT EXISTS `mylutece_database_user_parameter` (
   PRIMARY KEY (`parameter_key`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `mylutece_database_user_parameter` DISABLE KEYS */;
-INSERT INTO `mylutece_database_user_parameter` (`parameter_key`, `parameter_value`) VALUES
-	('account_creation_validation_email', 'false'),
-	('auto_login_after_validation_email', 'false'),
-	('enable_jcaptcha', 'false'),
-	('force_change_password_reinit', ''),
-	('password_minimum_length', '8'),
-	('password_format_upper_lower_case', 'false'),
-	('password_format_numero', 'false'),
-	('password_format_special_characters', 'false'),
-	('password_duration', ''),
-	('password_history_size', ''),
-	('maximum_number_password_change', ''),
-	('tsw_size_password_change', ''),
-	('use_advanced_security_parameters', 'false'),
-	('account_life_time', '360'),
-	('time_before_alert_account', '30'),
-	('nb_alert_account', '2'),
-	('time_between_alerts_account', '10'),
-	('access_failures_max', '3'),
-	('access_failures_interval', '10'),
-	('expired_alert_mail_sender', 'LUTECE'),
-	('expired_alert_mail_subject', 'Votre compte a expiré'),
-	('first_alert_mail_sender', 'LUTECE'),
-	('first_alert_mail_subject', 'Votre compte va bientot expirer'),
-	('other_alert_mail_sender', 'LUTECE'),
-	('other_alert_mail_subject', 'Votre compte va bientot expirer'),
-	('account_reactivated_mail_sender', 'LUTECE'),
-	('account_reactivated_mail_subject', 'Votre compte a bien été réactivé'),
-	('access_failures_captcha', '1'),
-	('unblock_user_mail_sender', 'LUTECE'),
-	('unblock_user_mail_subject', 'Votre IP a été bloquée'),
-	('enable_unblock_ip', 'false'),
-	('notify_user_password_expired', ''),
-	('password_expired_mail_sender', 'LUTECE'),
-	('password_expired_mail_subject', 'Votre mot de passe a expiré'),
-	('mail_lost_password_sender', 'LUTECE'),
-	('mail_lost_password_subject', 'Votre mot de passe a été réinitialisé'),
-	('mail_password_encryption_changed_sender', 'LUTECE'),
-	('mail_password_encryption_changed_subject', 'Votre mot de passe a été réinitialisé');
-/*!40000 ALTER TABLE `mylutece_database_user_parameter` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `mylutece_database_user_password_history`;
 CREATE TABLE IF NOT EXISTS `mylutece_database_user_password_history` (
@@ -2521,13 +1284,6 @@ CREATE TABLE IF NOT EXISTS `mylutece_user_anonymize_field` (
   PRIMARY KEY (`field_name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `mylutece_user_anonymize_field` DISABLE KEYS */;
-INSERT INTO `mylutece_user_anonymize_field` (`field_name`, `anonymize`) VALUES
-	('login', 1),
-	('name_given', 1),
-	('name_family', 1),
-	('email', 1);
-/*!40000 ALTER TABLE `mylutece_user_anonymize_field` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `mylutece_user_field`;
 CREATE TABLE IF NOT EXISTS `mylutece_user_field` (
@@ -2583,16 +1339,6 @@ CREATE TABLE IF NOT EXISTS `profile_action` (
   PRIMARY KEY (`id_action`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `profile_action` DISABLE KEYS */;
-INSERT INTO `profile_action` (`id_action`, `name_key`, `description_key`, `action_url`, `icon_url`, `action_permission`) VALUES
-	(1, 'profiles.action.modify_profile.name', 'profiles.action.modify_profile.description', 'jsp/admin/plugins/profiles/ModifyProfile.jsp', 'edit', 'MODIFY_PROFILE'),
-	(2, 'profiles.action.delete_profile.name', 'profiles.action.delete_profile.description', 'jsp/admin/plugins/profiles/RemoveProfile.jsp', 'trash', 'DELETE_DELETE'),
-	(3, 'profiles.action.manage_users_assignment.name', 'profiles.action.manage_users_assignment.description', 'jsp/admin/plugins/profiles/AssignUsersProfile.jsp', 'user', 'MANAGE_USERS_ASSIGNMENT'),
-	(4, 'profiles.action.manage_rights_assignment.name', 'profiles.action.manage_rights_assignment.description', 'jsp/admin/plugins/profiles/AssignRightsProfile.jsp', 'lock', 'MANAGE_RIGHTS_ASSIGNMENT'),
-	(5, 'profiles.action.manage_roles_assignment.name', 'profiles.action.manage_roles_assignment.description', 'jsp/admin/plugins/profiles/AssignRolesProfile.jsp', 'th-list', 'MANAGE_ROLES_ASSIGNMENT'),
-	(6, 'profiles.action.manage_workgroups_assignment.name', 'profiles.action.manage_workgroups_assignment.description', 'jsp/admin/plugins/profiles/AssignWorkgroupsProfile.jsp', 'group', 'MANAGE_WORKGROUPS_ASSIGNMENT'),
-	(7, 'profiles.action.manage_view_assignment.name', 'profiles.action.manage_view_assignment.description', 'jsp/admin/plugins/profiles/AssignViewProfile.jsp', 'eye', 'MANAGE_VIEW_ASSIGNMENT');
-/*!40000 ALTER TABLE `profile_action` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `profile_profile`;
 CREATE TABLE IF NOT EXISTS `profile_profile` (
@@ -2601,12 +1347,6 @@ CREATE TABLE IF NOT EXISTS `profile_profile` (
   PRIMARY KEY (`profile_key`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `profile_profile` DISABLE KEYS */;
-INSERT INTO `profile_profile` (`profile_key`, `profile_description`) VALUES
-	('forms_admin', 'Admin manager for Forms - create, update and delete forms'),
-	('forms_response_manager', 'User that manage responses made through forms'),
-	('technical_admin_forms', 'Admin technical manager that can configure all necessary features to admin forms');
-/*!40000 ALTER TABLE `profile_profile` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `profile_right`;
 CREATE TABLE IF NOT EXISTS `profile_right` (
@@ -2635,12 +1375,6 @@ CREATE TABLE IF NOT EXISTS `profile_user` (
   PRIMARY KEY (`profile_key`,`id_user`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `profile_user` DISABLE KEYS */;
-INSERT INTO `profile_user` (`profile_key`, `id_user`) VALUES
-	('forms_admin', 5),
-	('forms_response_manager', 5),
-	('technical_admin_forms', 5);
-/*!40000 ALTER TABLE `profile_user` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `profile_view`;
 CREATE TABLE IF NOT EXISTS `profile_view` (
@@ -2663,13 +1397,6 @@ CREATE TABLE IF NOT EXISTS `profile_view_action` (
   PRIMARY KEY (`id_action`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `profile_view_action` DISABLE KEYS */;
-INSERT INTO `profile_view_action` (`id_action`, `name_key`, `description_key`, `action_url`, `icon_url`, `action_permission`) VALUES
-	(1, 'profiles.action.modify_view.name', 'profiles.action.modify_view.description', 'jsp/admin/plugins/profiles/ModifyView.jsp', 'edit', 'MODIFY_VIEW'),
-	(2, 'profiles.action.delete_view.name', 'profiles.action.delete_view.description', 'jsp/admin/plugins/profiles/RemoveView.jsp', 'trash', 'DELETE_VIEW'),
-	(3, 'profiles.action.manage_views_assignment.name', 'profiles.action.manage_views_assignment.description', 'jsp/admin/plugins/profiles/AssignProfilesView.jsp', 'user-tag', 'MANAGE_PROFILES_ASSIGNMENT'),
-	(4, 'profiles.action.manage_dashboards.name', 'profiles.action.manage_dashboards.description', 'jsp/admin/plugins/profiles/ManageDashboards.jsp', 'wrench', 'MANAGE_DASHBOARDS');
-/*!40000 ALTER TABLE `profile_view_action` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `profile_view_dashboard`;
 CREATE TABLE IF NOT EXISTS `profile_view_dashboard` (
@@ -3667,10 +2394,6 @@ CREATE TABLE IF NOT EXISTS `workflow_workflow` (
   PRIMARY KEY (`id_workflow`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*!40000 ALTER TABLE `workflow_workflow` DISABLE KEYS */;
-INSERT INTO `workflow_workflow` (`id_workflow`, `name`, `description`, `creation_date`, `is_enabled`, `workgroup_key`) VALUES
-	(1, 'Demands', 'Treat citizen demand', '2022-02-21 09:36:48', 0, 'all');
-/*!40000 ALTER TABLE `workflow_workflow` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `workflow_workgroup_cf`;
 CREATE TABLE IF NOT EXISTS `workflow_workgroup_cf` (
